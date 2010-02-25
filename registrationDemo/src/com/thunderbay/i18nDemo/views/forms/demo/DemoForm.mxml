@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas 	width="386" height="290"
+			clipContent="false"
+		 	xmlns:mx="http://www.adobe.com/2006/mxml" >
+
+<mx:Array id="registrationValidators">
+	<mx:StringValidator source="{txtFirstName}" 	property="text" 		 required="true" minLength="2" requiredFieldError="First name is required!"/>
+	<mx:StringValidator source="{txtLastName}" 		property="text" 		 required="true" minLength="2" requiredFieldError="Last name is required!"/>
+	<mx:EmailValidator  source="{txtEmail}" 		property="text"			 required="true" 			   requiredFieldError="A valid email is required!"/>
+	<mx:StringValidator source="{txtCompany}" 		property="text" 		 required="true" minLength="2" requiredFieldError="A company name is required!"/>
+	<mx:StringValidator source="{txtPostal}" 		property="text" 		 required="true" minLength="2" requiredFieldError="What is your Postal Code?"/>
+	<mx:PhoneNumberValidator source="{txtPhone}"	property="text"			 required="true" minDigits="10" requiredFieldError="A valid phone # is required; e.g (515.221.3216)"/>
+	<mx:NumberValidator source="{cmbCountry}"		property="selectedIndex" required="true" minValue="0"  lowerThanMinError="Please select your Country of residence" />
+	<mx:NumberValidator source="{cmbState}"			property="selectedIndex" required="true" minValue="0"  lowerThanMinError="Please select a US State of residence" enabled="{cmbCountry.selectedItem == Countries.USA}"/>			
+</mx:Array>
+
+<mx:Label id="lblTitle" 	text="Register Now" styleName="siHeader"   y="0"/>
+<mx:Label id="lblSubTitle" 	text="It only takes a few seconds" styleName="siText"  x="2" y="35"/>
+<mx:Label id="lblMsg" 		text="(All fields are required)" styleName="siText" fontStyle="italic" textAlign="right" y="37" x="232" fontSize="10"/>
+
+<mx:Label 	id="lblFirstName" 	text="First Name:" styleName="siFieldLabel"   y="65" x="-2"/>
+<mx:TextInput 	id="txtFirstName" 	text="{_account.firstName}" 	minWidth="168" 								
+									focusOut="onCheckValidation(event);"  x="0" y="81" tabIndex="1"/>
+<mx:Label 	id="lblLastName"	text="Last Name:" x="181"  minWidth="70" y="65"			styleName="siFieldLabel"  />
+<mx:TextInput 	id="txtLastName"  	text="{_account.lastName}"		width="168" x="183" 						
+									focusOut="onCheckValidation(event);"  y="81" tabIndex="2"/>
+
+<mx:Label 	id="lblEmail" 		text="eMail:" width="70"  x="-3" y="111" 	styleName="siFieldLabel"/>
+<mx:TextInput 	id="txtEmail" 		text="{_account.email}"			width="168" y="127" 						
+									focusOut="onCheckValidation(event);"  tabIndex="3"/>
+<mx:Label 	id="lblCompany"		text="Company:" x="181"	 width="70" y="111"			styleName="siFieldLabel" 												  />
+<mx:TextInput 	id="txtCompany" 	text="{_account.company}" 		width="168" y="127" x="183" 				
+									focusOut="onCheckValidation(event);"   tabIndex="4"/>
+
+<mx:Label 	id="lblZip" 		text="Postal"	 width="70" y="159"   x="240"  styleName="siFieldLabel"/>
+<mx:TextInput 	id="txtPostal"		text="{_account.postal}" 		width="109" x="242" 						
+									focusOut="onCheckValidation(event);"  y="175" tabIndex="6"/>
+
+<mx:Label 	id="lblCountry"		text="Country" x="-2" width="70" y="159"			styleName="siFieldLabel" 	  />
+<mx:ComboBox 	id="cmbCountry" 	dataProvider="{_countries}"		width="230" x="0" y="176"					
+									change="onCountryChanged();"			
+									prompt="Please select your Country..."  tabIndex="5"/>
+
+<mx:Label	id="lblState"		text="State:"	 width="70" x="-1" y="205"	styleName="siFieldLabel" 					 
+									alpha="{(cmbCountry.selectedItem == Countries.USA) ? 1 : .3}"/>
+<mx:ComboBox 	id="cmbState"		dataProvider="{_states}"		width="230" x="0" y="222" 					
+									change="onStateChanged();"	 			selectedIndex="-1"									
+									prompt="Please select a State..." 	tabIndex="7"		/>
+
+<mx:Label 	id="lblPhone" 		text="Phone:" width="70" x="240" y="205"     styleName="siFieldLabel"/>
+<mx:TextInput 	id="txtPhone"		text="{_account.phone}" 		width="109" x="242" y="222"  				
+									restrict="0-9,.-" focusOut="onCheckValidation(event);"   tabIndex="8"/>
+
+<mx:Image id="btnRegister" click="onSaveProfile()" x="2" y="258"  tabIndex="9" source="@Embed('/assets/images/btn_register.png')" useHandCursor="true" buttonMode="true" focusEnabled="true"/>
+
+<mx:Script>
+	<![CDATA[
+		import com.thunderbay.i18nDemo.vo.AccountVO;
+		
+		/**
+		 * Support for incoming account data 
+		 */
+		[Bindable] private var _account 	: AccountVO         = null;
+	]]>
+</mx:Script>
+	
+</mx:Canvas>

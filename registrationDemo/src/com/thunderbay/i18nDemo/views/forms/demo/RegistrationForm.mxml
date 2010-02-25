@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="utf-8"?>
+<frm:BaseForm width="386" height="290"
+			  clipContent="false"
+			  xmlns:frm="com.thunderbay.i18nDemo.views.forms.*"
+			  xmlns:comp="com.thunderbay.i18nDemo.control.*"
+			  xmlns:mx="http://www.adobe.com/2006/mxml" >
+	
+	<mx:Metadata>
+		[ResourceBundle("registration")]
+	</mx:Metadata>	
+	
+	<mx:Script>
+		<![CDATA[
+			import mx.collections.ArrayCollection;
+			import mx.collections.XMLListCollection;
+			import mx.controls.Alert;
+			import mx.core.UIComponent;
+			import mx.events.CloseEvent;
+			import mx.managers.IFocusManagerComponent;
+			
+			import com.thunderbay.i18nDemo.events.SaveAccountEvent;
+			import com.thunderbay.i18nDemo.model.Countries;
+			import com.thunderbay.i18nDemo.model.StatesVO;
+			import com.thunderbay.i18nDemo.vo.AccountVO;
+			
+
+			// **************************************************
+			// Public Properties
+			// **************************************************
+			
+			/**
+			 * Write-only property to easily trigger internal activity
+			 * NOTE: the settings instance is "cloned" to prevent overwrites that would be accessible 
+			 *       outside this view.
+			 * 
+			 * @settings AccountVO instance for the current user (or unregistered user)
+			 */
+			public function set account(settings:AccountVO):void {
+				_account = settings ? settings.clone() : null;
+				
+
+
+				updateFields();
+				txtFirstName.setFocus();
+			}
+			
+			override public function clearErrors():void {
+				super.clearErrors();
+				cmbState.styleName = styleInputValid;
+			}
+
+			// **************************************************************
+			// Override Protected Methods:  
+			// **************************************************************
+			
+			override protected function get validators():Array {
+				return registrationValidators;
+			}
+			override protected function autoSubmit(ui:IFocusManagerComponent):Boolean {
+				if (ui == btnSubmit)  onSaveProfile();
+				 // We do not want to auto-tab to the AlreadyRegistered text field
+				 // so if the current field is the button
+				return (ui == btnSubmit);  
+			}
+			
+			override protected function commitProperties():void {
+				super.commitProperties();
+				
+				if (_account == null) {
+					account = new AccountVO({country:Countries.USA});
+				} 
+			}
+
+			// **************************************************
+			// Private Event Handlers
+			// **************************************************
+			
+			private function onSaveProfile():Boolean {
+				var errors:Array = onCheckValidation();
+				
+				if( errors.length > 0 ) 	{
+					var ui   : UIComponent = txtFirstName;		// default UI to focus
+					var check: Function    = this.getFirstErrorComponent;
+					
+					Alert.show(	errors.join("\n"),
+								resourceManager.getString("registration","register.invalidProfile"),
+								Alert.OK,this,
+								function(event:CloseEvent):void{
+									check(ui).setFocus();
+								});
+				}
+				else registerUser();
+				
+				return (errors.length > 0);
+			}
+			
+
+			
+			private function onCountryChanged(showError:Boolean=true):void {
+				var stateRequired : Boolean = (cmbCountry.selectedItem == Countries.USA);
+				
+				with (cmbState) {
+					alpha 	= stateRequired ? 1 : .3;
+					enabled	= stateRequired;
+					
+					styleName = !stateRequired 		 ? styleInputValid :
+								(selectedIndex >=0)  ? styleInputValid :
+								(showError != true)  ? styleInputValid : styleInputError; 
+				} 
+			}
+			
+			private function onStateChanged():void {
+				with(cmbState) {
+					if (selectedIndex >= 0) styleName = styleInputValid;
+				}
+			}
+			
+			// **************************************************
+			// Private Methods
+			// **************************************************
+			
+			private function registerUser():void	{
+				var stateRequired : Boolean = (cmbCountry.selectedItem == Countries.USA);
+				
+				_account.country = (cmbCountry.selectedIndex >= 0)                     ? cmbCountry.selectedLabel 	: "";
+				_account.state   = !stateRequired 									   ? "" 						:
+								   (cmbState.visible && (cmbState.selectedIndex >= 0)) ? cmbState.selectedLabel 	: "";
+				
+				new SaveAccountEvent(_account).dispatch(); 
+			}
+			
+			
+			private function updateFields():void {
+				if (_account && (_account.country == "")) {
+					// Assign default country if needed...
+					_account.country = Countries.USA;
+					_account.state   = "";
+				}
+				
+				cmbCountry.selectedIndex = _account ? Countries.indexOf(_account.country) : -1;
+				cmbState.selectedIndex   = _account ? StatesVO.indexOf(_account.state)    : -1;
+
+				onCountryChanged(false);
+			}
+
+			/**
+			 * Support for incoming account data 
+			 */
+			[Bindable] private var _account 	: AccountVO         = null;
+			[Bindable] private var _states  	: XMLListCollection = new XMLListCollection (StatesVO.names);
+			[Bindable] private var _countries	: ArrayCollection   = new ArrayCollection(Countries.CountryList);  
+		]]>
+	</mx:Script>
+	
+	<!-- Flex4 offers 2-way databinding; but not available for Flex 3.x -->
+	
+	<mx:Binding source="txtFirstName.text" 	destination="_account.firstName"/>
+	<mx:Binding source="txtLastName.text"  	destination="_account.lastName"/>
+	<mx:Binding source="txtEmail.text"  	destination="_account.email"/>
+	<mx:Binding source="txtCompany.text"  	destination="_account.company"/>
+	<mx:Binding source="txtPostal.text"  	destination="_account.postal"/>
+	<mx:Binding source="txtPhone.text"  	destination="_account.phone"/>
+	
+
+	<mx:Array id="registrationValidators">
+		<mx:StringValidator source="{txtFirstName}" 	property="text" 		 required="true" minLength="2" requiredFieldError="{resourceManager.getString('registration','register.validationError.firstName')}"/>
+		<mx:StringValidator source="{txtLastName}" 		property="text" 		 required="true" minLength="2" requiredFieldError="{resourceManager.getString('registration','register.validationError.lastName')}"/>
+		<mx:EmailValidator  source="{txtEmail}" 		property="text"			 required="true" 			   requiredFieldError="{resourceManager.getString('registration','register.validationError.email')}"/>
+		<mx:StringValidator source="{txtCompany}" 		property="text" 		 required="true" minLength="2" requiredFieldError="{resourceManager.getString('registration','register.validationError.company')}"/>
+		<mx:StringValidator source="{txtPostal}" 		property="text" 		 required="true" minLength="2" requiredFieldError="{resourceManager.getString('registration','register.validationError.postal')}"/>
+		<mx:PhoneNumberValidator source="{txtPhone}"	property="text"			 required="true" minDigits="10" requiredFieldError="{resourceManager.getString('registration','register.validationError.phone')}"/>
+		<mx:NumberValidator source="{cmbCountry}"		property="selectedIndex" required="true" minValue="0"  lowerThanMinError="{resourceManager.getString('registration','register.validationError.country')}" />
+					
+		<mx:NumberValidator source="{cmbState}"			property="selectedIndex" required="true" minValue="0"  lowerThanMinError="{resourceManager.getString('registration','register.validationError.state')}" 
+																												enabled="{cmbCountry.selectedItem == Countries.USA}"/>			
+	</mx:Array>
+	
+	<mx:Label id="lblTitle" 	text="{resourceManager.getString('registration','register.title')}" styleName="siHeader"   y="0" width="351"/>
+	
+	<mx:Label id="lblSubTitle" 	text="{resourceManager.getString('registration','register.subtitle')}" styleName="siText"  x="2" y="35" width="199"/>
+	<mx:Label id="lblMsg" 		text="{resourceManager.getString('registration','register.allRequired')}" styleName="siText" fontStyle="italic" textAlign="right" y="37" x="232" fontSize="10"/>
+	
+	<!-- Each text input is horizontally aligned on column markers each at 184 pixels wide -->
+	
+	<!-- 1st Row -->
+		<mx:Label 		id="lblFirstName" 	text="{resourceManager.getString('registration','register.firstName')}"				
+											styleName="siFieldLabel"   y="65" x="-2" width="170"/>
+		<mx:TextInput 	id="txtFirstName" 	text="{_account.firstName}" 	width="168" 								
+											focusOut="onCheckValidation(event);"  x="0" y="81" tabIndex="1"/>
+		<mx:Label 		id="lblLastName"	text="{resourceManager.getString('registration','register.lastName')}" x="181" 		
+											width="170" y="65"			styleName="siFieldLabel"  />
+		<mx:TextInput 	id="txtLastName"  	text="{_account.lastName}"		width="168" x="183" 						
+											focusOut="onCheckValidation(event);"  y="81" tabIndex="2"/>
+	
+	<!-- 2nd Row -->
+		<mx:Label 		id="lblEmail" 		text="{resourceManager.getString('registration','register.email')}"				
+											width="171"  x="-3" y="111" 	styleName="siFieldLabel"/>
+		<mx:TextInput 	id="txtEmail" 		text="{_account.email}"			width="168" y="127" 						
+											focusOut="onCheckValidation(event);"  tabIndex="3"/>
+		<mx:Label 		id="lblCompany"		text="{resourceManager.getString('registration','register.company')}" x="181"		
+											width="170" y="111"			styleName="siFieldLabel" 												  />
+		<mx:TextInput 	id="txtCompany" 	text="{_account.company}" 		width="168" y="127" x="183" 				
+											focusOut="onCheckValidation(event);"   tabIndex="4"/>
+
+	<!-- 3rd Row -->
+		<mx:Label 		id="lblZip" 		text="{resourceManager.getString('registration','register.postal')}"				
+											width="111" y="159"   x="240"  styleName="siFieldLabel"/>
+		<mx:TextInput 	id="txtPostal"		text="{_account.postal}" 		width="109" x="242" 						
+											focusOut="onCheckValidation(event);"  y="175" tabIndex="6"/>
+		
+		<mx:Label 		id="lblCountry"		text="{resourceManager.getString('registration','register.country')}" x="-2" 		
+											width="234" y="159"			styleName="siFieldLabel" 	  />
+		<mx:ComboBox 	id="cmbCountry" 	dataProvider="{_countries}"		width="230" x="0" y="176"					
+											change="onCountryChanged();"			
+											prompt="{resourceManager.getString('registration','register.prompt.country')}"  tabIndex="5"/>
+
+		<mx:Label		id="lblState"		text="{resourceManager.getString('registration','register.state')}"				
+											width="233" x="-1" y="205"	styleName="siFieldLabel" 					 
+											alpha="{(cmbCountry.selectedItem == Countries.USA) ? 1 : .3}"/>
+		<mx:ComboBox 	id="cmbState"		dataProvider="{_states}"		width="230" x="0" y="222" 					
+											change="onStateChanged();"	 			selectedIndex="-1"									
+											prompt="{resourceManager.getString('registration','register.prompt.state')}" 	tabIndex="7"		/>
+		
+		<mx:Label 		id="lblPhone" 		text="{resourceManager.getString('registration','register.phone')}"				
+											width="111" x="240" y="205"     styleName="siFieldLabel"/>
+		<mx:TextInput 	id="txtPhone"		text="{_account.phone}" 		width="109" x="242" y="222"  				
+											restrict="0-9,.-" focusOut="onCheckValidation(event);"   tabIndex="8"/>
+	
+		<mx:Image 		id="btnSubmit" 		click="onSaveProfile()" x="2" y="258"  tabIndex="9" 
+											source="{resourceManager.getClass('registration','register.btnRegister'}" 
+											useHandCursor="true" buttonMode="true" />
+	
+</frm:BaseForm>

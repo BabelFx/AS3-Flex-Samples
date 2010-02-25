@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:HBox horizontalAlign="right" height="40"  
+		 filters="{[new DropShadowFilter(4,45,0,.4)]}" alpha="0"
+		 creationComplete="onInitView();"
+		 xmlns:mx="http://www.adobe.com/2006/mxml" >
+
+	<mx:Script>
+		<![CDATA[
+			import assets.i18nDemoAssets;
+			
+			import com.thunderbay.i18nDemo.control.utils.DelayedCall;
+			import com.thunderbay.locale.LocaleEvent;
+			
+			private function onInitView():void {
+				DelayedCall.schedule(function(effect:Fade):void {
+										effect.play();
+									},[fadeIn],1300);
+			}
+		]]>
+	</mx:Script>
+	
+	<mx:Fade id="fadeIn" duration="900" alphaTo="1" target="{this}" /> 
+	
+	<!-- LocaleMaps work with both embedded or runtime-loading of bundles.
+	But, this demo does not use runtime loading, so we need a "hack" to 
+	force the compiler to embedded "registration" bundles at build time.
+	-->
+	<mx:Text visible="false" text="@Resource(bundle='registration', key='')" />
+
+	
+	<mx:Image source="{i18nDemoAssets.FLAG_SPAIN}" click="new LocaleEvent(LocaleEvent.LOAD_LOCALE,'es_ES').dispatch();" buttonMode="true" useHandCursor="true" toolTip="Use Spanish Locale"/>
+	<mx:Image source="{i18nDemoAssets.FLAG_USA}"   click="new LocaleEvent(LocaleEvent.LOAD_LOCALE,'en_US').dispatch();" buttonMode="true" useHandCursor="true" toolTip="Use USA Locale"/>
+
+</mx:HBox>

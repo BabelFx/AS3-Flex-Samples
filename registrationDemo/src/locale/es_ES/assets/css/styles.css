@@ -1,0 +1,188 @@
+/* CSS file */
+@font-face {
+	src: url("../fonts/trebuc.ttf");
+	fontFamily: trebuchetMS;
+	advancedAntiAliasing: true;
+	unicode-range:
+		U+0020-U+007E, /* englishRange */
+		U+00A1-U+00FF,U+2000-U+206F,U+20A0-U+20CF,U+2100-U+2183, /* Latin I */
+		U+0100-U+01FF, /* Latin Extended A */
+		U+1E00-U+1EFF; /* Latin Extended Add'l */
+}
+
+@font-face {
+	src: url("../fonts/trebucbd.ttf");
+	fontFamily: trebuchetMS;
+	advancedAntiAliasing: true;
+	font-weight: bold;
+	unicode-range:
+		U+0020-U+007E, /* englishRange */
+		U+00A1-U+00FF,U+2000-U+206F,U+20A0-U+20CF,U+2100-U+2183, /* Latin I */
+		U+0100-U+01FF, /* Latin Extended A */
+		U+1E00-U+1EFF; /* Latin Extended Add'l */
+}
+
+@font-face {
+	src: url("../fonts/trebucit.ttf");
+	fontFamily: trebuchetMS;
+	advancedAntiAliasing: true;
+	font-style: italic;
+	unicode-range:
+		U+0020-U+007E, /* englishRange */
+		U+00A1-U+00FF,U+2000-U+206F,U+20A0-U+20CF,U+2100-U+2183, /* Latin I */
+		U+0100-U+01FF, /* Latin Extended A */
+		U+1E00-U+1EFF; /* Latin Extended Add'l */
+}
+
+Application {
+   backgrou ndColor: #ffffff;
+   theme-color:#666666;
+   font-family: Arial, Helvetica, "_sans";
+}
+
+.newsRoomMenuLink
+{
+	color:#ffffff;
+	font-size:14;
+	roll-over-color:#333333;
+	text-roll-over-color:#ffffff;
+}
+
+HotSpotCallout
+{
+	border-skin: ClassReference("net.varian.skins.HotSpotCalloutSkin");	
+}
+
+.documentViewerOverlay
+{
+	background-alpha: .9;
+	background-color:#ffffff;	
+	
+}
+
+.hotSpotText
+{
+	color:#ffffff;
+	font-weight:bold;
+	roll-over-color:#ffffff;
+}
+
+.h1
+{
+	font-size:20;
+}
+.h3
+{
+	font-size:16;
+}
+
+.navLink
+{
+	color:#3c53ff;
+	text-roll-over-color: #3c53ff;
+	text-selected-color: #3c53ff;
+	
+	skin: ClassReference(null);
+}
+
+.downloadButton
+{
+	skin: ClassReference(null);
+	color: #204f8f;
+	font-size: 14;
+	text-roll-over-color: #204f8f;
+	text-selected-color: #204f8f;  
+}
+
+.vacuumAtWorkButton
+{
+	skin: ClassReference(null);
+	selected-up-skin: ClassReference(null);
+	color: #8d8d8d;
+	font-size: 14;
+	padding-left: 10;
+	padding-right: 5;
+	text-roll-over-color: #204f8f;
+	text-selected-color: #204f8f; 	
+	disabled-color: #204f8f;
+}
+
+
+BreadcrumbLink, .breadcrumb
+{
+	color:#ffffff;
+	font-size:12;	
+	padding-top: 5;
+	font-weight: bold;
+	text-roll-over-color:#ffffff;
+	text-selected-color: #ffffff;
+	disabled-color: #ffffff;
+	text-align: right;
+	skin: ClassReference('net.varian.skins.BreadCrumbLinkSkin');
+}
+
+.documentList
+{
+	background-alpha: 0;
+	border-style: none;
+}
+
+.newsList
+{
+	background-alpha: 0;
+	border-style: none;
+}
+
+.newsTitle
+{
+	font-size: 16;
+}
+
+.newsBody
+{
+	font-size: 12;
+}
+
+.newsDocLink
+{
+	font-size: 12;
+	color: #204f8f;
+}	
+
+ScrollBar
+{
+	down-arrow-skin: ClassReference(null);
+	up-arrow-skin: ClassReference(null);
+	thumb-skin: Embed('/assets/images/scroll_thumb.png'); 
+	thumb-icon: Embed('/assets/images/thumb_icon.png');
+}
+
+
+.docMainNav
+{
+	first-button-style-name: docMainNavButton;
+	button-style-name: docMainNavButton;
+	last-button-style-name: docMainNavButton;
+	selected-button-text-style-name: docNavSelectedText;
+}
+
+.docMainNavButton
+{
+	font-size: 12;
+	color: #8d8d8d;
+	text-roll-over-color: #204f8f;
+	text-selected-color: #204f8f; 
+	skin: ClassReference(null);
+	text-align: left;
+	text-selected-indent: 5;
+	padding-left: 0;
+	selected-over-icon: Embed('/assets/images/list_icon_small.png');
+	selected-down-icon: Embed('/assets/images/list_icon_small.png');
+	selected-up-icon: Embed('/assets/images/list_icon_small.png');
+	focus-alpha:0;
+}
+
+.docNavSelectedText
+{
+	color: #204f8f;
+}

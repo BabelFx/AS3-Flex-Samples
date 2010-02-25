@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+When starts, there is an error about can not convert
+spark.components::NavigatorContent to mx.core.Container.
+But the labels have bean translated already and I didn't find other
+problems so far.
+Also, another problem is about translation when there are many
+states with flex 4 new syntax. You have known it, right?
+-->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" 
+			   xmlns:mx="library://ns.adobe.com/flex/halo"
+			   minWidth="1024" minHeight="768" currentState="normal">
+	<s:states>
+		<s:State name="normal"/>
+		<s:State name="small"/>
+	</s:states>
+	
+	
+	<fx:Declarations>
+		<s:ArrayList id="introList">
+			<fx:Object id="basic" label="Basic" />
+			<fx:Object id="rules" label="Rules" />
+		</s:ArrayList>
+		
+		<locale:MyLocaleMap ui="{this}" xmlns:locale="*"/>
+	</fx:Declarations>
+	
+	<fx:Script>
+		<![CDATA[
+			private function onViewSmall():void {
+				currentState= (currentState == 'normal') ? 'small' : 'normal';
+				
+				introList.getItemAt(0).label = "Basics";
+			}
+		]]>
+	</fx:Script>
+	
+	<!--
+	OK. In Spark label, locale map works well. So does in many other spark components.
+	-->
+	<mx:Label id="txtTitle" 
+			  fontSize="20" 		y="0" 			horizontalCenter="0" 		fontWeight="bold"  
+			  fontSize.small="12" 	y.small="109"	horizontalCenter.small="0" 	color.small="#F40D0D" textDecoration.small="underline"/>
+	
+	<!--
+	OK. In halo components, everything is OK, too.
+	-->
+	<mx:Accordion x="0" y="0" width="200" height="100%" click="onViewSmall();">
+		<mx:Canvas id="introView" label="Introduction"
+				   width="100%" height="100%">
+			<s:List x="0" y="0" width="100%" height="100%" dataProvider="{introList}" />
+		</mx:Canvas>
+		<mx:Canvas id="instView" label="Instruments"
+				   width="100%" height="100%" >
+		</mx:Canvas>
+	</mx:Accordion>
+	
+	<!--
+	If you comment NavigatorContent tag, there is no error when starting.
+	-->
+	<!--<mx:Accordion x="250" y="0" width="200" height="100%">
+		<s:NavigatorContent id="introSparkView" label="Introduction"
+							width="100%" height="100%">
+			<s:List x="0" y="0" width="100%" height="100%" dataProvider="{introList}" />
+		</s:NavigatorContent>
+		<s:NavigatorContent id="instSparkView" label="Instruments"
+							width="100%" height="100%">
+		</s:NavigatorContent>
+	</mx:Accordion>-->
+	
+</s:Application>

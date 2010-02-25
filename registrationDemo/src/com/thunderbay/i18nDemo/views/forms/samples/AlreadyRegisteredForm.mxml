@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<frm:BaseForm  	clipContent="false"
+				xmlns:frm="com.thunderbay.i18nDemo.views.forms.*"
+				xmlns:mx="http://www.adobe.com/2006/mxml" >
+	
+	<mx:Script>
+		<![CDATA[
+			import mx.controls.Alert;
+			import mx.core.UIComponent;
+			import mx.events.CloseEvent;
+			import mx.managers.IFocusManagerComponent;
+			
+			import com.thunderbay.i18nDemo.events.LoadAccountEvent;
+
+			public var alertTitle : String = "Invalid Login";
+		
+			[Bindable] public var email : String = "";
+			
+			// **************************************************************
+			// Override Protected Methods:  
+			// **************************************************************
+			
+			override protected function get validators():Array {
+				return allValidators;
+			}
+
+			override protected function autoSubmit(ui:IFocusManagerComponent):Boolean {
+				// 'return' key invokes submit always since we have only 1 field.
+				return onSubmit();  
+			}
+
+			// **************************************************
+			// Private Event Handlers
+			// **************************************************
+			
+			private function onSubmit():Boolean  {
+				var errors:Array = onCheckValidation();
+				
+				if( errors.length > 0 ) 	{
+					var ui   : UIComponent = txtEmail;		// default UI to focus
+					var check: Function    = this.getFirstErrorComponent;
+					
+					Alert.show(	errors.join("\n"),
+								alertTitle,
+								Alert.OK,this,
+								function(event:CloseEvent):void{
+									check(ui).setFocus();
+								});
+				}
+				else {
+					// Try to load existing account information...
+					new LoadAccountEvent(txtEmail.text).dispatch(); 
+				}
+				
+				return (errors.length > 0);
+			}
+			 
+		]]>
+	</mx:Script>
+
+	
+	<mx:Array id="allValidators">
+		<mx:EmailValidator 	id="validator" 
+							source="{txtEmail}" 
+							property="text" 
+							required="true" 
+							requiredFieldError=""/>
+	</mx:Array>
+	
+	
+	<mx:Label 		id="lblTitle" 	  text="{resourceManager.getString('registration','signin.title')}"	 	styleName="siHeader" y="4"   width="355"/>
+	
+	<mx:Label 		id="lblEmail" 	  text="{resourceManager.getString('registration','signin.email')}"	 	top="38"  styleName="siFieldLabel"  width="355"/>
+	<mx:TextInput 	id="txtEmail" 	  text="{email}" top="54" width="355" 	focusOut="onCheckValidation(event);"  />
+	
+	<mx:Image 		id="btnSignIn" 	  source="{resourceManager.getClass('registration','signin.btnSignin'}"  styleName="siSigninBtn" top="87" click="onSubmit();" useHandCursor="true" buttonMode="true" mouseChildren="false" />
+
+</frm:BaseForm>

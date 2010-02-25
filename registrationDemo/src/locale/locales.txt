@@ -1,0 +1,17 @@
+Locale    	Language            	Country      	Charset
+
+en_US		English					United States	UTF-8
+
+zh_CN    	Simplified Chinese    	China			UTF-8
+zh_TW		Traditional Chinese		Taiwan			UTF-8
+fr_FR		French					France			UTF-8
+es_ES		Spanish					Spain			UTF-8
+de_DE		German	a				Germany			UTF-8
+
+
+See Slideshare for notes:
+http://www.slideshare.net/jwilker/ouzdemirkap-hands-on-training-creating-our-first-i18n-flex-application-2-hours
+
+review  SDK 3.4:
+$FLEX_HOME/frameworks/flex-config.xml
+$FLEX_HOME/frameworks/flash-unicode-table.xml

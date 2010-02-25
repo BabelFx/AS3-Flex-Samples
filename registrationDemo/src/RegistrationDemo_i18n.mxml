@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application creationComplete="signIn.visible = true;"
+				pageTitle="i18n Demo with LocalizationMaps"
+				backgroundColor="#777777"  backgroundGradientColors="[#777777,#BABABA]"
+				layout="absolute" horizontalScrollPolicy="off" verticalScrollPolicy="off"
+				xmlns:views="com.thunderbay.i18nDemo.views.*"
+				xmlns:mx="http://www.adobe.com/2006/mxml" viewSourceURL="srcview/index.html">
+	
+	<mx:Style source="locale/en_US/assets/css/styles.css" />
+	
+	<!-- Classic Cairngorm MVC structures -->
+	<mvc:i18nController									xmlns:mvc="com.thunderbay.i18nDemo.control.*"/>
+	<model:Model id="_model" 							xmlns:model="com.thunderbay.i18nDemo.model.*"/>
+	
+	<!-- Login/Registration Form -->
+	<views:SignInPage  id="signIn"		visitor="{_model.account}"
+					   visible="false" 	width="854" height="526" 
+					   horizontalCenter="0" verticalCenter="0" />
+	
+	<!-- Give users some UI to dynamically change the current Locale -->
+	<views:LanguageBar width="386" horizontalCenter="0" y="{signIn.y-20}" />
+	
+	<!-- Single tag used to provide l10n features for the entire application and all sub views --> 
+	<locale:LocalizationMap  account="{_model.account}" 
+							 signInPage="{signIn}"	
+							 xmlns:locale="com.thunderbay.i18nDemo.control.*" />
+	
+</mx:Application>

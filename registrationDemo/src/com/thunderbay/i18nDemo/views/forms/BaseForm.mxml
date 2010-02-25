@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas width="100%" height="100%"
+	     horizontalScrollPolicy="off" verticalScrollPolicy="off" 
+		 keyDown="onKeyDown(event);"
+		 xmlns:mx="http://www.adobe.com/2006/mxml" >
+	
+	<mx:Script>
+		<![CDATA[
+			import mx.managers.IFocusManagerComponent;
+			import mx.managers.IFocusManager;
+			import mx.core.UIComponent;
+			import mx.events.ValidationResultEvent;
+			import mx.validators.ValidationResult;
+			import mx.validators.Validator;
+			
+			/**
+			 * Stylename attributes to specify the CSS style used when 
+			 * a validation source fails or passes
+			 */
+			public var styleInputError 	: String = INPUT_ERROR;
+			public var styleInputValid	: String = INPUT_READY;
+			
+			/**
+			 * Force hide all validation errors: clear background color and remove error tip!
+			 * 
+			 */
+			public function clearErrors():void {
+				for each (var vChk : Validator in validators) {
+					var ui : UIComponent = vChk.source as UIComponent;
+					
+					// Manually clear all validation errors (for now...)
+					ui.styleName   = styleInputValid;
+					ui.errorString = "";
+				}
+			}
+
+			// **************************************************
+			// Private Event Handlers
+			// **************************************************
+			
+			/**
+			 * 	Improved validation checks to check all validators or only 1 associated
+			 *  with the specified UI instance
+			 * 
+			 *  @return Array of error validation messages
+			 */
+			protected function onCheckValidation(event:FocusEvent=null):Array {
+				var errors : Array 		= [];
+				var ui     : UIComponent= (event != null) ? (event.currentTarget as UIComponent) 	: null;
+				var checks : Array 		= (event != null) ? [getValidatorForUI(ui)] 				: validators;
+				
+				for each (var it : Validator in checks) {
+					if (it == null) continue;
+					
+					var vResult:ValidationResultEvent = it.validate();
+					if (vResult!=null) {
+						// Add error message and change backgroundColor
+						if (vResult.type == ValidationResultEvent.INVALID) errors.push( vResult.message );
+						
+						ui = it.source as UIComponent;	
+						if (ui != null) {
+							ui.styleName = (vResult.type == ValidationResultEvent.INVALID) ? styleInputError : styleInputValid;
+						} 
+					}
+				}
+				
+				return errors;
+			}
+			
+			/**
+			 * KeyDown listener useful to conditionally translate 'Enter' keys to tabs and 
+			 * change the current focus to the next IFocusable component.
+			 * 
+			 */
+			protected function onKeyDown(event:KeyboardEvent):void {
+				if (this.focusManager == null) return;
+				
+				var fMngr  : IFocusManager          = this.focusManager;
+				var cFocus : IFocusManagerComponent = fMngr.getFocus();
+			
+				switch (event.keyCode) {
+		  				case  Keyboard.ENTER      : if ( autoSubmit(cFocus) != true) {
+		  												fMngr.getNextFocusManagerComponent().setFocus();
+		  											}
+		  											break;
+		  		}
+      		}
+			
+			// **************************************************************
+			// Abstract Protected Methods:  Should OVERRIDE in subclasses
+			// **************************************************************
+			
+			/**
+			 * Get list of specified validators for a form. Each form subclass is expected
+			 * to override this method with references to their custom validator list
+			 * 
+			 * @return Array of Validator subclasses
+			 */
+			protected function get validators():Array {		return [];				}
+			
+			/**
+			 * When the enter key is used, do consider that event to be a "tab-to-next-field" event?
+			 * 
+			 * @return Should tab to next IFocusable component
+			 * @default false
+			 */
+			protected function autoSubmit(ui:IFocusManagerComponent):Boolean {		return false;		}
+
+			// **************************************************
+			// Protected Methods
+			// **************************************************
+			
+			protected function getValidatorForUI(ui:UIComponent):Validator {
+				var results : Validator = null;
+				if (ui != null) {
+					for each (var it:Validator in validators) {
+						if (it.source == ui) {
+							results = it;
+							break;
+						}
+					}
+				}
+				
+				return results;
+			}
+			
+			protected function getFirstErrorComponent(defaultUI:UIComponent):UIComponent {
+				var results : UIComponent = defaultUI;		// default setting...
+				
+				for each (var it:Validator in validators) {
+					if (it.enabled && it.source) {
+						var ui:UIComponent = it.source as UIComponent;
+						if (ui && (ui.errorString != "")) {
+							results = ui;
+							break;
+						}
+					}
+				}
+				
+				return results;
+			}
+			
+			
+			
+			// **************************************************
+			// Default Private Attributes
+			// **************************************************
+			
+			private const INPUT_ERROR : String = "siInputError";
+			private const INPUT_READY : String = "";
+	
+		]]>
+	</mx:Script>
+
+</mx:Canvas>

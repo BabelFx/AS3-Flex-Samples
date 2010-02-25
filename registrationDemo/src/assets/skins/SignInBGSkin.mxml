@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<degrafa:GraphicBorderSkin xmlns:mx="http://www.adobe.com/2006/mxml" xmlns:degrafa="http://www.degrafa.com/2007" >
+    
+    <mx:Script>
+        <![CDATA[
+            import com.degrafa.core.IGraphicsFill;
+        
+        
+            [Bindable]
+            private var w:Number = 0;
+
+            [Bindable]
+            private var h:Number = 0;
+ 
+            override protected function updateDisplayList(unscaledWidth:Number, unscaledHeight:Number):void
+            {    
+
+                w = unscaledWidth;
+                h = unscaledHeight;
+                super.updateDisplayList(unscaledWidth, unscaledHeight);
+               
+            }
+            
+    
+            
+        ]]>
+    </mx:Script>
+    
+        
+    <degrafa:fills>
+    
+    	<degrafa:LinearGradientFill id="fill" angle="90">
+            <degrafa:GradientStop alpha="1" color="#8aa7b7" />
+            <degrafa:GradientStop alpha="1" color="#abcadc"/>
+            <degrafa:GradientStop alpha="1" color="#8aa7b7" />
+        </degrafa:LinearGradientFill>
+        
+
+    </degrafa:fills>
+ 
+     
+    <degrafa:geometry>
+        <degrafa:RegularRectangle  fill="{fill}" height="{h}" width="{w}" />
+    </degrafa:geometry>
+    
+    
+</degrafa:GraphicBorderSkin>

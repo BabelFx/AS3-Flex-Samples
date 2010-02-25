@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas width="100%" height="100%" 
+	clipContent="true"
+	creationComplete="onInitView();"
+	hideEffect="{effectHide}"
+	showEffect="{effectShow}"
+	xmlns:mx="http://www.adobe.com/2006/mxml" 
+	xmlns:forms="com.thunderbay.i18nDemo.views.forms.*">
+	
+	
+	<mx:Script>
+    	<![CDATA[
+			import com.thunderbay.i18nDemo.control.utils.DelayedCall;
+			import com.thunderbay.i18nDemo.vo.AccountVO;
+    		
+			[Bindable] 
+			public var visitor : AccountVO = new AccountVO();
+			
+			public function clearErrors():void {
+				frmRegister.clearErrors();
+				frmSignin.clearErrors();
+			}
+			
+    		private function onInitView():void {
+				bkgrnd.alpha   = 0;
+				registerArea.x = -(this.x + registerArea.width+15);
+    		}
+    	]]>
+    </mx:Script>
+    
+    <mx:Sequence id="effectShow">
+    	<mx:Fade alphaTo="1" duration="400" target="{bkgrnd}" />
+    	<mx:Pause duration="100" />
+    	<mx:Move xTo="{(this.width - registerArea.width)/2}"   duration="700" target="{registerArea}" />
+    </mx:Sequence>
+    
+    <mx:Sequence id="effectHide">
+    	<mx:Move xTo="{-(this.x + registerArea.width+15)}"   duration="0" target="{registerArea}" />
+    	<mx:Fade alphaTo="0" duration="300" target="{bkgrnd}" />
+    </mx:Sequence>
+
+	<mx:Canvas 	id="bkgrnd" 
+				visible="false"
+				width="100%" height="100%"
+				styleName="disabledBkgrnd" 
+				horizontalScrollPolicy="off" verticalScrollPolicy="off" />
+				
+	<mx:Canvas id="registerArea"
+			   x="20" top="20" bottom="20" 
+			   cacheAsBitmap="true"
+			   horizontalScrollPolicy="off" verticalScrollPolicy="off"
+			   styleName="registrationForm" >
+  		
+	    <forms:RegistrationForm 		id="frmRegister" 	account="{visitor}" 		x="25" top="33"		width="386" height="290" mouseDown="frmSignin.clearErrors();"	registered="frmSignin.visible = false;"/>
+	    <forms:AlreadyRegisteredForm 	id="frmSignin"		email="{visitor.email}" 	x="25" top="343"	width="386" height="111" mouseDown="frmRegister.clearErrors();"	/>
+		
+	</mx:Canvas>
+    	 
+</mx:Canvas>

@@ -1,0 +1,114 @@
+/* CSS file */
+@font-face {
+    src: url("../fonts/trebuc.ttf");
+    fontFamily: trebuchetMS;
+    advancedAntiAliasing: true;
+	unicode-range:
+		U+0020-U+007E, /* englishRange */
+		U+00A1-U+00FF,U+2000-U+206F,U+20A0-U+20CF,U+2100-U+2183, /* Latin I */
+		U+0100-U+01FF, /* Latin Extended A */
+		U+1E00-U+1EFF; /* Latin Extended Add'l */
+}
+
+@font-face {
+    src: url("../fonts/trebucbd.ttf");
+    fontFamily: trebuchetMS;
+    advancedAntiAliasing: true;
+    font-weight: bold;
+	unicode-range:
+		U+0020-U+007E, /* englishRange */
+		U+00A1-U+00FF,U+2000-U+206F,U+20A0-U+20CF,U+2100-U+2183, /* Latin I */
+		U+0100-U+01FF, /* Latin Extended A */
+		U+1E00-U+1EFF; /* Latin Extended Add'l */
+}
+
+@font-face {
+    src: url("../fonts/trebucit.ttf");
+    fontFamily: trebuchetMS;
+    advancedAntiAliasing: true;
+    font-style: italic;
+	unicode-range:
+		U+0020-U+007E, /* englishRange */
+		U+00A1-U+00FF,U+2000-U+206F,U+20A0-U+20CF,U+2100-U+2183, /* Latin I */
+		U+0100-U+01FF, /* Latin Extended A */
+		U+1E00-U+1EFF; /* Latin Extended Add'l */
+}
+
+Application {
+   backgroundColor: #ffffff;
+   theme-color:#666666;
+   font-family: trebuchetMS;
+}
+
+ComboBox {
+	font-size:10;
+}
+
+TextInput
+{
+	font-size:12;
+	color:#000000;
+	background-color:#FFFFFF;
+}
+
+
+
+.registrationForm 	{		
+	border-skin: ClassReference("assets.skins.RegistrationFormSkin");				
+}
+
+.disabledBkgrnd {
+	border-skin: ClassReference("assets.skins.DisabledBkgrndSkin");				
+}
+
+.siRegistrant {
+	color: #ff0000;
+	font-style: italic;
+}
+
+.siEmail {
+	color: #ff0000;
+	text-decoration: underline;
+	font-style: italic;
+}
+
+.siHeader
+{
+	font-size: 24;
+	color: #204f8f;
+}
+
+.siReqNoteHeader
+{
+	font-size: 22;
+	color: #204f8f;
+}
+
+.siText
+{
+	font-size: 12;
+	color: #333333;
+}
+
+.siFieldLabel
+{
+	font-size: 12;
+	color: #204f8f;
+	text-align: left;
+	text-indent: 3px;
+}
+
+.siRegisterBtn
+{
+	skin: Embed('locale/en_US/assets/images/btn_register.png')
+}
+
+.siSigninBtn
+{
+	skin: Embed('locale/en_US/assets/images/btn_signin.png')
+}
+
+.siInputError {
+	background-color:#f8cbc3;
+}
+

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas backgroundColor="0x000000" 
+		   width="100%" height="100%"
+		   mouseChildren="false"
+		   horizontalScrollPolicy="off" verticalScrollPolicy="off"
+		   xmlns:mx="http://www.adobe.com/2006/mxml" >
+
+		<mx:Image id="cover"
+				  source="@Embed('/assets/images/videoCover.png')"
+				  width="95%" height="95%" smoothBitmapContent="true" 
+				  horizontalCenter="0" verticalCenter="0"/>
+</mx:Canvas>

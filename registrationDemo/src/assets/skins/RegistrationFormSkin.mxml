@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<degrafa:GraphicBorderSkin  xmlns:mx="http://www.adobe.com/2006/mxml" 
+										xmlns:degrafa="http://www.degrafa.com/2007"
+										xmlns:paint="com.degrafa.paint.*" 
+										xmlns:geometry="com.degrafa.geometry.*">
+
+    <mx:Script>
+        <![CDATA[
+            [Bindable]
+            private var awidth:Number=0;
+
+            [Bindable]
+            private var aheight:Number=0;
+            
+            override protected function updateDisplayList(unscaledWidth:Number, unscaledHeight:Number):void{
+                super.updateDisplayList(unscaledWidth, unscaledHeight);
+                
+                awidth = unscaledWidth;
+                aheight = unscaledHeight;
+           }
+        ]]>
+    </mx:Script>
+
+    <degrafa:fills>
+    		<degrafa:ComplexFill id="bkgrndFill" >
+	    		<degrafa:SolidFill  id="sFill" color="#FFFFFF" alpha=".98"/>
+	    		
+				<degrafa:LinearGradientFill id="lFill" angle="90">
+			        <degrafa:GradientStop color="#000000" alpha="0" ratio=".1"/>
+			        <degrafa:GradientStop color="#000000" alpha=".2" />
+	            </degrafa:LinearGradientFill>
+	            
+				<degrafa:RadialGradientFill id="rFill" cx="{awidth}" cy="{aheight}" coordinateType="relative" radiusX="{3*awidth/4}" radiusY="{3*aheight/4}">
+	                <degrafa:GradientStop color="#000000" alpha=".1"/>
+	                <degrafa:GradientStop color="#000000" alpha="0"/>
+	            </degrafa:RadialGradientFill>
+												            	            
+    		</degrafa:ComplexFill>
+		</degrafa:fills>
+    
+    <degrafa:strokes>
+    	<paint:SolidStroke color="#888888" weight="1" id="edge" alpha=".6" />
+    </degrafa:strokes>
+
+     <degrafa:geometry>
+  		<degrafa:GeometryComposition>
+  			
+		    	<degrafa:RegularRectangle fill="{bkgrndFill}" stroke="{edge}" width="{awidth}" height="{aheight}"/>
+      
+       </degrafa:GeometryComposition>
+    </degrafa:geometry>
+
+
+	<degrafa:filters>
+        <mx:DropShadowFilter angle="90"  blurX="15" blurY="15"
+          distance="0" alpha="0.75" color="#000000"/>
+    </degrafa:filters>
+    
+</degrafa:GraphicBorderSkin>

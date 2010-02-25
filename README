@@ -1,0 +1,12 @@
+Sample Applications and Usages for l10n Injection Flex library
+
+Using the l10nInjection.swc, these samples demonstrate real-world usages and the resulting power of IoC and runtime localization injections.
+
+This GIT repository contains the following samples
+
+1) RegistrationDemo - Flex Application compiled with Flex 3.5 SDK
+   Demonstrates runtime locale changes to update strings, PNGs, and skins of a RegistrationForm
+   
+2) viewStates - Flex Application compiled for Flex 4.x
+   Demonstrates use of l10nInjection and "advanced" features to support localization injections during view state changes.
+ 

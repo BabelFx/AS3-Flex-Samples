@@ -90,8 +90,9 @@
 		<ResourceProxy targetID="btnSignIn" 	property="source" 		key="button.skin.signin" 	type="class" />
 	</SmartResourceInjector>
 
+<!-- Test of property chain syntax within targetKey...
 	<injectors:SmartResourceInjector target="{RegistrationForm}">
 		<injectors:PropertyInjector targetKey="lblEmailHint.text" source="{account}" sourceKey="email" />
 	</injectors:SmartResourceInjector>
-	
+-->	
 </map:LocaleMap>

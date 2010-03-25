@@ -73,7 +73,11 @@
 	<mx:Label 		id="lblEmail" text="Email:" 	top="38"  styleName="siFieldLabel" />
 	<mx:TextInput 	id="txtEmail" 	  text="{email}" top="54" width="355" 	focusOut="onCheckValidation(event);" />
 	
-	<mx:Image id="btnSignIn" top="87" click="onSubmit();" source="@Embed('/assets/images/btn_signin.png')" useHandCursor="true" buttonMode="true" mouseChildren="false" />
+	<dummy:SignInButton id="btnSignIn"  top="87" 
+						click="onSubmit();" 
+						source="@Embed('/assets/images/btn_signin.png')" 
+						xmlns:dummy="com.thunderbay.i18nDemo.views.forms.dummy.*"  />
+	<mx:Image />
 
 
 </frm:BaseForm>

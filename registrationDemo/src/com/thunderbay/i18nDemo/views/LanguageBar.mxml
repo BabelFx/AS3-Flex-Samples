@@ -28,7 +28,15 @@
 	<mx:Text visible="false" text="@Resource(bundle='registration', key='')" />
 
 	
-	<mx:Image source="{i18nDemoAssets.FLAG_SPAIN}" click="new LocaleEvent(LocaleEvent.LOAD_LOCALE,'es_ES').dispatch();" buttonMode="true" useHandCursor="true" toolTip="Use Spanish Locale"/>
-	<mx:Image source="{i18nDemoAssets.FLAG_USA}"   click="new LocaleEvent(LocaleEvent.LOAD_LOCALE,'en_US').dispatch();" buttonMode="true" useHandCursor="true" toolTip="Use USA Locale"/>
+	<mx:Image source="{i18nDemoAssets.FLAG_SPAIN}" 
+			  click="new LocaleEvent(LocaleEvent.LOAD_LOCALE,'es_ES').dispatch();" 
+			  buttonMode="true" useHandCursor="true" 
+			  toolTip="Use Spanish Locale"/>
+	
+	<mx:Image source="{i18nDemoAssets.FLAG_USA}"   
+			  click="new LocaleEvent(LocaleEvent.LOAD_LOCALE,'en_US').dispatch();" 
+			  buttonMode="true" useHandCursor="true" 
+			  toolTip="Use USA Locale" 	
+			  id="btnFlagUSA" />
 
 </mx:HBox>

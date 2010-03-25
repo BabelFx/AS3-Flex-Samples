@@ -2,11 +2,17 @@
 <map:LocaleMap xmlns="com.asfusion.mate.l10n.injectors.*"
 			   xmlns:map="com.asfusion.mate.l10n.maps.*"
 			   xmlns:fx="http://ns.adobe.com/mxml/2009"
-			   targets="{[I18nTest]}">
+			   targets="{[I18nTest]}"
+			   includeDerivatives="true">
 	
 	<fx:Metadata>
 		[ResourceBundle("commons")]
 	</fx:Metadata>
+	<fx:Script>
+		<![CDATA[
+			import mx.controls.DataGrid;
+		]]>
+	</fx:Script>
 	
 	<fx:Script>
 		<![CDATA[
@@ -30,6 +36,12 @@
 				<ResourceProxy target="{ui.instSparkView}"  property="label" key="instSparkView.title" />
 			-->
 		</ResourceInjector>
+		
+		<SmartResourceInjector target="{DataGrid}">
+			<ResourceProxy targetID="grdAccounts" 	 property="columns[0].headerText" key="title.normal" />
+			<ResourceProxy targetID="grdDepartments" property="columns[1].headerText" key="introView.title" />
+			
+		</SmartResourceInjector>
 	</fx:Declarations>
 	
 </map:LocaleMap>

@@ -28,10 +28,15 @@ states with flex 4 new syntax. You have known it, right?
 	
 	<fx:Script>
 		<![CDATA[
+			import mx.core.ContainerCreationPolicy;
 			private function onViewSmall():void {
 				currentState= (currentState == 'normal') ? 'small' : 'normal';
 				
 				introList.getItemAt(0).label = "Basics";
+			}
+			
+			private function onGridReady(event:Event):void {
+				
 			}
 		]]>
 	</fx:Script>
@@ -40,8 +45,8 @@ states with flex 4 new syntax. You have known it, right?
 	OK. In Spark label, locale map works well. So does in many other spark components.
 	-->
 	<mx:Label id="txtTitle" 
-			  fontSize="20" 		y="0" 			horizontalCenter="0" 		fontWeight="bold"  
-			  fontSize.small="12" 	y.small="109"	horizontalCenter.small="0" 	color.small="#F40D0D" textDecoration.small="underline"/>
+			  fontSize="20" 		y="0"	fontWeight="bold"  
+			  fontSize.small="12" 	y.small="109"	color.small="#F40D0D" textDecoration.small="underline" y.normal="22.5" x.small="267" x.normal="267"/>
 	
 	<!--
 	OK. In halo components, everything is OK, too.
@@ -55,6 +60,28 @@ states with flex 4 new syntax. You have known it, right?
 				   width="100%" height="100%" >
 		</mx:Canvas>
 	</mx:Accordion>
+	
+	
+	<mx:TabNavigator creationPolicy="{ContainerCreationPolicy.ALL}" left="365.2" right="100" bottom="100" top="163">
+		<mx:Canvas label="UserAccounts" width="100%" height="100%">
+			<mx:DataGrid x="0" y="0" width="100%" height="100%" id="grdAccounts" creationComplete="onGridReady(event);">
+				<mx:columns>
+					<mx:DataGridColumn headerText="Column 1" dataField="col1"/>
+					<mx:DataGridColumn headerText="Column 2" dataField="col2"/>
+					<mx:DataGridColumn headerText="Column 3" dataField="col3"/>
+				</mx:columns>
+			</mx:DataGrid>
+		</mx:Canvas>
+		<mx:Canvas label="Departments" width="100%" height="100%">
+			<mx:DataGrid x="0" y="0" width="100%" height="100%" id="grdDepartments">
+				<mx:columns>
+					<mx:DataGridColumn headerText="Column 1" dataField="col1"/>
+					<mx:DataGridColumn headerText="Column 2" dataField="col2"/>
+					<mx:DataGridColumn headerText="Column 3" dataField="col3"/>
+				</mx:columns>
+			</mx:DataGrid>
+		</mx:Canvas>
+	</mx:TabNavigator>
 	
 	<!--
 	If you comment NavigatorContent tag, there is no error when starting.

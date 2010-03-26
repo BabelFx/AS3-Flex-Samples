@@ -62,7 +62,7 @@ states with flex 4 new syntax. You have known it, right?
 	</mx:Accordion>
 	
 	
-	<mx:TabNavigator creationPolicy="{ContainerCreationPolicy.ALL}" left="365.2" right="100" bottom="100" top="163">
+	<mx:TabNavigator creationPolicy="{ContainerCreationPolicy.AUTO}" left="365.2" right="100" bottom="100" top="163">
 		<mx:Canvas label="UserAccounts" width="100%" height="100%">
 			<mx:DataGrid x="0" y="0" width="100%" height="100%" id="grdAccounts" creationComplete="onGridReady(event);">
 				<mx:columns>

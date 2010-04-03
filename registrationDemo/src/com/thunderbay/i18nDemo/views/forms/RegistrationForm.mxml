@@ -208,10 +208,10 @@
 		<mx:NumberValidator source="{cmbState}"			property="selectedIndex" required="true" minValue="0"  lowerThanMinError="Please select a US State of residence" enabled="{cmbCountry.selectedItem == Countries.USA}"/>			
 	</mx:Array>
 	
-	<mx:Label id="lblTitle" 	text="Register Now" styleName="siHeader"   y="0"/>
+	<mx:Label id="lblTitle" 	text="Register Now" styleName="siHeader"  y="0"/>
 	
 	<mx:Label id="lblSubTitle" 	text="It only takes a few seconds" styleName="siText"  x="2" y="35" truncateToFit="true"/>
-	<mx:Label id="lblMsg" 		text="(All fields are required)" styleName="siText" fontStyle="italic" textAlign="right" y="37" x="232" fontSize="10" truncateToFit="true"/>
+	<mx:Text  id="lblMsg" 		text="(All fields are required)"   styleName="siText" fontStyle="italic" textAlign="right" y="37" x="232" fontSize="10" width="120" />
 	
 	<!-- Each text input is horizontally aligned on column markers each at 184 pixels wide -->
 	

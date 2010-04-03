@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <actionScriptProperties mainApplicationPath="RegistrationDemo_i18n.mxml" projectUUID="79954f7c-8766-4a91-9e52-9a7f2a75bf82" version="6">
-  <compiler additionalCompilerArguments="-locale=en_US,es_ES --allow-source-path-overlap=true -source-path+=locale/{locale}" autoRSLOrdering="false" copyDependentFiles="false" generateAccessible="false" htmlExpressInstall="false" htmlGenerate="true" htmlHistoryManagement="false" htmlPlayerVersionCheck="false" includeNetmonSwc="false" outputFolderLocation="/Developer/Applications/jboss/server/default/deploy/railo.war/i18nDemo" outputFolderPath="bin-debug" rootURL="http://localhost:8080/i18nDemo/" sourceFolderPath="src" strict="true" targetPlayerVersion="0.0.0" themeBaseTheme="Halo" themeIsDefault="false" themeIsSDK="true" themeLocation="/Developer/Applications/Adobe FlexBuilder 4/sdks/4.0.0/frameworks/themes/Halo" themeMain="halo.swc" themeMaxSDK="" themeMinSDK="4.0.0" themeName="Halo" themePath="Halo" themeSourceLocation="" themeSwcLocation="" useApolloConfig="false" useDebugRSLSwfs="true" verifyDigests="true" warn="true">
-    <themePath>Halo</themePath>
+  <compiler additionalCompilerArguments="-locale=en_US,es_ES --allow-source-path-overlap=true -source-path+=locale/{locale}" autoRSLOrdering="false" copyDependentFiles="false" fteInMXComponents="false" generateAccessible="false" htmlExpressInstall="false" htmlGenerate="true" htmlHistoryManagement="false" htmlPlayerVersionCheck="false" includeNetmonSwc="false" outputFolderLocation="/Developer/Applications/jboss/server/default/deploy/railo.war/i18nDemo" outputFolderPath="bin-debug" rootURL="http://localhost:8080/i18nDemo/" sourceFolderPath="src" strict="true" targetPlayerVersion="0.0.0" useApolloConfig="false" useDebugRSLSwfs="true" verifyDigests="true" warn="true">
     <compilerSourcePath>
       <compilerSourcePathEntry kind="1" linkType="1" path="/Users/thomasburleson/Documents/projects/ThunderBay/flex/insertables/lib_preloader/src"/>
     </compilerSourcePath>
@@ -20,6 +19,7 @@
           <libraryPathEntry kind="3" linkType="1" path="${PROJECT_FRAMEWORKS}/libs/flex.swc" useDefaultLinkType="false"/>
           <libraryPathEntry kind="3" linkType="1" path="${PROJECT_FRAMEWORKS}/libs/qtp.swc" useDefaultLinkType="false"/>
           <libraryPathEntry kind="3" linkType="1" path="${PROJECT_FRAMEWORKS}/libs/sparkskins.swc" useDefaultLinkType="false"/>
+          <libraryPathEntry kind="3" linkType="1" path="${PROJECT_FRAMEWORKS}/libs/datavisualization.swc" useDefaultLinkType="false"/>
           <libraryPathEntry kind="3" linkType="1" path="${PROJECT_FRAMEWORKS}/libs/automation.swc" useDefaultLinkType="false"/>
           <libraryPathEntry kind="3" linkType="1" path="${PROJECT_FRAMEWORKS}/libs/automation_dmv.swc" useDefaultLinkType="false"/>
           <libraryPathEntry kind="3" linkType="1" path="${PROJECT_FRAMEWORKS}/libs/automation_flashflexkit.swc" useDefaultLinkType="false"/>
@@ -33,12 +33,8 @@
         </excludedEntries>
       </libraryPathEntry>
       <libraryPathEntry kind="1" linkType="1" path="libs"/>
-      <libraryPathEntry kind="3" linkType="1" path="/Users/thomasburleson/Documents/dev/frameworks/mate/full/bin/Mate_Full.swc" sourcepath="/Users/thomasburleson/Documents/dev/frameworks/mate/full/src" useDefaultLinkType="false"/>
-      <libraryPathEntry kind="3" linkType="1" path="/l10nIOC_Library/bin/l10nIOC_Library.swc" useDefaultLinkType="false"/>
     </libraryPath>
-    <sourceAttachmentPath>
-      <sourceAttachmentPathEntry kind="3" linkType="1" path="/Users/thomasburleson/Documents/dev/frameworks/mate/full/bin/Mate_Full.swc" sourcepath="/Users/thomasburleson/Documents/dev/frameworks/mate/full/src" useDefaultLinkType="false"/>
-    </sourceAttachmentPath>
+    <sourceAttachmentPath/>
   </compiler>
   <applications>
     <application path="RegistrationDemo.mxml"/>

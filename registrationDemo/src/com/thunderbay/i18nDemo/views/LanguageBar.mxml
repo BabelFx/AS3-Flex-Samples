@@ -8,8 +8,8 @@
 		<![CDATA[
 			import assets.i18nDemoAssets;
 			
+			import com.asfusion.mate.l10n.events.LocaleEvent;
 			import com.thunderbay.i18nDemo.control.utils.DelayedCall;
-			import com.thunderbay.locale.LocaleEvent;
 			
 			private function onInitView():void {
 				DelayedCall.schedule(function(effect:Fade):void {
@@ -29,12 +29,12 @@
 
 	
 	<mx:Image source="{i18nDemoAssets.FLAG_SPAIN}" 
-			  click="new LocaleEvent(LocaleEvent.LOAD_LOCALE,'es_ES').dispatch();" 
+			  click="dispatchEvent(new LocaleEvent(LocaleEvent.LOAD_LOCALE,'es_ES'))" 
 			  buttonMode="true" useHandCursor="true" 
 			  toolTip="Use Spanish Locale"/>
 	
 	<mx:Image source="{i18nDemoAssets.FLAG_USA}"   
-			  click="new LocaleEvent(LocaleEvent.LOAD_LOCALE,'en_US').dispatch();" 
+			  click="dispatchEvent(new LocaleEvent(LocaleEvent.LOAD_LOCALE,'en_US'))" 
 			  buttonMode="true" useHandCursor="true" 
 			  toolTip="Use USA Locale" 	
 			  id="btnFlagUSA" />

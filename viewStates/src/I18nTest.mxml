@@ -46,12 +46,12 @@ states with flex 4 new syntax. You have known it, right?
 	-->
 	<mx:Label id="txtTitle" 
 			  fontSize="20" 		y="0"	fontWeight="bold"  
-			  fontSize.small="12" 	y.small="109"	color.small="#F40D0D" textDecoration.small="underline" y.normal="22.5" x.small="267" x.normal="267"/>
+			  fontSize.small="12" 	y.small="109"	color.small="#F40D0D" textDecoration.small="underline" y.normal="22.5" x.small="267" x.normal="50"/>
 	
 	<!--
 	OK. In halo components, everything is OK, too.
 	-->
-	<mx:Accordion x="0" y="0" width="200" height="100%" click="onViewSmall();">
+	<mx:Accordion  left="50" bottom="100" top="163" click="onViewSmall();">
 		<mx:Canvas id="introView" label="Introduction"
 				   width="100%" height="100%">
 			<s:List x="0" y="0" width="100%" height="100%" dataProvider="{introList}" />
@@ -62,7 +62,7 @@ states with flex 4 new syntax. You have known it, right?
 	</mx:Accordion>
 	
 	
-	<mx:TabNavigator creationPolicy="{ContainerCreationPolicy.AUTO}" left="365.2" right="100" bottom="100" top="163">
+	<mx:TabNavigator creationPolicy="{ContainerCreationPolicy.AUTO}" left="200" right="100" bottom="100" top="163">
 		<mx:Canvas label="UserAccounts" width="100%" height="100%">
 			<mx:DataGrid x="0" y="0" width="100%" height="100%" id="grdAccounts" creationComplete="onGridReady(event);">
 				<mx:columns>

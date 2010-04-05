@@ -1,7 +1,7 @@
-#Sun Apr 04 21:10:59 CDT 2010
+#Mon Apr 05 11:21:30 CDT 2010
 eclipse.preferences.version=1
 encoding//src/assets/data/catalog_zh_CN.xml=UTF-8
-encoding//src/locale/es_ES/store.properties=UTF-8
-encoding//src/locale/fr_FR/store.properties=UTF-8
-encoding//src/locale/zh_CN/store.properties=UTF-8
+encoding//src/l10n/locale/es_ES/store.properties=UTF-8
+encoding//src/l10n/locale/fr_FR/store.properties=UTF-8
+encoding//src/l10n/locale/zh_CN/store.properties=UTF-8
 encoding/<project>=utf-8

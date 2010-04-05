@@ -32,7 +32,7 @@
 			private function onInitView():void {
 				// Fade in the entire langugage bar...
 				var effect: Fade  = this.fadeIn;
-				var timer : Timer = new Timer(1300,1);
+				var timer : Timer = new Timer(750,1);
 				
 				    timer.addEventListener(	TimerEvent.TIMER,
 										  	function(event:TimerEvent):void {

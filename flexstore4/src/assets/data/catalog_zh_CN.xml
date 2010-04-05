@@ -2,33 +2,7 @@
 
 <catalog>
 
-    <product productId="1">
-        <name>Nokia 6010</name>
-        <color></color>
-        <description>易于使用没有牺牲风格，诺基亚6010手机提供的语音通信功能包括短信，多媒体短信，移动互联网，游戏和更多的支持</description>
-        <price>99.99</price>
-        <image>Nokia_6010.gif</image>
-        <series>6000</series>
-        <triband>false</triband>
-        <camera>false</camera>
-        <video>false</video>
-        <highlight1>MMS</highlight1>
-		<highlight2>宽大的彩色显示屏</highlight2>
-    </product>
-
-    <product productId="2">
-        <name>Nokia 3100</name>
-        <color>蓝色</color>
-        <description>照亮了夜光这黑暗覆盖夜 - 当它与轻带电您可以轻松地在黑暗中找到您的手机。当你接到一个电话，诺基亚3100与您的手机铃声调闪烁。当你在一个单元诺基亚Xpress上™游戏封面*，你会得到及时的发光光效的游戏动作。</description>
-        <price>139</price>
-        <image>Nokia_3100_blue.gif</image>
-        <series>3000</series>
-        <triband>true</triband>
-        <camera>false</camera>
-        <video>false</video>
-        <highlight1>夜光在这黑暗</highlight1>
-		<highlight2>闪灯</highlight2>
-    </product>
+    
 
     <product productId="3">
         <name>Nokia 3100</name>
@@ -58,61 +32,6 @@
 		<highlight2>动画屏保</highlight2>
     </product>
 
-    <product productId="5">
-        <name>Nokia 3220</name>
-        <color></color>
-        <description>诺基亚3220手机是一个新的想法在一些熟悉的新的削减 - 可爱的动画人物与您的MMS讯息，看到灯光闪烁，在时间与你的铃声，音乐下载壁纸，并与界面配色方案屏保。</description>
-        <price>159.99</price>
-        <image>Nokia_3220.gif</image>
-        <series>3000</series>
-        <triband>false</triband>
-        <camera>true</camera>
-        <video>false</video>
-        <highlight1>MIDI tones</highlight1>
-		<highlight2>Cut-out covers</highlight2>
-    </product>
-
-    <product productId="6">
-        <name>Nokia 3650</name>
-        <color></color>
-        <description>消息是更加个性化，多样化和照相机的诺基亚3650手机的乐趣。捕获的经验，当你看到他们，你把照片发送给你的朋友和家人。</description>
-        <price>199.99</price>
-        <image>Nokia_3650.gif</image>
-        <series>3000</series>
-        <triband>false</triband>
-        <camera>true</camera>
-        <video>true</video>
-        <highlight1>红外线或蓝牙</highlight1>
-		<highlight2>内置XHTML浏览器</highlight2>
-    </product>
-
-    <product productId="7">
-        <name>Nokia 6820</name>
-        <color></color>
-        <description>消息刚收到一大堆聪明。诺基亚6820通讯器把你的工具丰富的通信需要 - 完整的信息收发键盘，数码相机，移动电子邮件，彩信，短信和即时消息 - 在您的指尖在一个小的，光滑的设备。</description>
-        <price>299.99</price>
-        <image>Nokia_6820.gif</image>
-        <series>6000</series>
-        <triband>true</triband>
-        <camera>true</camera>
-        <video>false</video>
-        <highlight1>Messaging keyboard</highlight1>
-		<highlight2>Bluetooth </highlight2>
-    </product>
-
-    <product productId="8">
-        <name>Nokia 6670</name>
-        <color></color>
-        <description>经典的商业工具满足您的诺基亚6670图像智能创意连胜。它有一个PDF支持Netfront网页浏览器，电子邮件附件，直接打印申请文件查看器应用程序，还有一个万像素摄像头，还拍摄了10分钟的视频。</description>
-        <price>309.99</price>
-        <image>Nokia_6670.gif</image>
-        <series>6000</series>
-        <triband>false</triband>
-        <camera>true</camera>
-        <video>true</video>
-        <highlight1>PDF support</highlight1>
-		<highlight2>4x digital zoom</highlight2>
-    </product>
 
     <product productId="9">
         <name>Nokia 6620</name>
@@ -254,4 +173,31 @@
 		<highlight2>2 megapixel camera</highlight2>
     </product>
 
+<product productId="1">
+        <name>Nokia 6010</name>
+        <color></color>
+        <description>易于使用没有牺牲风格，诺基亚6010手机提供的语音通信功能包括短信，多媒体短信，移动互联网，游戏和更多的支持</description>
+        <price>99.99</price>
+        <image>Nokia_6010.gif</image>
+        <series>6000</series>
+        <triband>false</triband>
+        <camera>false</camera>
+        <video>false</video>
+        <highlight1>MMS</highlight1>
+		<highlight2>宽大的彩色显示屏</highlight2>
+    </product>
+
+    <product productId="2">
+        <name>Nokia 3100</name>
+        <color>蓝色</color>
+        <description>照亮了夜光这黑暗覆盖夜 - 当它与轻带电您可以轻松地在黑暗中找到您的手机。当你接到一个电话，诺基亚3100与您的手机铃声调闪烁。当你在一个单元诺基亚Xpress上™游戏封面*，你会得到及时的发光光效的游戏动作。</description>
+        <price>139</price>
+        <image>Nokia_3100_blue.gif</image>
+        <series>3000</series>
+        <triband>true</triband>
+        <camera>false</camera>
+        <video>false</video>
+        <highlight1>夜光在这黑暗</highlight1>
+		<highlight2>闪灯</highlight2>
+    </product>
 </catalog>

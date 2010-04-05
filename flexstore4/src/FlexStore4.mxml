@@ -72,7 +72,7 @@
 	</fx:Script>
 	
 	<fx:Declarations>
-		<s:HTTPService 					id="catalogLoader" url="assets/data/catalog_en_US.xml" result="onCatalogLoaded(event)"/>
+		<s:HTTPService 					id="catalogLoader" url="assets/data/catalog.xml" result="onCatalogLoaded(event)"/>
 		<l10nInjection:LocalizationMap 	id="injectors"	   phone="{_selectedPhone}"            xmlns:l10nInjection="l10n.map.*" />
 	</fx:Declarations>
 	

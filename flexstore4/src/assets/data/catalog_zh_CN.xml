@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<catalog>
+
+    <product productId="1">
+        <name>Nokia 6010</name>
+        <color></color>
+        <description>易于使用没有牺牲风格，诺基亚6010手机提供的语音通信功能包括短信，多媒体短信，移动互联网，游戏和更多的支持</description>
+        <price>99.99</price>
+        <image>Nokia_6010.gif</image>
+        <series>6000</series>
+        <triband>false</triband>
+        <camera>false</camera>
+        <video>false</video>
+        <highlight1>MMS</highlight1>
+		<highlight2>宽大的彩色显示屏</highlight2>
+    </product>
+
+    <product productId="2">
+        <name>Nokia 3100</name>
+        <color>蓝色</color>
+        <description>照亮了夜光这黑暗覆盖夜 - 当它与轻带电您可以轻松地在黑暗中找到您的手机。当你接到一个电话，诺基亚3100与您的手机铃声调闪烁。当你在一个单元诺基亚Xpress上™游戏封面*，你会得到及时的发光光效的游戏动作。</description>
+        <price>139</price>
+        <image>Nokia_3100_blue.gif</image>
+        <series>3000</series>
+        <triband>true</triband>
+        <camera>false</camera>
+        <video>false</video>
+        <highlight1>夜光在这黑暗</highlight1>
+		<highlight2>闪灯</highlight2>
+    </product>
+
+    <product productId="3">
+        <name>Nokia 3100</name>
+        <color>粉红色</color>
+        <description>照亮了夜光这黑暗覆盖夜 - 当它与轻带电您可以轻松地在黑暗中找到您的手机。当你接到一个电话，诺基亚3100与您的手机铃声调闪烁。当你在一个单元诺基亚Xpress上™游戏封面*，你会得到及时的发光光效的游戏动作。</description>
+        <price>139</price>
+        <image>Nokia_3100_pink.gif</image>
+        <series>3000</series>
+        <triband>true</triband>
+        <camera>false</camera>
+        <video>false</video>
+        <highlight1>夜光在这黑暗</highlight1>
+		<highlight2>闪灯</highlight2>
+    </product>
+
+    <product productId="4">
+        <name>Nokia 3120</name>
+        <color></color>
+        <description>为商务和休闲而设计，优雅的诺基亚3120手机提供了一个可喜的功能组合。在其时尚，小巧的身体封闭，你会发现三频的兼容性，彩屏，彩信，XHTML的浏览，快乐屏保的利益，等等。</description>
+        <price>159.99</price>
+        <image>Nokia_3120.gif</image>
+        <series>3000</series>
+        <triband>true</triband>
+        <camera>false</camera>
+        <video>false</video>
+        <highlight1>多媒体短信</highlight1>
+		<highlight2>动画屏保</highlight2>
+    </product>
+
+    <product productId="5">
+        <name>Nokia 3220</name>
+        <color></color>
+        <description>诺基亚3220手机是一个新的想法在一些熟悉的新的削减 - 可爱的动画人物与您的MMS讯息，看到灯光闪烁，在时间与你的铃声，音乐下载壁纸，并与界面配色方案屏保。</description>
+        <price>159.99</price>
+        <image>Nokia_3220.gif</image>
+        <series>3000</series>
+        <triband>false</triband>
+        <camera>true</camera>
+        <video>false</video>
+        <highlight1>MIDI tones</highlight1>
+		<highlight2>Cut-out covers</highlight2>
+    </product>
+
+    <product productId="6">
+        <name>Nokia 3650</name>
+        <color></color>
+        <description>消息是更加个性化，多样化和照相机的诺基亚3650手机的乐趣。捕获的经验，当你看到他们，你把照片发送给你的朋友和家人。</description>
+        <price>199.99</price>
+        <image>Nokia_3650.gif</image>
+        <series>3000</series>
+        <triband>false</triband>
+        <camera>true</camera>
+        <video>true</video>
+        <highlight1>红外线或蓝牙</highlight1>
+		<highlight2>内置XHTML浏览器</highlight2>
+    </product>
+
+    <product productId="7">
+        <name>Nokia 6820</name>
+        <color></color>
+        <description>消息刚收到一大堆聪明。诺基亚6820通讯器把你的工具丰富的通信需要 - 完整的信息收发键盘，数码相机，移动电子邮件，彩信，短信和即时消息 - 在您的指尖在一个小的，光滑的设备。</description>
+        <price>299.99</price>
+        <image>Nokia_6820.gif</image>
+        <series>6000</series>
+        <triband>true</triband>
+        <camera>true</camera>
+        <video>false</video>
+        <highlight1>Messaging keyboard</highlight1>
+		<highlight2>Bluetooth </highlight2>
+    </product>
+
+    <product productId="8">
+        <name>Nokia 6670</name>
+        <color></color>
+        <description>经典的商业工具满足您的诺基亚6670图像智能创意连胜。它有一个PDF支持Netfront网页浏览器，电子邮件附件，直接打印申请文件查看器应用程序，还有一个万像素摄像头，还拍摄了10分钟的视频。</description>
+        <price>309.99</price>
+        <image>Nokia_6670.gif</image>
+        <series>6000</series>
+        <triband>false</triband>
+        <camera>true</camera>
+        <video>true</video>
+        <highlight1>PDF support</highlight1>
+		<highlight2>4x digital zoom</highlight2>
+    </product>
+
+    <product productId="9">
+        <name>Nokia 6620</name>
+        <color></color>
+        <description>投篮。拍摄一部电影。从诺基亚视频电话...最完美的方式储存和分享生活中的有趣的时刻。感觉有关。</description>
+        <price>329.99</price>
+        <image>Nokia_6620.gif</image>
+        <series>6000</series>
+        <triband>false</triband>
+        <camera>true</camera>
+        <video>true</video>
+        <highlight1>Bluetooth technology</highlight1>
+		<highlight2>Up to 10 minutes video</highlight2>
+    </product>
+
+    <product productId="10">
+        <name>Nokia 3230</name>
+        <color>银</color>
+        <description>获取带有诺基亚3230智能手机的创意。创建您自己的铃声，打印您的手机图片，播放通过无线蓝牙连接的多人游戏，浏览网页的HTML和XHTML。另外有32 MB的MMC卡和扩充内存，你将有很多发挥创意的空间。</description>
+        <price>369</price>
+        <image>Nokia_3230_black.gif</image>
+        <series>3000</series>
+        <triband>false</triband>
+        <camera>true</camera>
+        <video>true</video>
+        <highlight1>1.3 megapixel</highlight1>
+		<highlight2>扩充内存</highlight2>
+    </product>
+
+    <product productId="11">
+        <name>Nokia 3230</name>
+        <color>青铜</color>
+        <description>获取带有诺基亚3230智能手机的创意。创建您自己的铃声，打印您的手机图片，播放通过无线蓝牙连接的多人游戏，浏览网页的HTML和XHTML。另外有32 MB的MMC卡和扩充内存，你将有很多发挥创意的空间。</description>
+        <price>369</price>
+        <image>Nokia_3230_bronze.gif</image>
+        <series>3000</series>
+        <triband>false</triband>
+        <camera>true</camera>
+        <video>true</video>
+        <highlight1>1.3 megapixel</highlight1>
+		<highlight2>扩充内存</highlight2>
+    </product>
+
+    <product productId="12">
+        <name>Nokia 6630</name>
+        <color></color>
+        <description>不仅是诺基亚6630图像智能电话有130万像素数码成像装置（130万像素相机传感器，有效分辨率为 1.23百万像素图像采集，图像尺寸1280 × 960像素），它也是一个便携办公室和一个现代化的富媒体机。</description>
+        <price>379</price>
+        <image>Nokia_6630.gif</image>
+        <series>6000</series>
+        <triband>false</triband>
+        <camera>true</camera>
+        <video>true</video>
+        <highlight1>1.3 megapixel</highlight1>
+		<highlight2>6x smooth digital zoom</highlight2>
+    </product>
+
+    <product productId="13">
+        <name>Nokia 7610</name>
+        <color>黑色</color>
+        <description>诺基亚7610图像手机与它的光滑，紧凑的设计在任何人群中脱颖而出。削减1万像素的摄像头具有4倍数码变焦和更清洁的形象。打印质量都证明你的尖端精明的需要。</description>
+        <price>399.99</price>
+        <image>Nokia_7610_black.gif</image>
+        <series>7000</series>
+        <triband>false</triband>
+        <camera>true</camera>
+        <video>true</video>
+        <highlight1>长达10分钟的视频</highlight1>
+		<highlight2>8 MB 内部存储器</highlight2>
+    </product>
+
+    <product productId="14">
+        <name>Nokia 7610</name>
+        <color>白色</color>
+        <description>诺基亚7610图像手机与它的光滑，紧凑的设计在任何人群中脱颖而出。削减1万像素的摄像头具有4倍数码变焦和更清洁的形象。打印质量都证明你的尖端精明的需要。</description>
+        <price>399.99</price>
+        <image>Nokia_7610_white.gif</image>
+        <series>7000</series>
+        <triband>false</triband>
+        <camera>true</camera>
+        <video>true</video>
+        <highlight1>长达10分钟的视频</highlight1>
+		<highlight2>8 MB 内部存储器</highlight2>
+    </product>
+
+    <product productId="15">
+        <name>Nokia 6680</name>
+        <color></color>
+        <description>诺基亚6680图像智能电话的是一个作为成熟和成功，你是。由于整合了两个（1.3百万像素在后面，在前面的VGA）数码相机，你可以进行面对面视频从你的电话。</description>
+        <price>509</price>
+        <image>Nokia_6680.gif</image>
+        <series>6000</series>
+        <triband>false</triband>
+        <camera>true</camera>
+        <video>true</video>
+        <highlight1>音乐播放器</highlight1>
+		<highlight2>VIDEO的共享能力</highlight2>
+    </product>
+
+    <product productId="16">
+        <name>Nokia 9300</name>
+        <color></color>
+        <description>诺基亚9300结合在一个重要的生产力应用流行的语音通信功能齐全的设备。现在你需要的工具保持联系和附表，电子邮件，新闻顶部，邮件在您的指尖方便。</description>
+        <price>599</price>
+        <image>Nokia_9300_close.gif</image>
+        <series>9000</series>
+        <triband>true</triband>
+        <camera>false</camera>
+        <video>false</video>
+        <highlight1>Full keyboard</highlight1>
+		<highlight2>Full keyboard</highlight2>
+    </product>
+
+    <product productId="17">
+        <name>Nokia 9500</name>
+        <color></color>
+        <description>快速数据连接的无线网络。全彩色浏览互联网，在广泛，易于查看的屏幕。与 Office文件的工作不只是带附件的电子邮件和备忘录，但艺术和数据库了。</description>
+        <price>799.99</price>
+        <image>Nokia_9500_close.gif</image>
+        <series>9000</series>
+        <triband>true</triband>
+        <camera>true</camera>
+        <video>true</video>
+        <highlight1>Office工具</highlight1>
+		<highlight2>80MB 内部存储器</highlight2>
+    </product>
+
+    <product productId="18">
+        <name>Nokia N90</name>
+        <color></color>
+        <description>扭和拍摄。这是一个亲照片接受者。一个个人视频制造商。为完成与卡尔蔡司清晰，明亮的图像，您可以查看，编辑，打印和共享光学。会见诺基亚N90。</description>
+        <price>999</price>
+        <image>Nokia_N90.gif</image>
+        <series>9000</series>
+        <triband>false</triband>
+        <camera>true</camera>
+        <video>true</video>
+        <highlight1>Carl Zeiss Optics</highlight1>
+		<highlight2>2 megapixel camera</highlight2>
+    </product>
+
+</catalog>

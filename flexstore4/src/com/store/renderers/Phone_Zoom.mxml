@@ -4,6 +4,7 @@
                 xmlns:mx="library://ns.adobe.com/flex/mx" 
 				mouseChildren="false"
                 autoDrawBackground="false" width="50" height="94" clipAndEnableScrolling="false"
+				scaleX.hovered="1.2" scaleY.hovered="1.2"
                 depth="0" depth.hovered="1">
     
     <fx:Declarations>
@@ -27,7 +28,7 @@
     <mx:Image id="image" source="{'assets/images/phone/'+data.image}" horizontalCenter="0" verticalCenter="0"
               width.normal="50" height="94" width.hovered="100" height.hovered="188"/>
 
-    <s:Group id="group" width="94" horizontalCenter="0" top="-20" bottom="8" visible.normal="false">
+    <s:Group id="group" width="94" horizontalCenter="0" top="-20" bottom="8" visible.normal="false" scaleX.hovered="1.2" scaleY.hovered="1.2">
 
         <s:Rect id="rect" left="0" right="0" top="0" bottom="24" radiusX="4" radiusY="4">
             <s:fill>
@@ -35,9 +36,9 @@
             </s:fill>
         </s:Rect>
         
-        <s:Label text="{data.name}" top="20" horizontalCenter="0" color="white"/> 
+        <s:Label text="{data.name}" top="20" horizontalCenter="0" color="white" fontSize.hovered="16"/> 
         
-        <s:Label text="{cf.format(data.price)}" bottom="40" horizontalCenter="0" color="white"/>
+        <s:Label text="{cf.format(data.price)}" bottom="40" horizontalCenter="0" color="white" fontSize.hovered="16"/>
         
     </s:Group>
 

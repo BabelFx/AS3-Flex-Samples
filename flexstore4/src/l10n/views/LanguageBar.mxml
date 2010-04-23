@@ -16,7 +16,7 @@
 			import mx.events.PropertyChangeEvent;
 			
 			
-			[Bindable]
+			[Bindable('propertyChange')]
 			public function get selectedLocale():String   {  return _locale;			}
 
 			
@@ -63,7 +63,7 @@
 				// Dispatch an l10nInjection event to trigger locale switching
 				// Then notify any watchers that the locale value has changed...
 				dispatchEvent(new LocaleEvent(LocaleEvent.LOAD_LOCALE,_locale));
-				dispatchEvent(PropertyChangeEvent.createUpdateEvent(this,"locale",null,_locale));
+				dispatchEvent(PropertyChangeEvent.createUpdateEvent(this,"selectedLocale",null,_locale));
 			}
 			
 			// *********************************************************

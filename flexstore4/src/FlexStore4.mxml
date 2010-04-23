@@ -1,12 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<s:Application width="500" height="704" 
-			   applicationComplete="catalogLoader.send()" 
+<s:Application width="100%" height="100%" 
 			   viewSourceURL="srcview/index.html" 
-			   xmlns:local="*" 
 			   xmlns:fx="http://ns.adobe.com/mxml/2009" 
 			   xmlns:s="library://ns.adobe.com/flex/spark" 
-			   xmlns:mx="library://ns.adobe.com/flex/mx" 
-			   xmlns:tiles="store.layouts.*" >
+			   xmlns:mx="library://ns.adobe.com/flex/mx" xmlns:store="com.store.*" >
 	
 	<fx:Style>
 
@@ -25,92 +22,28 @@
 		}
 		
 	</fx:Style>
-	
-	<fx:Script>
-		<![CDATA[
-			import mx.collections.ArrayCollection;
-			import mx.rpc.events.ResultEvent;
-			
-			import spark.components.IItemRenderer;
-			
-			
-			private function onCatalogLoaded(event:ResultEvent):void	{
-				_items         = event.result.catalog.product as ArrayCollection;
-				_filteredItems = new ArrayCollection(_items.source);
-				_filteredItems.filterFunction = performFilter;
-			}
-			
-			private function onFiltersChanged():void  {
-				_filteredItems.refresh();
-				filterLayout.filter();
-			}
-			
-			private function onHoverPhone(event:MouseEvent):void {
-				var it : IItemRenderer = (event.target as IItemRenderer);
-				_selectedPhone = (it != null)  ? it.data : null;
-			}
-			
-			private function performFilter(item:Object):Boolean  {
-				return	(
-							(item.price <= _maxPrice) 	&&
-							(!_camera || item.camera) 	&&
-							(!_video || item.video) 	&&
-							(!_triband || item.triband)
-						);
-			}			
-			
-			[Bindable]	private var _items			:ArrayCollection = null;
-			[Bindable]	private var _filteredItems	:ArrayCollection = null;
-			[Bindable]	private var _maxPrice		:Number 		 = 1000;
-			[Bindable]	private var _camera			:Boolean 		 = false;
-			[Bindable]	private var _video			:Boolean 		 = false;
-			[Bindable]	private var _triband		:Boolean 		 = false;
-			
-			[Bindable]  private var _selectedPhone  :Object          = null;
-			
-		]]>
-	</fx:Script>
+	<fx:Style source="assets/store.css"/>
 	
 	<fx:Declarations>
-		<s:HTTPService 					id="catalogLoader" url="assets/data/catalog.xml" result="onCatalogLoaded(event)"/>
-		<l10nInjection:LocalizationMap 	id="injectors"	   phone="{_selectedPhone}"            xmlns:l10nInjection="l10n.map.*" />
+		<map:LocalizationMap 	id="injectors"	   phone="{catalog.selectedPhone}"           xmlns:map="l10n.map.*"  />
 	</fx:Declarations>
 	
-	<l10n:LanguageBar right="19" left="19"   y="644" height="40" xmlns:l10n="l10n.views.*"/>
-	
-	<!-- Phone Catalog Display Area -->
-	<s:Label id="lblCatalog" x="25" y="102" text="Catalog:" alpha=".3"/>
-	<s:BorderContainer y="119" height="381" backgroundColor="#EDEDED" left="20" right="20">
-		<s:DataGroup width="100%" height="100%" x="0" y="0"
-					 dataProvider="{_items}" 
-					 itemRenderer="store.renderers.Phone_Zoom" 
-					 mouseMove="onHoverPhone(event);" 
-					 contentBackgroundColor="#EDEDED" >
-			<s:layout>
-				<tiles:FilteredTileLayout id="filterLayout" filteredItems="{_filteredItems}" />
-			</s:layout>
-		</s:DataGroup>
-	</s:BorderContainer>
-	
-	<s:Label id="lblDescription" x="25" y="514" text="Description:" alpha=".3" visible="{_selectedPhone != null}"/>
-	<s:TextArea id="txtPhoneDescription" 
-				alpha="{_selectedPhone ? 1 : .2}"
-				text="{_selectedPhone ? _selectedPhone.description : ''}"
-				top="532" left="20" right="20" 
-				editable="false"  contentBackgroundColor="#EDEDED" color="#3D3D3D" 
-				paddingBottom="10" paddingLeft="10" paddingRight="10" paddingTop="10"  height="100"/>
-	
-	<!-- Catalog Filter Options -->
-	<mx:Canvas height="63" backgroundColor="#FAD1D1" borderAlpha="1.0" cornerRadius="5" borderColor="#080000" left="20" right="20" top="20">
-		<s:Label id="lblFilters" x="15" y="9" text="Filter Catalog:" color="#921010"/>
-		<s:HGroup verticalAlign="middle" paddingLeft="8" x="6" y="30" height="28" >
-			<s:Label id="lblMaxPrice" text="Max Price:" fontSize="11"/>
-			<s:HSlider id="priceSlider" minimum="0" maximum="1000" snapInterval="100" value="@{_maxPrice}" change="onFiltersChanged()"/>
-			<mx:Spacer width="20"/>
-			<s:CheckBox id="chbxCamera"  label="Camera" selected="@{_camera}" change="onFiltersChanged()" fontSize="11"/>
-			<s:CheckBox id="chbxVideo"   label="Video" selected="@{_video}" change="onFiltersChanged()" fontSize="11"/>
-			<s:CheckBox id="chbxTriband" label="Triband" selected="@{_triband}" change="onFiltersChanged()" fontSize="11"/>
-		</s:HGroup>
+	<mx:Canvas horizontalCenter="0" y="0" width="450" height="700">
+		
+		<store:Catalog  id="catalog" left="20" right="20" top="20"  height="485" />
+		
+		<details:PhoneDetails   id="phoneDetails"
+								y="{catalog.y + catalog.height*.8 + 20}" height="130"
+								left="20" right="20" 
+								phone="{catalog.selectedPhone}" 
+								xmlns:details="com.store.details.*" />
+		
+		<l10n:LanguageBar id="languageBar" 
+						  right="19" left="19"   
+						  y="{phoneDetails.y+phoneDetails.height + 5}" height="40" 
+						  alpha="{(catalog.selectedPhone != null) ? 1 : languageBar.alpha}"
+						  xmlns:l10n="l10n.views.*"/>		
 	</mx:Canvas>
+
 	
 </s:Application>

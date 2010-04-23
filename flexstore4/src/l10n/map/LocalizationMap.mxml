@@ -1,52 +1,109 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LocaleMap 	xmlns="http://com.asfusion.mate/l10n"
-			xmlns:mx="http://www.adobe.com/2006/mxml" >
+<LocaleMap 	localeChanging="reloadPhones(event);"
+			xmlns="http://com.asfusion.mate/l10n"
+			xmlns:mx="http://www.adobe.com/2006/mxml" 
+			xmlns:factory="mx.core.*" >
 	
 	<mx:Metadata>
-		<!--
-			Using compiler arguments -locale=en_US,es_ES,fr_FR,zh_CN -allow-source-path-overlap=true -source-path+=locale/{locale}
-		    with the metaTag below forces the compiler to EMBED the compiled resource bundles
-		-->
 		[ResourceBundle("store")]
+		[ResourceBundle("language")]
 	</mx:Metadata>
 	
 	<mx:Script>
 		<![CDATA[
+			import com.asfusion.mate.l10n.commands.ExternalLocaleCommand;
+			import com.asfusion.mate.l10n.events.LocaleMapEvent;
+			import com.store.Catalog;
+			import com.store.details.PhoneDetails;
+			
 			import l10n.views.LanguageBar;
+			
+			/* 
+			 * Using compiler arguments -locale=en_US,es_ES,fr_FR,zh_CN -allow-source-path-overlap=true -source-path+=l10n/locale/{locale}
+		     * with the metaTag above forces the compiler to EMBED all locales as compiled resource bundles
+			 * Or use -locale="en_US" without [ResourceBundles] to force runtime loading of external bundles for es_ES, zh_CN, fr_FR
+			 * Note: you must should ANT build scripts to build and deploy the external bundles; see /build/buildResourceBundles.xml
+			 */
 			
 			[Bindable] 
 			public var phone : Object = null;
 			
+			
 			/**
-			 *  EventHandler when locales change to new Catalog xml data to be loaded
+			 *  Shared eventHandler fires when locales change to new Catalog xml data to be loaded
 			 *  This xml data has localized versions of the catalog.
 			 */
 			private function onLocaleChanged(event:Event):void {
-				var sri : SmartResourceInjector  = (event.target as SmartResourceInjector);
-				var app : FlexStore4             = sri.targetInstances[0] as FlexStore4;
+				var sri 	: SmartResourceInjector  = (event.target as SmartResourceInjector);
+				var details : PhoneDetails           = sri.targetInstances[0] as PhoneDetails; 
+				var catalog : Catalog				 = sri.targetInstances[0] as Catalog;
 				
-				// Dynamically reload the XML data with localized text for each Phone catalog entry
-				if (app != null) app.catalogLoader.send();
+				// And clear out the text description area...
+				if (details != null) 	details.phone = null;
+				if (catalog != null)    _catalog      = catalog;
+				
+				reloadPhones();
+				
 			}
 			
+			
+			/**
+			 * When locale is changing or the Catalog instance is ready, the call to reload
+			 * the phone data. Use the loadCatalog() method since it also shows a progress indicator.
+			 * 
+			 * @param event LocaleMapEvent.LOCALE_CHANGING or null
+			 */
+			private function reloadPhones(event:LocaleMapEvent=null):void {
+				if (!event || (event.type == LocaleMapEvent.LOCALE_CHANGING)) {
+					if (_catalog != null)  {
+						// Dynamically reload the XML data with localized text for each Phone catalog entry
+						_catalog.loadCatalog();
+					}
+				}
+			}
+			
+			private var _catalog : Catalog = null;
 		]]>
 	</mx:Script>
 	
-	<SmartResourceInjector bundleName="store" target="{FlexStore4}" localeChange="onLocaleChanged(event);">
-		<ResourceProxy property="catalogLoader.url" 			key="data.url" />
+	<!-- 
+		The command factory instance below allows the l10nInjection engine to load external resource bundles from
+	     a custom deploy directory 'assets/locales/' name encoded by locale code
+	     e.g.  en_US.swf, zh_CN.swf, etc.
+	
+	<commandFactory>
+		 <factory:ClassFactory generator="{ExternalLocaleCommand}">
+			 <factory:properties>
+				 <mx:Object externalPath="assets/locales/\{0\}.swf"/>
+			 </factory:properties>
+		 </factory:ClassFactory>
+	</commandFactory>
+	-->
+	
+	<SmartResourceInjector bundleName="store" target="{Catalog}" localeChange="onLocaleChanged(event);">
+		<ResourceProxy 		property="catalogLoader.url" 			key="data.url" />
 		
-		<ResourceProxy property="lblDescription.text" 			key="details.title" parameters="{[phone.name]}"/>
-		<ResourceProxy property="lblCatalog.text" 				key="catalog.title" />
+		<ResourceProxy 		property="lblCatalog.text" 				key="catalog.title" />
 		
-		<ResourceProxy property="lblFilters.text" 				key="filters.title" />
-		<ResourceProxy property="lblMaxPrice.text" 				key="filters.maxPrice" />
-		<ResourceProxy property="chbxCamera.label" 				key="filters.option.camera" />
-		<ResourceProxy property="chbxVideo.label" 				key="filters.option.video" />
-		<ResourceProxy property="chbxTriband.label" 			key="filters.option.triband" />
+		<ResourceProxy 		property="lblFilters.text" 				key="filters.title" />
+		<ResourceProxy 		property="lblMaxPrice.text" 			key="filters.maxPrice" />
+		<ResourceProxy 		property="chbxCamera.label" 			key="filters.option.camera" />
+		<ResourceProxy 		property="chbxVideo.label" 				key="filters.option.video" />
+		<ResourceProxy 		property="chbxTriband.label" 			key="filters.option.triband" />
 	</SmartResourceInjector>
+
+	<SmartResourceInjector  bundleName="store" target="{PhoneDetails}" localeChange="onLocaleChanged(event);">
+			<ResourceProxy 		property="lblDescription.text" 			key="details.title" 		parameters="{[phone.name]}"/>
+	</SmartResourceInjector>
+
+	<SmartResourceInjector  bundleName="language" target="{LanguageBar}">
+		<ResourceProxy 		property="lblBarHelp.text" 				key="languagebar.title" 	parameters="{['target.selectedLocale']}" />
 		
-	<SmartResourceInjector bundleName="store" target="{LanguageBar}">
-		<ResourceProxy property="lblBarHelp.text" 	key="languagebar.title" />
+		<!-- See LocaleAssets for sort order on Flags -->
+		<ResourceProxy  	property="flags[0].toolTip" 			key="flag.toolTip.en_US" />
+		<ResourceProxy  	property="flags[1].toolTip" 			key="flag.toolTip.fr_FR" />
+		<ResourceProxy  	property="flags[2].toolTip" 			key="flag.toolTip.es_ES" />
+		<ResourceProxy  	property="flags[3].toolTip" 			key="flag.toolTip.zh_CN" />
 	</SmartResourceInjector>
 
 </LocaleMap>

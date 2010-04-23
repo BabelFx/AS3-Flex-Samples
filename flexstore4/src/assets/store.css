@@ -1,0 +1,37 @@
+/* CSS file */
+@namespace s "library://ns.adobe.com/flex/spark";
+@namespace mx "library://ns.adobe.com/flex/mx";
+
+
+s|TextArea.phoneDescription
+{
+	font-size: 12px;
+	color: #3D3D3D;
+	contentBackgroundColor: #EDEDED;
+	paddingBottom: 10;
+	paddingLeft: 10;
+	paddingRight: 10;
+	paddingTop: 10;
+	skinClass: ClassReference("spark.skins.spark.TextAreaSkin");
+}
+mx|Canvas.filterOptionsBkgrnd
+{
+	backgroundColor: #FAD1D1;
+	borderAlpha: 1.0;
+	borderColor: #080000;
+	cornerRadius: 5;
+	horizontal-scroll-policy:off;
+	vertical-scroll-policy:off
+}
+s|BorderContainer.catalogBkgrnd
+{
+	backgroundColor: #EDEDED;
+}
+
+s|HGroup.filterOptionsBkgrnd 
+{
+	
+	verticalAlign:middle;
+	paddingLeft: 8;
+}
+	

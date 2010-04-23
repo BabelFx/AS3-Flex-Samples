@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas width="100%" height="100%"
+		   creationComplete="loadCatalog();"
+		   xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		   xmlns:s="library://ns.adobe.com/flex/spark" 
+		   xmlns:mx="library://ns.adobe.com/flex/mx" >
+
+	<fx:Script>
+		<![CDATA[
+			import l10n.utils.DelayedCall;
+			
+			import mx.collections.ArrayCollection;
+			import mx.rpc.events.ResultEvent;
+			
+			import spark.components.IItemRenderer;
+			
+			[Bindable]
+			public var selectedPhone : Object = null;
+			
+			
+			public function loadCatalog(url:String=""):void {
+				currentState = "loading";
+				if (url != "") catalogLoader.url = url;
+				
+				// Slow down the load to show the loading indicator...
+				DelayedCall.schedule( function(loader:HTTPService):void {
+												loader.send();
+											  }, [catalogLoader],700);
+			}
+			
+			private function onCatalogLoaded(event:ResultEvent):void	{
+				_items         = event.result.catalog.product as ArrayCollection;
+				_filteredItems = new ArrayCollection(_items.source);
+				_filteredItems.filterFunction = performFilter;
+				
+				_filteredItems.refresh();
+				
+				currentState   = "showCatalog";
+			}
+			
+			private function onFiltersChanged():void  {
+				_filteredItems.refresh();
+				filterLayout.filter();
+			}
+			
+			// *******************************************
+			// Live filter function
+			// *******************************************
+
+			private function performFilter(item:Object):Boolean  {
+				return	(
+							(item.price <= _maxPrice) 	&&
+							(!_camera || item.camera) 	&&
+							(!_video || item.video) 	&&
+							(!_triband || item.triband)
+						);
+			}			
+			
+
+			// *******************************************
+			// Event Handlers
+			// *******************************************
+			
+			private function onHoverPhone(event:MouseEvent):void {
+				var it 	  : IItemRenderer = (event.target as IItemRenderer);
+				var phone : Object = (it != null)  ? it.data : null;
+				
+				if (phone != null) selectedPhone = phone;
+			}
+
+			// *******************************************
+			// Private attributes (with 2-way bindings)
+			// *******************************************
+
+			[Bindable]	private var _items			:ArrayCollection = null;
+			[Bindable]	private var _filteredItems	:ArrayCollection = null;
+			[Bindable]	private var _maxPrice		:Number 		 = 1000;
+			[Bindable]	private var _camera			:Boolean 		 = false;
+			[Bindable]	private var _video			:Boolean 		 = false;
+			[Bindable]	private var _triband		:Boolean 		 = false;
+		]]>
+	</fx:Script>
+	<mx:states>
+		<s:State name="showCatalog" 	/>
+		<s:State name="loading" 		/>
+	</mx:states>
+	
+	<fx:Declarations>
+		<s:HTTPService 	id="catalogLoader" url="/assets/data/catalog_en_US.xml" result="onCatalogLoaded(event)"/>
+	</fx:Declarations>
+	
+		<!-- Catalog Filter Options -->
+		<mx:Canvas y="0" width="100%" height="63"  styleName="filterOptionsBkgrnd">
+			<s:Label id="lblFilters" x="7" y="9" text="Filter Catalog:" color="#921010"/>
+			<s:HGroup styleName="filterOptionsBkgrnd" left="10" y="30" height="28" right="10" verticalAlign="middle">
+				<s:Label id="lblMaxPrice" text="Max Price:" fontSize="11"/>
+				<s:HSlider id="priceSlider" minimum="0" maximum="1000" snapInterval="100" value="@{_maxPrice}" change="onFiltersChanged()"/>
+				<mx:Spacer width="20"/>
+				<s:CheckBox id="chbxCamera"  label="Camera" selected="@{_camera}" change="onFiltersChanged()" fontSize="11" />
+				<s:CheckBox id="chbxVideo"   label="Video" selected="@{_video}" change="onFiltersChanged()" fontSize="11"/>
+				<s:CheckBox id="chbxTriband" label="Triband" selected="@{_triband}" change="onFiltersChanged()" fontSize="11"/>
+			</s:HGroup>
+		</mx:Canvas>
+	
+		<!-- Phone Catalog Display Area -->
+		<s:Label id="lblCatalog" x="5" y="73" text="Catalog:" alpha=".3"/>
+		<s:BorderContainer id="display" y="92" height="381" width="100%" 
+						   styleName="catalogBkgrnd"
+						   scaleX=".8" scaleY=".8" >
+			<s:DataGroup width="100%" height="100%" x="0" y="0"
+						 dataProvider="{_items}" 
+						 itemRenderer="com.store.renderers.Phone_Zoom" 
+						 mouseMove="onHoverPhone(event);" 
+						 contentBackgroundColor="#EDEDED"
+						 visible.loading="false" visible.showCatalog="true">
+				<s:layout>
+					<layouts:FilteredTileLayout id="filterLayout" filteredItems="{_filteredItems}" xmlns:layouts="com.store.layouts.*" />
+				</s:layout>
+			</s:DataGroup>
+			
+			<grakl:Spinner id="spinner" 
+						   size="30" 
+						   verticalCenter="0" horizontalCenter="0" 
+						   visible.loading="true" visible.showCatalog="false"
+						   xmlns:grakl="com.grakl.*" />
+					  
+		</s:BorderContainer>
+
+</mx:Canvas>

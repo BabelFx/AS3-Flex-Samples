@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<catalog>
+
+    <product productId="1">
+        <name>Nokia 6010</name>
+        <color></color>
+        <description>Fácil de usar sin sacrificar estilo, el Nokia 6010 ofrece comunicación de voz del teléfono funcionales con el apoyo de mensajes de texto, mensajería multimedia, Internet móvil, juegos y más.</description>
+        <price>99.99</price>
+        <image>Nokia_6010.gif</image>
+        <series>6000</series>
+        <triband>false</triband>
+        <camera>false</camera>
+        <video>false</video>
+        <highlight1>MMS</highlight1>
+		<highlight2>Large color display</highlight2>
+    </product>
+
+    <product productId="2">
+        <name>Nokia 3100</name>
+        <color>Blue</color>
+        <description>Ilumina la noche con una carcasa que brilla en la oscuridad - cuando está cargado de luz que usted puede encontrar fácilmente su teléfono en la oscuridad. Cuando usted recibe una llamada, el teléfono Nokia 3100 parpadea en sintonía con su tono de timbre. Y cuando se complemento en un Nokia Xpress-on ™ * Cobertura de juego, obtendrás efectos luminosos que acompañan a la acción de juego.</description>
+        <price>139</price>
+        <image>Nokia_3100_blue.gif</image>
+        <series>3000</series>
+        <triband>true</triband>
+        <camera>false</camera>
+        <video>false</video>
+        <highlight1>Glow-in-the-dark</highlight1>
+		<highlight2>Flashing lights</highlight2>
+    </product>
+
+    <product productId="3">
+        <name>Nokia 3100</name>
+        <color>Pink</color>
+        <description>Ilumina la noche con una carcasa que brilla en la oscuridad - cuando está cargado de luz que usted puede encontrar fácilmente su teléfono en la oscuridad. Cuando usted recibe una llamada, el teléfono Nokia 3100 parpadea en sintonía con su tono de timbre. Y cuando se complemento en un Nokia Xpress-on ™ * Cobertura de juego, obtendrás efectos luminosos que acompañan a la acción de juego.</description>
+        <price>139</price>
+        <image>Nokia_3100_pink.gif</image>
+        <series>3000</series>
+        <triband>true</triband>
+        <camera>false</camera>
+        <video>false</video>
+        <highlight1>Glow-in-the-dark</highlight1>
+		<highlight2>Flashing lights</highlight2>
+    </product>
+
+    <product productId="4">
+        <name>Nokia 3120</name>
+        <color></color>
+        <description>Diseñado para negocios y placer, el elegante teléfono Nokia 3120 ofrece una mezcla agradable de características. Encerrado dentro de su cuerpo elegante y compacto, usted descubrirá las ventajas de la compatibilidad tri-band, pantalla a color, MMS, navegación XHTML, alegres salvapantallas y mucho más.</description>
+        <price>159.99</price>
+        <image>Nokia_3120.gif</image>
+        <series>3000</series>
+        <triband>true</triband>
+        <camera>false</camera>
+        <video>false</video>
+        <highlight1>Multimedia messaging</highlight1>
+		<highlight2>Animated screensavers</highlight2>
+    </product>
+
+    <product productId="5">
+        <name>Nokia 3220</name>
+        <color></color>
+        <description>El Nokia 3220 es una novedosa versión de algunos ideas familiares - anima tus mensajes MMS con personajes divertidos, la música con luces que parpadean en el tiempo con su tono de llamada, descarga fondos de escritorio y salvapantallas con conjuntos de colores a juego para la interfaz.</description>
+        <price>159.99</price>
+        <image>Nokia_3220.gif</image>
+        <series>3000</series>
+        <triband>false</triband>
+        <camera>true</camera>
+        <video>false</video>
+        <highlight1>MIDI tones</highlight1>
+		<highlight2>Cut-out covers</highlight2>
+    </product>
+
+    <product productId="6">
+        <name>Nokia 3650</name>
+        <color></color>
+        <description>La mensajería es más personal, versátil y divertida con el teléfono con cámara Nokia 3650. Captura de experiencias tan pronto como usted los ve y enviar las fotos que tome a tus amigos y familia.</description>
+        <price>199.99</price>
+        <image>Nokia_3650.gif</image>
+        <series>3000</series>
+        <triband>false</triband>
+        <camera>true</camera>
+        <video>true</video>
+        <highlight1>Infrared or Bluetooth</highlight1>
+		<highlight2>Built-in XHTML browser</highlight2>
+    </product>
+
+    <product productId="7">
+        <name>Nokia 6820</name>
+        <color></color>
+        <description>Mensajería se ha vuelto más inteligente. El dispositivo de mensajería Nokia 6820 dispone de las herramientas necesarias para una comunicación llena - teclado de mensajería completo, cámara digital, correo electrónico móvil, MMS, SMS y mensajería instantánea - a su alcance, en un dispositivo pequeño y compacto.</description>
+        <price>299.99</price>
+        <image>Nokia_6820.gif</image>
+        <series>6000</series>
+        <triband>true</triband>
+        <camera>true</camera>
+        <video>false</video>
+        <highlight1>Messaging keyboard</highlight1>
+		<highlight2>Bluetooth </highlight2>
+    </product>
+
+    <product productId="8">
+        <name>Nokia 6670</name>
+        <color></color>
+        <description>Clásico herramientas empresariales cumplen su veta creativa en el imaging smartphone Nokia 6670. Tiene un navegador NetFront Web con compatibilidad con PDF, aplicaciones de visor de documentos de los anexos de correo, una aplicación de impresión directa, y una cámara megapixel que también se dispara a 10 minutos de video.</description>
+        <price>309.99</price>
+        <image>Nokia_6670.gif</image>
+        <series>6000</series>
+        <triband>false</triband>
+        <camera>true</camera>
+        <video>true</video>
+        <highlight1>PDF support</highlight1>
+		<highlight2>4x digital zoom</highlight2>
+    </product>
+
+    <product productId="9">
+        <name>Nokia 6620</name>
+        <color></color>
+        <description>Toma una canasta. Rodar una película. Video de los teléfonos Nokia ... la manera perfecta para guardar y momentos lúdicos compartimos la vida es. Sentirse conectado.</description>
+        <price>329.99</price>
+        <image>Nokia_6620.gif</image>
+        <series>6000</series>
+        <triband>false</triband>
+        <camera>true</camera>
+        <video>true</video>
+        <highlight1>Bluetooth technology</highlight1>
+		<highlight2>Up to 10 minutes video</highlight2>
+    </product>
+
+    <product productId="10">
+        <name>Nokia 3230</name>
+        <color>Silver</color>
+        <description>Sea creativo con el Nokia 3230 smartphone. Crea tus propios tonos de llamada, imprimir las imágenes móviles, jugar a juegos multijugador a través de una conexión inalámbrica Bluetooth, y navegar por páginas HTML y XHTML Web. Además, con una tarjeta MMC de 32 MB y memoria ampliable, tendrás un montón de espacio para ser creativo.</description>
+        <price>369</price>
+        <image>Nokia_3230_black.gif</image>
+        <series>3000</series>
+        <triband>false</triband>
+        <camera>true</camera>
+        <video>true</video>
+        <highlight1>1.3 megapixel</highlight1>
+		<highlight2>Expandable memory</highlight2>
+    </product>
+
+    <product productId="11">
+        <name>Nokia 3230</name>
+        <color>Bronze</color>
+        <description>Sea creativo con el Nokia 3230 smartphone. Crea tus propios tonos de llamada, imprimir las imágenes móviles, jugar a juegos multijugador a través de una conexión inalámbrica Bluetooth, y navegar por páginas HTML y XHTML Web. Además, con una tarjeta MMC de 32 MB y memoria ampliable, tendrás un montón de espacio para ser creativo.</description>
+        <price>369</price>
+        <image>Nokia_3230_bronze.gif</image>
+        <series>3000</series>
+        <triband>false</triband>
+        <camera>true</camera>
+        <video>true</video>
+        <highlight1>1.3 megapixel</highlight1>
+		<highlight2>Expandable memory</highlight2>
+    </product>
+
+    <product productId="12">
+        <name>Nokia 6630</name>
+        <color></color>
+        <description>No sólo es el Nokia 6630 imaging smartphone un dispositivo de 1,3 megapíxeles de imagen digital (1,3 sensor de la cámara megapíxeles, resolución efectiva de 1,23 megapíxeles para captura de imagen, tamaño de imagen 1280 x 960 píxeles), es también una oficina portátil y una moderna máquina de rich-media.</description>
+        <price>379</price>
+        <image>Nokia_6630.gif</image>
+        <series>6000</series>
+        <triband>false</triband>
+        <camera>true</camera>
+        <video>true</video>
+        <highlight1>1.3 megapixel</highlight1>
+		<highlight2>6x smooth digital zoom</highlight2>
+    </product>
+
+    <product productId="13">
+        <name>Nokia 7610</name>
+        <color>Black</color>
+        <description>El teléfono Nokia 7610 imágenes con su diseño elegante y compacto destaca entre la multitud. Un perfil más nítido con una cámara de megapíxeles y zoom digital 4x. Impresiones de calidad son las pruebas que necesita de su vanguardia.</description>
+        <price>399.99</price>
+        <image>Nokia_7610_black.gif</image>
+        <series>7000</series>
+        <triband>false</triband>
+        <camera>true</camera>
+        <video>true</video>
+        <highlight1>Up to 10 minutes video</highlight1>
+		<highlight2>8 MB internal memory</highlight2>
+    </product>
+
+    <product productId="14">
+        <name>Nokia 7610</name>
+        <color>White</color>
+        <description>El teléfono Nokia 7610 imágenes con su diseño elegante y compacto destaca entre la multitud. Un perfil más nítido con una cámara de megapíxeles y zoom digital 4x. Impresiones de calidad son las pruebas que necesita de su vanguardia.</description>
+        <price>399.99</price>
+        <image>Nokia_7610_white.gif</image>
+        <series>7000</series>
+        <triband>false</triband>
+        <camera>true</camera>
+        <video>true</video>
+        <highlight1>Up to 10 minutes video</highlight1>
+		<highlight2>8 MB internal memory</highlight2>
+    </product>
+
+    <product productId="15">
+        <name>Nokia 6680</name>
+        <color></color>
+        <description>El Nokia 6680 es un smartphone para imágenes que es tan sofisticado y eficaz como tú. Con dos cámaras digitales integradas (1,3 megapíxeles en la parte trasera, VGA en la parte delantera), puedes llevar a cabo cara a cara vídeo llamadas desde su teléfono.</description>
+        <price>509</price>
+        <image>Nokia_6680.gif</image>
+        <series>6000</series>
+        <triband>false</triband>
+        <camera>true</camera>
+        <video>true</video>
+        <highlight1>Music player</highlight1>
+		<highlight2>Video sharing capability</highlight2>
+    </product>
+
+    <product productId="16">
+        <name>Nokia 9300</name>
+        <color></color>
+        <description>El Nokia 9300 combina las populares funciones de comunicación de voz con aplicaciones importantes de productividad en un dispositivo muy bien equipadas. Ahora las herramientas que necesita para mantenerse en contacto y al tanto de horarios, correo electrónico, noticias y mensajes están convenientemente a su alcance.</description>
+        <price>599</price>
+        <image>Nokia_9300_close.gif</image>
+        <series>9000</series>
+        <triband>true</triband>
+        <camera>false</camera>
+        <video>false</video>
+        <highlight1>Full keyboard</highlight1>
+		<highlight2>Full keyboard</highlight2>
+    </product>
+
+    <product productId="17">
+        <name>Nokia 9500</name>
+        <color></color>
+        <description>Conectividad de datos rápida con LAN inalámbrica. Navegar por Internet a todo color, en una pantalla grande y fácil de ver. Trabajar con documentos de oficina no sólo con archivos adjuntos de correo electrónico y notas, sino también presentaciones y bases de datos.</description>
+        <price>799.99</price>
+        <image>Nokia_9500_close.gif</image>
+        <series>9000</series>
+        <triband>true</triband>
+        <camera>true</camera>
+        <video>true</video>
+        <highlight1>Office Tools</highlight1>
+		<highlight2>80MB internal memory</highlight2>
+    </product>
+
+    <product productId="18">
+        <name>Nokia N90</name>
+        <color></color>
+        <description>Twist y disparar. Es una institución de pro-foto. Un fabricante de video personal. Completo con óptica Carl Zeiss para imágenes nítidas y brillantes se pueden ver, editar, imprimir y compartir. Conoce el Nokia N90.</description>
+        <price>999</price>
+        <image>Nokia_N90.gif</image>
+        <series>9000</series>
+        <triband>false</triband>
+        <camera>true</camera>
+        <video>true</video>
+        <highlight1>Carl Zeiss Optics</highlight1>
+		<highlight2>2 megapixel camera</highlight2>
+    </product>
+
+</catalog>

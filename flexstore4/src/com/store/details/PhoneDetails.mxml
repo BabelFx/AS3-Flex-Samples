@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		   xmlns:s="library://ns.adobe.com/flex/spark" 
+		   xmlns:mx="library://ns.adobe.com/flex/mx" width="100%" height="100%">
+	
+	<!-- 
+		This component uses an offset fadeOut/fadeIn effect when the phone
+	    details change. This experience draws attention to the user that the phone
+		details have changed due from the current display
+	-->
+	
+	<fx:Script>
+		<![CDATA[
+			import mx.core.UIComponent;
+			import mx.effects.easing.Bounce;
+			import mx.utils.GraphicsUtil;
+			
+				public function set phone(val:Object):void {
+					if (_phone != val) {
+						var playEffects : Boolean = !_phone || 
+													!val	||
+													(val && _phone && (_phone.description != val.description));
+													
+						_phone = val;
+						
+						if (playEffects == true) {
+							if (fadeOut.isPlaying) fadeOut.end();
+							if (fadeIn.isPlaying)  fadeIn.end();
+							
+							if (area2.alpha == 0) {
+								area2.text = _phone ? _phone.description : "";
+								fadeOut.play([area1]);
+								fadeIn.play([area2]);
+							} else {
+								area1.text = _phone ? _phone.description : "";
+								fadeOut.play([area2]);
+								fadeIn.play([area1]);
+							}
+						}
+					}
+				}
+			
+			
+				[Bindable] private var _phone : Object = null;
+		]]>
+	</fx:Script>
+	
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+		<s:Fade id="fadeOut" duration="400"  alphaTo="0" />
+		<s:Fade id="fadeIn" duration="800" alphaTo="1" />
+	</fx:Declarations>
+	
+	
+		<s:Label id="lblDescription" 
+				 x="5" y="0" 
+				 text="Description:" 
+				 alpha=".3" visible="{_phone != null}"/>
+	
+		<s:TextArea id="area1" 
+					top="{lblDescription.y + 18}" width="100%" 	height="100"
+					alpha="0"
+					editable="false"   
+					styleName="phoneDescription" />	
+
+		<s:TextArea id="area2" 
+					top="{lblDescription.y + 18}" width="100%" 	height="100"
+					alpha="0"
+					editable="false"  
+					styleName="phoneDescription" />	
+</mx:Canvas>

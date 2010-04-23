@@ -11,7 +11,7 @@
 	-->
 	
 	<mx:Metadata>
-		[ResourceBundle("main")]
+		[ResourceBundle("login")]
 		[ResourceBundle("language")]
 	</mx:Metadata>
 	
@@ -19,14 +19,12 @@
 		<![CDATA[
 			import com.asfusion.intranet.login.ui.views.Login;
 			import com.asfusion.intranet.shared.ui.views.Content;
-			
 			import l10n.views.LanguageBar;
-			
 			import mx.controls.Button;
 		]]>
 	</mx:Script>
 
-	<SmartResourceInjector bundleName="main" target="{Login}">
+	<SmartResourceInjector bundleName="login" target="{Login}">
 		<ResourceProxy 	property="lblUserName.text" 			key="login.title.userName" />
 		<ResourceProxy 	property="lblPassword.text" 			key="login.title.password" />
 		<ResourceProxy 	property="loginButton.label" 			key="button.login" />
@@ -40,7 +38,7 @@
 	</SmartResourceInjector>
 						   
 	
-	<SmartResourceInjector bundleName="main" target="{Content}">
+	<SmartResourceInjector bundleName="login" target="{Content}">
 		<ResourceProxy 	property="btnLogout.label" 		key="button.logout" />
 	</SmartResourceInjector>
 

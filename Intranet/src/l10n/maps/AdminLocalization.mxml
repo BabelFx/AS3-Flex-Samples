@@ -4,7 +4,8 @@
 			xmlns:factory="mx.core.*" >
 	
 	<mx:Metadata>
-		[ResourceBundle("admin")]
+		[ResourceBundle("settings")]
+		[ResourceBundle("users")]
 	</mx:Metadata>
 	
 	<mx:Script>
@@ -16,12 +17,12 @@
 		]]>
 	</mx:Script>
 
-	<SmartResourceInjector bundleName="admin" target="{Settings}">
-		<ResourceProxy 		property="label" 				key="settings.label" />
-		<ResourceProxy 		property="lblComingSoon.text" 	key="settings.message" />
+	<SmartResourceInjector bundleName="settings" target="{Settings}">
+		<ResourceProxy 		property="label" 						key="settings.label" />
+		<ResourceProxy 		property="lblComingSoon.text" 			key="settings.message" />
 	</SmartResourceInjector>
 	
-	<SmartResourceInjector bundleName="admin" target="{Users}">
+	<SmartResourceInjector bundleName="users" target="{Users}">
 		<ResourceProxy 		property="label" 						key="users.label" />
 		<ResourceProxy 		property="lblUsers.text" 				key="users.label" />
 		<ResourceProxy 		property="fiFirstName.label" 			key="users.form.firstname" />

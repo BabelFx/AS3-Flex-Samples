@@ -1,4 +1,7 @@
-#Thu Apr 22 19:01:35 CDT 2010
+#Fri Apr 23 07:23:10 CDT 2010
 eclipse.preferences.version=1
-encoding//src/l10n/locales/de_DE/main.properties=UTF-8
+encoding//src/l10n/locales/de_DE/contacts.properties=UTF-8
+encoding//src/l10n/locales/de_DE/login.properties=UTF-8
+encoding//src/l10n/locales/de_DE/settings.properties=UTF-8
+encoding//src/l10n/locales/de_DE/users.properties=UTF-8
 encoding/<project>=utf-8

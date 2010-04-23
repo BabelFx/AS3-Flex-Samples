@@ -17,8 +17,8 @@
     <application path="Intranet.mxml"/>
   </applications>
   <modules>
-    <module application="src/Intranet_Runner.mxml" destPath="com/asfusion/intranet/contacts/Contacts.swf" optimize="true" sourcePath="src/com/asfusion/intranet/contacts/Contacts.mxml"/>
-    <module application="src/Intranet_Runner.mxml" destPath="com/asfusion/intranet/admin/Admin.swf" optimize="true" sourcePath="src/com/asfusion/intranet/admin/Admin.mxml"/>
+    <module application="src/Intranet.mxml" destPath="com/asfusion/intranet/contacts/Contacts.swf" optimize="true" sourcePath="src/com/asfusion/intranet/contacts/Contacts.mxml"/>
+    <module application="src/Intranet.mxml" destPath="com/asfusion/intranet/admin/Admin.swf" optimize="true" sourcePath="src/com/asfusion/intranet/admin/Admin.mxml"/>
   </modules>
   <buildCSSFiles/>
 </actionScriptProperties>

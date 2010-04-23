@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:HBox xmlns:mx="http://www.adobe.com/2006/mxml" 
+	currentState="{ model.state }"
+	xmlns:controls="com.asfusion.intranet.shared.ui.controls.*" xmlns:grakl="com.grakl.*">
+	
+	<mx:Script>
+		<![CDATA[
+			import com.asfusion.intranet.shared.model.vos.UserPermissions;
+			import com.asfusion.intranet.shared.model.vos.User;
+			import com.asfusion.intranet.admin.ui.presenters.UsersPresentationModel;
+			
+			[Bindable]
+			public var model : UsersPresentationModel = null;
+			
+		]]>
+	</mx:Script>
+	
+	<!-- UI ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+	<mx:Canvas width="200" height="100%">
+		<mx:Label id="lblUsers" text="Users" fontSize="18"/>
+		<mx:HRule width="186"  y="28"/>
+		<mx:VBox id="listBox" horizontalAlign="right"
+			width="186" y="30" height="100%"
+			verticalScrollPolicy="off">
+			<controls:ExpandableList id="list"
+				itemRenderer="com.asfusion.intranet.admin.ui.renderers.UserRenderer"
+				styleName="borderlessList" 
+				width="100%"
+				maxExpandHeight="{ listBox.height - 40 }"
+				change="model.selectUser( list.selectedItem as User )"
+				dataProvider="{ model.users }"
+				selectedItem="{ model.selectedUser }" />
+			<mx:Button label="+" width="40" click="model.addNewUser()"/>
+		</mx:VBox>
+		<mx:VRule x="198" top="30" bottom="20"/>
+	</mx:Canvas>
+	
+	<mx:Canvas id="form" width="100%" height="100%">
+		<mx:Label text="{ model.title }" fontSize="18"/>
+		<mx:HRule y="28" width="100%"/>
+		<mx:Form y="30">
+		
+			<mx:FormItem id="fiUserName" label="Username:" width="100%">
+				<mx:TextInput id="username"
+					width="100%" 
+					change="model.updateUsername( username.text );"
+					text="{ model.selectedUser.userName }"/>
+			</mx:FormItem>
+			
+			<mx:FormItem id="fiFirstName" label="First Name:" width="100%">
+				<mx:TextInput id="firstName"
+					width="100%"
+					change="model.updateFirstName( firstName.text );"
+					text="{ model.selectedUser.firstName }"/>
+			</mx:FormItem>
+			
+			<mx:FormItem id="fiLastName" label="Last Name:" width="100%">
+				<mx:TextInput id="lastName"
+					change="model.updateLastName( lastName.text );" 
+					width="100%" 
+					text="{ model.selectedUser.lastName }"/>
+			</mx:FormItem>
+			
+			<mx:FormItem id="fiPassword" label="Password:" width="100%">
+				<mx:TextInput id="password"
+					change="model.updatePassword( password.text );"
+					displayAsPassword="true" 
+					width="100%"
+					text="{ model.selectedUser.password }"/>
+			</mx:FormItem>
+			
+			<mx:FormItem id="fiPermissions" label="Permissions:">
+				<mx:VBox id="box">
+					<mx:RadioButtonGroup id="pemissions" 
+						selectedValue="{ model.selectedUser.permissions }"
+						itemClick="model.updatePermissions( event.item  as UserPermissions )" />
+					<mx:RadioButton id="rbPermissionRead" label="Read" 
+						groupName="pemissions" 
+						value="{ UserPermissions.READ_ONLY }"/>
+					<mx:RadioButton id="rbPermissionReadWrite" label="Read and Write" 
+						groupName="pemissions" 
+						value="{ UserPermissions.READ_WRITE }"/>
+					<mx:RadioButton id="rbPermissionAdmin" label="Admin" 
+						groupName="pemissions" 
+						value="{ UserPermissions.ADMIN }"/>
+				</mx:VBox>
+			</mx:FormItem>
+			
+			<mx:FormItem id="fiSave" horizontalAlign="center" width="100%">
+					<mx:Button  id="submit" 
+						label="Submit" 
+						click="model.save()" />
+			</mx:FormItem>
+			
+		</mx:Form>
+	</mx:Canvas>
+	
+	
+	<!-- States ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+	<mx:states>
+		<mx:State name="{ UsersPresentationModel.UNSELECTED }">
+			<mx:SetProperty target="{ form }" name="visible" value="false" />
+		</mx:State>
+		<mx:State name="{ UsersPresentationModel.SELECTED }"/>
+		<mx:State name="{ UsersPresentationModel.ADD_NEW }"/>
+		
+		<mx:State name="{ UsersPresentationModel.LOADING }" basedOn="{ UsersPresentationModel.SELECTED }">
+			<mx:SetProperty target="{ submit }" name="enabled" value="false"/>
+			<mx:SetStyle target="{ submit}" name="paddingRight" value="30"/>
+			<mx:AddChild relativeTo="{ fiSave }">
+				<grakl:Spinner size="22" right="5" y="2"/>
+			</mx:AddChild>
+		</mx:State>
+	</mx:states>
+	
+</mx:HBox>

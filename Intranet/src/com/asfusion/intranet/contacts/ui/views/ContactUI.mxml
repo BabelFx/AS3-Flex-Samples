@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Panel xmlns:mx="http://www.adobe.com/2006/mxml"
+	xmlns:view="com.asfusion.intranet.contacts.ui.views.*"
+	layout="absolute"
+	title="Contacts" 
+	currentState="{ model.state }">
+	
+	<mx:Script>
+		<![CDATA[
+			import com.asfusion.intranet.contacts.ui.presenters.ContactUIPresentationModel;
+			
+			[Bindable]
+			public var model:ContactUIPresentationModel
+		]]>
+	</mx:Script>
+	
+	<!-- UI ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+	<view:ContactList width="250"  height="100%" top="20" bottom="20" />
+	<mx:Canvas id="rightPanel" height="100%" left="250" width="100%">
+		<view:ContactView id="viewMode" width="100%" y="20" left="10" right="20"/>
+	</mx:Canvas>
+	
+	<!-- States ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+	<mx:states>
+		<mx:State name="{ ContactUIPresentationModel.EDIT_DISABLED }"/>
+		<mx:State name="{ ContactUIPresentationModel.EDIT_ENABLED }">
+			<mx:AddChild>
+				<mx:ControlBar>
+					<mx:Canvas>
+						<mx:Button id="btnAddContact" label="Add Contact" x="20" click="model.addContact();"/>
+					</mx:Canvas>
+				</mx:ControlBar>
+			</mx:AddChild>
+		</mx:State>
+		<mx:State name="{ ContactUIPresentationModel.EDIT_FORM }" basedOn="{ ContactUIPresentationModel.EDIT_ENABLED }">
+			<mx:RemoveChild target="{ viewMode }"/>
+			<mx:AddChild relativeTo="{ rightPanel }">
+				<view:ContactEdit width="100%" y="20" left="10" right="20" />
+			</mx:AddChild>
+		</mx:State>
+	</mx:states>
+	
+</mx:Panel>

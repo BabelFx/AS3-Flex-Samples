@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<EventMap xmlns:mx="http://www.adobe.com/2006/mxml" xmlns="http://mate.asfusion.com/">
+    
+    <mx:Script>
+        <![CDATA[
+        	import com.asfusion.intranet.shared.events.SessionEvent;
+        	import com.asfusion.intranet.shared.model.managers.*;
+        	import com.asfusion.intranet.shared.ui.views.*;
+        	import com.asfusion.intranet.shared.ui.presenters.*;
+            import mx.events.*;
+        ]]>
+	</mx:Script>
+	
+	<!-- EventHandlers ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+	
+	<EventHandlers type="{ FlexEvent.PREINITIALIZE }">
+		<ObjectBuilder generator="{ ContentPresentationModel }" constructorArguments="{ scope.dispatcher }"/>
+	</EventHandlers>
+	
+	
+	<EventHandlers type="{ SessionEvent.NEW_SESSION }">
+		<MethodInvoker generator="{ PermissionsManager }" method="setPermissions" arguments="{ event.user }"/>
+	</EventHandlers>
+	
+	
+	<!-- Injectors ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+	
+	<Injectors target="{ MainUI }">
+		<PropertyInjector targetKey="model" source="{ MainUIPresentationModel }"/>
+	</Injectors>
+	
+	<Injectors target="{ Content }">
+		<PropertyInjector targetKey="model" source="{ ContentPresentationModel }"/>
+		<PropertyInjector targetKey="modules" source="{ PermissionsManager }" sourceKey="modulesAllowed"/>
+	</Injectors>
+	
+	<Injectors target="{ MainUIPresentationModel }">
+		<PropertyInjector targetKey="user" source="{ SessionManager }" sourceKey="user"/>
+	</Injectors>
+	
+</EventMap>

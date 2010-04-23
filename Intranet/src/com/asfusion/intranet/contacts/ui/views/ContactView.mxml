@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:VBox xmlns:mx="http://www.adobe.com/2006/mxml"
+	xmlns:controls="com.asfusion.intranet.contacts.ui.controls.*">
+	
+	<mx:Script>
+		<![CDATA[
+			import com.asfusion.intranet.contacts.ui.presenters.ContactViewPresentationModel;
+			
+			[Bindable]
+			public var model:ContactViewPresentationModel;
+			
+		]]>
+	</mx:Script>
+	
+	<!-- UI ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+	<mx:HBox width="100%">
+		<mx:Canvas width="102" height="95" borderStyle="solid" 
+			visible="{ model.showPicture }"
+			backgroundColor="#555555" borderColor="#777777">
+			<mx:Image x="5" y="5" source="{ model.picture }"/>
+		</mx:Canvas>
+		<mx:Text htmlText="{ model.header }" styleName="contactText" width="100%" selectable="false"/>
+	</mx:HBox>
+	
+	<controls:LabelGroup id="lgPhones" title="Phone" dataProvider="{ model.phones }" width="400"/>
+	<controls:LabelGroup id="lgEmail" title="Email" dataProvider="{ model.emails }" width="400"/>
+	<controls:LabelGroup id="lgIM" title="Instant Messenger" dataProvider="{ model.instantMessengers }" width="400"/>
+	
+	<mx:Canvas id="details" width="400"
+		visible="{ model.showAddresses }" 
+		includeInLayout="{ model.showAddresses }">
+		<mx:Label id="lblAddress" styleName="contactText" y="4" text="Address" fontSize="14"/>
+		<mx:HRule width="100%" y="30"/>
+		<mx:Text htmlText="{ model.addresses }" x="15"  y="40" 
+			width="100%" leading="10" selectable="false"/>
+	</mx:Canvas>
+	
+</mx:VBox>

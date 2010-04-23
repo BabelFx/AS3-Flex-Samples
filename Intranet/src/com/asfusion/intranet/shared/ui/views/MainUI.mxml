@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" 
+	xmlns:loginViews="com.asfusion.intranet.login.ui.views.*" 
+	xmlns:views="com.asfusion.intranet.shared.ui.views.*" 
+	currentState="{ model.state }" 
+	verticalScrollPolicy="off">
+	
+	<mx:Script>
+		<![CDATA[
+			import com.asfusion.intranet.shared.ui.presenters.MainUIPresentationModel;
+			[Bindable]
+			public var model:MainUIPresentationModel;
+		]]>
+	</mx:Script>
+	
+	<!-- UI ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+	
+	<loginViews:Login id="login" y="140" width="330"/>
+	
+	
+	
+	<!-- States ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+	<mx:states>
+		<mx:State name="{ MainUIPresentationModel.LOGGED_OUT_STATE }"/>
+		<mx:State name="{ MainUIPresentationModel.LOGGED_IN_STATE }">
+			<mx:AddChild>
+				<views:Content width="100%" height="100%" />
+			</mx:AddChild>
+			<mx:RemoveChild target="{ login }"/>
+		</mx:State>
+	</mx:states>
+	
+</mx:Canvas>

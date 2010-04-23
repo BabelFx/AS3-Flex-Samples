@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LocalEventMap xmlns:mx="http://www.adobe.com/2006/mxml"
+	xmlns="http://mate.asfusion.com/" 
+	xmlns:services="com.asfusion.intranet.admin.services.*">
+	<mx:Script>
+		<![CDATA[
+			import com.asfusion.intranet.admin.model.managers.UserManager;
+			import com.asfusion.intranet.admin.ui.views.Users;
+			import com.asfusion.intranet.admin.ui.presenters.UsersPresentationModel;
+			import com.asfusion.intranet.admin.events.UserEvent;
+			import mx.events.FlexEvent;
+		]]>
+	</mx:Script>
+	
+	 <!-- Services ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+	 
+	<services:AdminServices id="services"/>
+	
+	 <!-- Event Handlers ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+	<EventHandlers type="{ FlexEvent.PREINITIALIZE }">
+		<ObjectBuilder generator="{ UsersPresentationModel }" constructorArguments="{ scope.dispatcher }"/>
+	</EventHandlers>
+	
+	<EventHandlers type="{ UserEvent.GET_ALL }">
+		<RemoteObjectInvoker instance="{ services.users }" method="getAllUsers">
+			<resultHandlers>
+				<MethodInvoker generator="{ UserManager }" method="storeUsers" arguments="{ resultObject }"/>
+			</resultHandlers>
+		</RemoteObjectInvoker>
+	</EventHandlers>
+	
+	<EventHandlers type="{ UserEvent.SELECT }">
+		<MethodInvoker generator="{ UserManager }" method="setSelectedUser" arguments="{ event.user }"/>
+	</EventHandlers>
+	
+	<EventHandlers type="{ UserEvent.ADD }">
+		<RemoteObjectInvoker instance="{ services.users }" method="addUser" arguments="{ event.user }">
+			<resultHandlers>
+				<MethodInvoker generator="{ UserManager }" method="addUser" arguments="{ [ event.user, resultObject ] }"/>
+			</resultHandlers>
+		</RemoteObjectInvoker>
+	</EventHandlers>
+	
+	<EventHandlers type="{ UserEvent.UPDATE }">
+		<RemoteObjectInvoker instance="{ services.users }" method="updateUser" arguments="{ event.user }">
+			<resultHandlers>
+				<MethodInvoker generator="{ UserManager }" method="updateUser" arguments="{ [ event.user, resultObject ] }"/>
+			</resultHandlers>
+		</RemoteObjectInvoker>
+	</EventHandlers>
+	
+	<EventHandlers type="{ UserEvent.DELETE }">
+		<RemoteObjectInvoker instance="{ services.users }" method="deleteUser" arguments="{ event.user }">
+			<resultHandlers>
+				<MethodInvoker generator="{ UserManager }" method="deleteUser" arguments="{ [ event.user, resultObject ] }"/>
+			</resultHandlers>
+		</RemoteObjectInvoker>
+	</EventHandlers>
+	
+	
+	 <!-- Injectors ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+	<Injectors target="{ Users }">
+		<EventAnnouncer generator="{ UserEvent }" type="{ UserEvent.GET_ALL }"/>
+		
+		<PropertyInjector targetKey="model" source="{ UsersPresentationModel }"/>
+	</Injectors>
+	
+	<Injectors target="{ UsersPresentationModel }">
+		<PropertyInjector targetKey="users" source="{ UserManager }" sourceKey="users"/>
+		<PropertyInjector targetKey="selectedUser" source="{ UserManager }" sourceKey="selectedUser"/>
+	</Injectors>
+	
+</LocalEventMap>

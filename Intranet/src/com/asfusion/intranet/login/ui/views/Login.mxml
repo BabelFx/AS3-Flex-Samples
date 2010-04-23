@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Panel xmlns:mx="http://www.adobe.com/2006/mxml"
+	xmlns:grakl="com.grakl.*"
+	styleName="loginContent"
+	layout="vertical"
+	resizeEffect="Resize" 
+	currentState="{ model.state }">
+
+	<mx:Script>
+		<![CDATA[
+			import com.asfusion.intranet.login.ui.presenters.LoginPresentationModel;
+			[Bindable]
+			public var model:LoginPresentationModel; 
+			
+			private function login():void
+			{
+				model.login( username.text, password.text );
+			}
+			
+			private function reset():void
+			{
+				username.text = "";
+				password.text = "";
+			}
+		]]>
+	</mx:Script>
+	
+	<!-- UI ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+	<mx:HBox id="fiUserName" width="100%">
+	
+		<mx:Label id="lblUserName" text="Username:" 
+			styleName="loginFormLabel"
+			width="100"/>
+			
+		<mx:TextInput id="username" 
+			width="100%" 
+			enter="login();"
+			errorString="{ model.usernameErrorString }"
+			change="model.updateUsername( username.text );"/>
+			
+	</mx:HBox>
+	
+	
+	<mx:HBox id="fiPassword" width="100%" >
+		<mx:Label id="lblPassword" text="Password:" 
+			styleName="loginFormLabel" 
+			width="100"/>
+			
+		<mx:TextInput id="password"
+			width="100%" 
+			enter="login();" 
+			displayAsPassword="true"
+			errorString="{ model.passwordErrorString }"
+			change="model.updatePassword( password.text );"/>
+			
+	</mx:HBox>
+	
+	
+	<mx:Canvas id="fiSubmit" width="100%">
+		<mx:Button id="loginButton"
+			label="Login" 
+			right="0" 
+			click="login();"/>
+	</mx:Canvas>
+		
+	<!-- States ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+	<mx:states>
+		<mx:State name="{ LoginPresentationModel.LOGIN_STATE }" enterState="reset();"/>
+		
+		<mx:State name="{ LoginPresentationModel.LOADING_STATE }">
+			<mx:AddChild relativeTo="{ fiSubmit }" >
+				<grakl:Spinner size="22" right="5" y="2"/>
+			</mx:AddChild>
+			<mx:SetProperty target="{ loginButton }" name="enabled" value="false"/>
+		</mx:State>
+		
+		<mx:State name="{ LoginPresentationModel.ERROR_STATE }">
+			<mx:AddChild>
+				<mx:HBox id="fiLoginError" styleName="loginError" width="100%">
+					<mx:Image id="imgError" source="@Embed(source='/assets/images/warning.png')"/>
+					<mx:Text text="{ model.errorMessage }" width="100%"/>
+				</mx:HBox>
+			</mx:AddChild>
+		</mx:State>
+		
+	</mx:states>
+</mx:Panel>

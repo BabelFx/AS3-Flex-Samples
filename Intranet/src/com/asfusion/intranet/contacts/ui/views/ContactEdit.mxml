@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="400" height="300">
+	<mx:Label id="lblComingSoon" text="coming soon..." x="20" y="20"/>
+</mx:Canvas>

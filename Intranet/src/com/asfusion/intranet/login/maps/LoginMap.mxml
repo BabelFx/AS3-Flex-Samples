@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<EventMap xmlns:mx="http://www.adobe.com/2006/mxml" 
+	xmlns="http://mate.asfusion.com/" 
+	xmlns:services="com.asfusion.intranet.login.services.*" 
+	xmlns:extensions="com.darronschall.mate.*">
+	
+	<mx:Script>
+		<![CDATA[
+			import com.asfusion.intranet.shared.events.MessageEvent;
+			import com.asfusion.intranet.shared.events.SessionEvent;
+			import com.asfusion.intranet.login.ui.views.Login;
+			import com.asfusion.intranet.login.events.*;
+			import com.asfusion.intranet.shared.model.managers.SessionManager;
+			import com.asfusion.intranet.login.ui.presenters.LoginPresentationModel;
+			import mx.events.FlexEvent;
+		]]>
+	</mx:Script>
+	
+	<!-- Services ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+	<services:LoginServices id="services"/>
+	
+	<!-- EventHandlers ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+	
+	<EventHandlers type="{ FlexEvent.PREINITIALIZE }">
+		<ObjectBuilder generator="{ LoginPresentationModel }" constructorArguments="{ scope.dispatcher }"/>
+	</EventHandlers>
+	
+	<EventHandlers type="{ AuthorizationEvent.LOGIN }">
+		<RemoteObjectInvoker instance="{ services.login }" 
+			method="login" 
+			arguments="{ [ event.username, event.password ] }">
+			
+			<resultHandlers>
+				<!-- We are using an extension to evaluate the response from the server. 
+				     Having conditions like this in the map sometimes make sense but keep 
+				     in mind that the map is just a configuration file and your logic should 
+				     be encapsulated in your code. The map is just the routing mechanism  -->
+				<extensions:BooleanConditionInvoker condition="{ resultObject.status }">
+					<extensions:trueHandlers>
+						<MethodInvoker generator="{ SessionManager }" method="openSession" arguments="{ resultObject.user }"/>
+						<EventAnnouncer generator="{ SessionEvent }" type="{ SessionEvent.NEW_SESSION }">
+							<Property targetKey="user" source="result" sourceKey="user"/>
+						</EventAnnouncer>
+					</extensions:trueHandlers>
+					
+					<extensions:falseHandlers>
+						<EventAnnouncer generator="{ AuthorizationEvent }" type="{ AuthorizationEvent.FAILED }">
+							<Property targetKey="message" source="result" sourceKey="message"/>
+						</EventAnnouncer>
+					</extensions:falseHandlers>
+				</extensions:BooleanConditionInvoker>
+				
+			</resultHandlers>
+			
+			<faultHandlers>
+				<EventAnnouncer generator="{ MessageEvent }" type="{ MessageEvent.ERROR }">
+					<Property source="fault" sourceKey="faultString"/>
+				</EventAnnouncer>
+			</faultHandlers>
+			
+		</RemoteObjectInvoker>
+	</EventHandlers>
+	
+	<EventHandlers type="{ AuthorizationEvent.LOGOUT }">
+		<MethodInvoker generator="{ SessionManager }" method="closeSession" />
+	</EventHandlers>
+	
+	<!-- Injectors ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+	
+	<Injectors target="{ Login }">
+		<PropertyInjector targetKey="model" source="{ LoginPresentationModel }"/>
+	</Injectors>
+	
+	<Injectors target="{ LoginPresentationModel }">
+		<ListenerInjector eventType="{ AuthorizationEvent.FAILED }" method="loginFailedHandler" />
+		<ListenerInjector eventType="{ AuthorizationEvent.LOGOUT }" method="clearSession" />
+	</Injectors>
+</EventMap>

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" 
+	verticalScrollPolicy="off">
+
+	<mx:Script>
+		<![CDATA[
+			import mx.modules.ModuleLoader;
+			import mx.core.UIComponent;
+			import com.asfusion.intranet.shared.model.vos.ModuleDescriptor;
+			import com.asfusion.intranet.shared.ui.presenters.ContentPresentationModel;
+			
+			[Bindable]
+			public var model:ContentPresentationModel;
+			
+			private var loadersDisplayed:Array = new Array();
+			private var moduleLoaders:Dictionary = new Dictionary();
+			
+			public function set modules( modules:Array ):void
+			{
+				stack.removeAllChildren();
+				
+				// Create a new dictionary to store all the modules that we need to display
+				var loadersToDisplay:Dictionary = new Dictionary();
+				
+				// Loop to find the modules that we want to display
+				for each( var descriptor:ModuleDescriptor in modules )
+				{
+					// Before creating a new module loader, we check if it already exists
+					var loader:ModuleLoader = moduleLoaders[ descriptor.url ];
+					if( loader == null )
+					{
+						// We need to create a new Loader
+						loader = new ModuleLoader();
+						loader.applicationDomain = ApplicationDomain.currentDomain;
+						loader.label = descriptor.label;
+						loader.url = descriptor.url;
+						
+						// We store for future reference
+						moduleLoaders[ descriptor.url ] = loader;
+					}
+					// Add the module to the display list, load it and flag it.
+					stack.addChild( loader );
+					loader.loadModule();
+					loadersToDisplay[ descriptor.url ] = true;
+				}
+				
+				
+				// Loop to unload all the modules that are not flagged
+				for each( var moduleLoader:ModuleLoader in moduleLoaders )
+				{
+					if( loadersToDisplay[ moduleLoader.url ] != true )
+					{
+						moduleLoader.unloadModule();
+					}
+				}
+				buttonBar.selectedIndex = 0;
+			}
+		]]>
+	</mx:Script>
+	
+	<!-- UI ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+	<mx:ToggleButtonBar id="buttonBar" dataProvider="{ stack }"  />
+	<mx:Button id="btnLogout" label="log out" right="10" click="model.logOut()"/>
+	<mx:ViewStack id="stack" y="32" width="100%" height="100%"  />
+	
+</mx:Canvas>

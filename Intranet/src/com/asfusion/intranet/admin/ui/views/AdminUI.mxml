@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Panel xmlns:mx="http://www.adobe.com/2006/mxml"
+	xmlns:view="com.asfusion.examples.intranet.contacts.ui.view.*"
+	xmlns:views="com.asfusion.intranet.admin.ui.views.*"
+	layout="absolute" 
+	horizontalAlign="center"
+	title="Admin">
+	
+	<!-- UI ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+	<mx:TabNavigator top="20" bottom="20" left="20" right="20">
+		<views:Users id="adminUsers" label="Users" width="100%" height="100%" />
+		<views:Settings  id="adminSettings" label="Settings" width="100%" height="100%" />
+	</mx:TabNavigator>
+	
+</mx:Panel>

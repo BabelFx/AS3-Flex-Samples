@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" height="28" clipContent="false" >
+	<mx:Script>
+		<![CDATA[
+			import com.asfusion.intranet.contacts.model.vos.Contact;
+			
+			[Bindable]
+			private var contact:Contact;
+			
+			override public function set data( value:Object ):void
+			{
+				super.data = value;
+				contact = value as Contact;
+			}
+		]]>
+	</mx:Script>
+	<mx:Image width="26" source="{ 'assets/thumbnails/' + contact.picture }" x="5" y="4"/>
+	<mx:Label text="{ contact.firstName + ' ' + contact.lastName }" y="5"  x="38" fontSize="13"/>
+	<mx:HRule  bottom="-3" left="-2" right="0" styleName="HRuleRenderer"/>
+</mx:Canvas>
+

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<actionScriptProperties mainApplicationPath="Intranet.mxml" projectUUID="848e1be6-9223-4a68-83aa-ea82838ea334" version="6">
+  <compiler additionalCompilerArguments="-locale=en_US,de_DE -allow-source-path-overlap=true -source-path+=l10n/locales/{locale}" autoRSLOrdering="false" copyDependentFiles="true" fteInMXComponents="false" generateAccessible="false" htmlExpressInstall="true" htmlGenerate="true" htmlHistoryManagement="true" htmlPlayerVersionCheck="true" includeNetmonSwc="false" outputFolderLocation="/Developer/Applications/railo/webroot/l10n_Intranet" outputFolderPath="bin-debug" rootURL="http://localhost:8888/l10n_Intranet" sourceFolderPath="src" strict="true" targetPlayerVersion="0.0.0" useApolloConfig="false" useDebugRSLSwfs="true" verifyDigests="true" warn="true">
+    <compilerSourcePath>
+      <compilerSourcePathEntry kind="1" linkType="1" path="mock"/>
+    </compilerSourcePath>
+    <libraryPath defaultLinkType="1">
+      <libraryPathEntry kind="4" path=""/>
+      <libraryPathEntry kind="1" linkType="1" path="libs"/>
+      <libraryPathEntry kind="3" linkType="1" path="/l10nIOC_Library/bin/l10nIOC_Library.swc" useDefaultLinkType="false"/>
+    </libraryPath>
+    <sourceAttachmentPath>
+      <sourceAttachmentPathEntry kind="3" linkType="1" path="/Users/thomasburleson/Documents/dev/samples/i18n/Intranet/libs/Mate_08_9.swc" sourcepath="/Users/thomasburleson/Documents/dev/frameworks/mate/full/src" useDefaultLinkType="false"/>
+    </sourceAttachmentPath>
+  </compiler>
+  <applications>
+    <application path="Intranet.mxml"/>
+  </applications>
+  <modules>
+    <module application="src/Intranet_Runner.mxml" destPath="com/asfusion/intranet/contacts/Contacts.swf" optimize="true" sourcePath="src/com/asfusion/intranet/contacts/Contacts.mxml"/>
+    <module application="src/Intranet_Runner.mxml" destPath="com/asfusion/intranet/admin/Admin.swf" optimize="true" sourcePath="src/com/asfusion/intranet/admin/Admin.mxml"/>
+  </modules>
+  <buildCSSFiles/>
+</actionScriptProperties>

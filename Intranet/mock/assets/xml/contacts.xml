@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<contacts>
+	<contact>
+		<firstName>Tom</firstName>
+		<lastName>Bell</lastName>
+		<picture>tom.jpg</picture>
+		<company>Apple</company>
+		<title>UX Designer</title>
+		<phones>
+			<phone label="cell phone">342-456-7656</phone>
+		</phones>
+		<emails>
+			<email label="work">tom.bell@apple.com</email>
+			<email label="personal">tomb@gmail.com</email>
+		</emails>
+		<instantMessengers>
+			<instantMessenger label="yahoo">tombell@yahoo.com</instantMessenger>
+			<instantMessenger label="skype">tombell</instantMessenger>
+			<instantMessenger label="AOL">tombell@aol.com</instantMessenger>
+		</instantMessengers>
+	</contact>
+	
+	<contact>
+		<firstName>Alan</firstName>
+		<lastName>Right</lastName>
+		<picture>alan.jpg</picture>
+		<company>Adobe</company>
+		<title>Senior Developer</title>
+		<phones>
+			<phone label="cell phone">534-123-4352</phone>
+			<phone label="work" extension="243">534-123-4352</phone>
+			<phone label="fax">534-623-4675</phone>
+			<phone label="home">534-434-3523</phone>
+		</phones>
+		<emails>
+			<email label="work">alan56@adobe.com</email>
+			<email label="secondary">alan@yahoo.com</email>
+		</emails>
+		<instantMessengers>
+			<instantMessenger label="yahoo">alan@yahoo.com</instantMessenger>
+			<instantMessenger label="skype">alanright</instantMessenger>
+			<instantMessenger label="MSN">alan@hotmail.com</instantMessenger>
+		</instantMessengers>
+		<addresses>
+			<address label="work">
+				<street>2345 Ocean Park</street>
+				<suite>260</suite/>
+				<city>Los Angeles</city>
+				<state>CA</state>
+				<zipcode>92534</zipcode>
+			</address>
+		</addresses>
+	</contact>
+	
+	<contact>
+		<firstName>Alex</firstName>
+		<lastName>Smith</lastName>
+		<picture>alex.jpg</picture>
+		<company>Adobe</company>
+		<title>Project Manager</title>
+		<phones>
+			<phone label="cell phone">654-655-4432</phone>
+			<phone label="work" extension="293">654-342-5434</phone>
+			<phone label="home">434-423-5436</phone>
+		</phones>
+		<emails>
+			<email label="work">alex64@adobe.com</email>
+			<email label="secondary">alex@gmail.com</email>
+		</emails>
+		<instantMessengers>
+			<instantMessenger label="gTalk">alex@gmail.com</instantMessenger>
+		</instantMessengers>
+		<addresses>
+			<address label="work">
+				<street>2345 Ocean Park</street>
+				<suite>260</suite/>
+				<city>Los Angeles</city>
+				<state>CA</state>
+				<zipcode>92534</zipcode>
+			</address>
+		</addresses>
+	</contact>
+	
+	<contact>
+		<firstName>Jerry</firstName>
+		<lastName>Perry</lastName>
+		<picture>jerry.jpg</picture>
+		<company>Microsoft</company>
+		<title>Project Manager</title>
+		<phones>
+			<phone label="cell phone">543-234-5434</phone>
+		</phones>
+		<emails>
+			<email label="work">jerry324@microsoft.com</email>
+			<email label="secondary">jerryp@gmail.com</email>
+		</emails>
+		<instantMessengers>
+			<instantMessenger label="MSN">jerryperry@hotmail.com</instantMessenger>
+		</instantMessengers>
+	</contact>
+	
+	<contact>
+		<firstName>Mary</firstName>
+		<lastName>Sanchez</lastName>
+		<picture>mary.jpg</picture>
+		<company>Oracle</company>
+		<title>Developer</title>
+		<phones>
+			<phone label="cell phone">766-343-3456</phone>
+		</phones>
+		<emails>
+			<email label="work">marys@oracle.com</email>
+			<email label="secondary">mary.sanchez@gmail.com</email>
+		</emails>
+	</contact>
+	
+	<contact>
+		<firstName>Peter</firstName>
+		<lastName>Jones</lastName>
+		<picture>peter.jpg</picture>
+		<company>Sun Microsystems</company>
+		<title>Senior Developer</title>
+		<phones>
+			<phone label="cell phone">342-456-7656</phone>
+		</phones>
+		<emails>
+			<email label="work">peter.jones@sun.com</email>
+		</emails>
+	</contact>
+	
+</contacts>

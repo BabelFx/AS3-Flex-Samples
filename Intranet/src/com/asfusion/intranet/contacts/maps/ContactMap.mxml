@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LocalEventMap xmlns:mx="http://www.adobe.com/2006/mxml"
+	xmlns="http://mate.asfusion.com/" 
+	xmlns:services="com.asfusion.intranet.contacts.services.*">
+    
+    <mx:Script>
+    	<![CDATA[
+    		import mx.events.FlexEvent;
+    		import com.asfusion.intranet.contacts.ui.presenters.*;
+    		import com.asfusion.intranet.contacts.model.managers.ContactManager;
+    		import com.asfusion.intranet.contacts.ui.views.*;
+    		import com.asfusion.intranet.contacts.events.ContactEvent;
+			import com.asfusion.intranet.shared.model.managers.*;
+    	]]>
+    </mx:Script>
+    
+    <!-- Services ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    
+	<services:ContactServices  id="services"/>
+	
+	<!-- EventHandlers ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+	
+	<EventHandlers type="{ FlexEvent.PREINITIALIZE }">
+		<!-- prepare the presentation models -->
+		<ObjectBuilder generator="{ ContactListPresentationModel }" constructorArguments="{ scope.dispatcher }"/>
+		<ObjectBuilder generator="{ ContactUIPresentationModel }" constructorArguments="{ scope.dispatcher }"/>
+	</EventHandlers>
+	
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    <EventHandlers type="{ ContactEvent.GET_ALL }">
+    	<RemoteObjectInvoker instance="{ services.contacts }" method="getAll">
+    		<resultHandlers>
+    			<MethodInvoker generator="{ ContactManager }" method="storeContacts" arguments="{ resultObject }"/>
+    		</resultHandlers>
+    	</RemoteObjectInvoker>
+    </EventHandlers>
+    
+	<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    <EventHandlers type="{ ContactEvent.CONTACT_SELECT }">
+    	<MethodInvoker generator="{ ContactManager }" method="selectContact" arguments="{ event.contact }"/>
+    </EventHandlers>
+    
+    <!-- Injectors ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    
+	<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    <!-- when ContactList gets created, these injectors will run -->
+    <Injectors target="{ ContactList }">
+    
+    	<!-- at this time of creation, we dispatch an event that will get all the contacts
+    	from the server -->
+    	<EventAnnouncer generator="{ ContactEvent }" type="{ ContactEvent.GET_ALL }"/>
+    	
+    	<!-- we also set the presentation model for that view 
+    	(which was previously created and cached in the Preinitialize event) -->
+    	<PropertyInjector targetKey="model" source="{ ContactListPresentationModel }"/>
+    	
+    </Injectors>
+    
+    
+    <Injectors target="{ ContactListPresentationModel }">
+    
+    	<!-- bind the property contacts from ContactManager to the property contacts of the presentation model -->
+    	<PropertyInjector targetKey="contacts" source="{ ContactManager }" sourceKey="contacts" />
+		<PropertyInjector targetKey="selectedContact" source="{ ContactManager }" sourceKey="selectedContact"/>
+    </Injectors>
+    
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    <Injectors target="{ ContactView }">
+    	<PropertyInjector targetKey="model" source="{ ContactViewPresentationModel }"/>
+    </Injectors>
+    
+    <Injectors target="{ ContactViewPresentationModel }">
+    	<PropertyInjector targetKey="contact" source="{ ContactManager }" sourceKey="selectedContact"/>
+    </Injectors>
+    
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    <Injectors target="{ ContactUI }">
+    	<PropertyInjector targetKey="model" source="{ ContactUIPresentationModel }"/>
+    </Injectors>
+    
+    <Injectors target="{ ContactUIPresentationModel }">
+    	<PropertyInjector targetKey="currentUser" source="{ SessionManager }" 
+    						sourceCache="global" sourceKey="user" softBinding="true"/>
+    	<PropertyInjector targetKey="contact" source="{ ContactManager }" sourceKey="selectedContact"/>
+    </Injectors>
+    
+</LocalEventMap>

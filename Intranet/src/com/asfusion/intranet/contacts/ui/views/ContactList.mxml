@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" 
+	xmlns:grakl="com.grakl.*" 
+	currentState="{ model.state }" >
+
+	<mx:Script>
+		<![CDATA[
+			import com.asfusion.intranet.contacts.model.vos.Contact;
+			import com.asfusion.intranet.contacts.ui.presenters.ContactListPresentationModel;
+			[Bindable]
+			public var model:ContactListPresentationModel;
+		]]>
+	</mx:Script>
+	
+	<!-- UI ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+	<mx:List id="list" 
+		selectedItem="{ model.selectedContact }"
+		left="20" right="10" height="100%"
+		dataProvider="{ model.contacts }" 
+		change="model.updateSelectedContact( list.selectedItem as Contact)"
+		itemRenderer="com.asfusion.intranet.contacts.ui.renderers.ContactRenderer"/>
+	<grakl:Spinner id="spinner" size="30" verticalCenter="0" horizontalCenter="0"/>
+	
+	<mx:VRule right="8" height="100%"/>
+	
+	<!-- States ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+	<mx:states>
+		<mx:State name="{ ContactListPresentationModel.LOADING_STATE }"/>
+		<mx:State name="{ ContactListPresentationModel.LOADED_STATE }" enterState="spinner.stop();">
+			<mx:RemoveChild target="{ spinner }"/>
+		</mx:State>
+	</mx:states>
+</mx:Canvas>

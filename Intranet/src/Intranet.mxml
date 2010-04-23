@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" 
+	backgroundColor="#fbf6e1" 
+	layout="absolute" 
+	xmlns:views="com.asfusion.intranet.shared.ui.views.*"
+	xmlns:maps="com.asfusion.intranet.shared.maps.*" 
+	xmlns:login="com.asfusion.intranet.login.maps.*" 
+	xmlns:mate="http://mate.asfusion.com/" 
+	verticalScrollPolicy="off" xmlns:views1="l10n.views.*">
+	
+	<!-- Styles ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    <mx:Style source="assets/css/Main.css" />
+    
+    
+    <!-- Maps ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    <maps:MainMap />
+    <login:LoginMap/>
+	<l10n:IntranetLocalization xmlns:l10n="l10n.maps.*" />
+	
+	<!-- UI ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+	<views:MainUI width="100%" height="100%"/>
+	<views1:LanguageBar horizontalCenter="0" xmlns:views1="l10n.views.*" y="-4"/>
+	
+	
+</mx:Application>

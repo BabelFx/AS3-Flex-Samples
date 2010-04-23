@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Object xmlns:mx="http://www.adobe.com/2006/mxml" xmlns="http://mate.asfusion.com/">
+
+	<!-- You should replace this tag with a real RemoteObject  this is a mock service 
+	     that generates some mock objects for testing only -->
+	<MockRemoteObject id="contacts" mockGenerator="{ MockContactService }" delay="3">
+		<methods>
+			<MockMethod name="getAll" dataUrl="assets/xml/contacts.xml"/>
+		</methods>
+	</MockRemoteObject>
+	
+</mx:Object>

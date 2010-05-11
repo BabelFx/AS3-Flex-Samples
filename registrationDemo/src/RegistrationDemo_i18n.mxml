@@ -5,7 +5,7 @@
 				layout="absolute" horizontalScrollPolicy="off" verticalScrollPolicy="off"
 				xmlns:views="com.thunderbay.i18nDemo.views.*"
 				xmlns:mx="http://www.adobe.com/2006/mxml" 
-				viewSourceURL="srcview/index.html">
+>
 	
 	<mx:Style source="locale/en_US/assets/css/styles.css" />
 	

@@ -6,7 +6,7 @@
 	xmlns:maps="com.asfusion.intranet.shared.maps.*" 
 	xmlns:login="com.asfusion.intranet.login.maps.*" 
 	xmlns:mate="http://mate.asfusion.com/" 
-	verticalScrollPolicy="off" xmlns:views1="l10n.views.*">
+	verticalScrollPolicy="off" xmlns:views1="l10n.views.*" viewSourceURL="srcview/index.html">
 	
 	<!-- Styles ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
     <mx:Style source="assets/css/Main.css" />

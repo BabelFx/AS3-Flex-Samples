@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <actionScriptProperties mainApplicationPath="RegistrationDemo_i18n.mxml" projectUUID="79954f7c-8766-4a91-9e52-9a7f2a75bf82" version="6">
-  <compiler additionalCompilerArguments="-locale=en_US,es_ES --allow-source-path-overlap=true -source-path+=locale/{locale}" autoRSLOrdering="false" copyDependentFiles="false" fteInMXComponents="false" generateAccessible="false" htmlExpressInstall="false" htmlGenerate="true" htmlHistoryManagement="false" htmlPlayerVersionCheck="false" includeNetmonSwc="false" outputFolderLocation="/Developer/Applications/jboss/server/default/deploy/railo.war/i18nDemo" outputFolderPath="bin-debug" rootURL="http://localhost:8080/i18nDemo/" sourceFolderPath="src" strict="true" targetPlayerVersion="0.0.0" useApolloConfig="false" useDebugRSLSwfs="true" verifyDigests="true" warn="true">
+  <compiler additionalCompilerArguments="-locale=en_US,es_ES --allow-source-path-overlap=true -source-path+=locale/{locale}" autoRSLOrdering="false" copyDependentFiles="false" fteInMXComponents="false" generateAccessible="false" htmlExpressInstall="false" htmlGenerate="true" htmlHistoryManagement="false" htmlPlayerVersionCheck="false" includeNetmonSwc="false" outputFolderLocation="/Developer/Applications/railo/webroot/l10n_Registration" outputFolderPath="bin-debug" rootURL="http://localhost:8888/l10n_Registration" sourceFolderPath="src" strict="true" targetPlayerVersion="0.0.0" useApolloConfig="false" useDebugRSLSwfs="true" verifyDigests="true" warn="true">
     <compilerSourcePath>
       <compilerSourcePathEntry kind="1" linkType="1" path="/Users/thomasburleson/Documents/projects/ThunderBay/flex/insertables/lib_preloader/src"/>
     </compilerSourcePath>
@@ -23,16 +23,17 @@
           <libraryPathEntry kind="3" linkType="1" path="${PROJECT_FRAMEWORKS}/libs/automation.swc" useDefaultLinkType="false"/>
           <libraryPathEntry kind="3" linkType="1" path="${PROJECT_FRAMEWORKS}/libs/automation_dmv.swc" useDefaultLinkType="false"/>
           <libraryPathEntry kind="3" linkType="1" path="${PROJECT_FRAMEWORKS}/libs/automation_flashflexkit.swc" useDefaultLinkType="false"/>
+          <libraryPathEntry kind="3" linkType="1" path="${PROJECT_FRAMEWORKS}/libs/automation_agent.swc" useDefaultLinkType="false"/>
           <libraryPathEntry index="3" kind="3" linkType="4" path="${PROJECT_FRAMEWORKS}/libs/spark.swc" useDefaultLinkType="true">
             <crossDomainRsls>
               <crossDomainRslEntry autoExtract="true" policyFileUrl="http://fpdownload.adobe.com/pub/swz/crossdomain.xml" rslUrl="http://fpdownload.adobe.com/pub/swz/flex/4.0.0.10485/spark_4.0.0.10485.swz"/>
               <crossDomainRslEntry autoExtract="true" policyFileUrl="" rslUrl="spark_4.0.0.10485.swz"/>
             </crossDomainRsls>
           </libraryPathEntry>
-          <libraryPathEntry kind="3" linkType="1" path="${PROJECT_FRAMEWORKS}/libs/automation_agent.swc" useDefaultLinkType="false"/>
         </excludedEntries>
       </libraryPathEntry>
       <libraryPathEntry kind="1" linkType="1" path="libs"/>
+      <libraryPathEntry kind="3" linkType="1" path="/l10nIOC_Library/bin/l10nIOC_Library.swc" useDefaultLinkType="false"/>
     </libraryPath>
     <sourceAttachmentPath/>
   </compiler>

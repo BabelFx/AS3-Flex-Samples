@@ -21,4 +21,13 @@
     <module application="src/Intranet.mxml" destPath="com/asfusion/intranet/admin/Admin.swf" optimize="true" sourcePath="src/com/asfusion/intranet/admin/Admin.mxml"/>
   </modules>
   <buildCSSFiles/>
+  <publishSource>
+    <sourcePathIncludes>
+      <include path="mock"/>
+    </sourcePathIncludes>
+    <sourceExcludes>
+      <exclude path="html-template"/>
+      <exclude path="libs"/>
+    </sourceExcludes>
+  </publishSource>
 </actionScriptProperties>

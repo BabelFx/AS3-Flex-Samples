@@ -3,14 +3,18 @@
 	xmlns:view="com.asfusion.intranet.contacts.ui.views.*"
 	layout="absolute"
 	title="Contacts" 
-	currentState="{ model.state }">
+	currentState="{ _model.state }">
 	
 	<mx:Script>
 		<![CDATA[
 			import com.asfusion.intranet.contacts.ui.presenters.ContactUIPresentationModel;
 			
-			[Bindable]
-			public var model:ContactUIPresentationModel
+			public function set model(val:ContactUIPresentationModel):void {
+				_model = val;
+			}
+			
+			[Bindable] 
+			private var _model:ContactUIPresentationModel
 		]]>
 	</mx:Script>
 	
@@ -27,7 +31,7 @@
 			<mx:AddChild>
 				<mx:ControlBar>
 					<mx:Canvas>
-						<mx:Button id="btnAddContact" label="Add Contact" x="20" click="model.addContact();"/>
+						<mx:Button id="btnAddContact" label="Add Contact" x="20" click="_model.addContact();"/>
 					</mx:Canvas>
 				</mx:ControlBar>
 			</mx:AddChild>

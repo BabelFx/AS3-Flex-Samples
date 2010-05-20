@@ -22,7 +22,6 @@
 	<views:LanguageBar width="386" horizontalCenter="0" y="{signIn.y-20}" />
 	
 	<!-- Single tag used to provide l10n features for the entire application and all sub views -->
-	<l10n:l10nMap  	account="{_model.account}" 
-							 xmlns:l10n="*" />
+	<l10n:l10nMap  	account="{_model.account}" xmlns:l10n="*" />
 	
 </mx:Application>

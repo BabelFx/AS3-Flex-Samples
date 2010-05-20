@@ -60,7 +60,7 @@
 
 	
 	<mx:Array id="allValidators">
-		<mx:EmailValidator 	id="validator" 
+		<mx:EmailValidator 	id="eMailValidator" 
 							source="{txtEmail}" 
 							property="text" 
 							required="true" 

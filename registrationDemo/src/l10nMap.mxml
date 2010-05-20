@@ -6,19 +6,18 @@
 	<!-- Support for Locale ResourceBundle changes -->
 	<mx:Script>
 		<![CDATA[
-			import mx.controls.Image;
-			
 			import com.thunderbay.i18nDemo.views.SignInPage;
 			import com.thunderbay.i18nDemo.views.forms.AlreadyRegisteredForm;
 			import com.thunderbay.i18nDemo.views.forms.RegistrationForm;
+			import com.thunderbay.i18nDemo.views.forms.dummy.SignInButton;
+			import com.thunderbay.i18nDemo.vo.AccountVO;
 			
-			import com.thunderbay.i18nDemo.views.forms.dummy.SignInButton;	// Dummy subclass of Image 
-			import com.thunderbay.i18nDemo.vo.AccountVO;					// Injection of data model
+			import mx.controls.Image;					// Injection of data model
 			
 			[Inject]			
 			[Bindable]
-			public var account : AccountVO 	= null;	
-
+			public var account : AccountVO 	= null;
+			
 			
 			/**
 			 *  EventHandler when locales change to force the SignIn form to any existing
@@ -37,8 +36,11 @@
 		]]>
 	</mx:Script>
 	
-		<!-- Special use of SRI to maintain reference to class instance of SignInPage, after locale changes: clear any validation errors. -->
-
+		<!-- 
+			 To clear validation errors, we have a special use of SRI to maintain reference to 
+			 class instance of SignInPage. After locale changes, we clear any validation errors. 
+		-->
+	
 	<SmartResourceInjector bundleName="registration" target="{SignInPage}" localeChange="onClearValidationErrors(event);" />
 		
 		<!--
@@ -49,7 +51,7 @@
 
 	<SmartResourceInjector bundleName="registration" target="{AlreadyRegisteredForm}">
 		<ResourceProxy property="alertTitle" 					key="signing.invalid" />
-		<ResourceProxy property="validator.requiredFieldError" 	key="signin.validationError.email" />
+		<ResourceProxy property="eMailValidator.requiredFieldError" key="signin.validationError.email" />
 		<ResourceProxy property="lblTitle.text" 				key="signin.title" />
 		<ResourceProxy property="lblEmail.text" 				key="signin.email" />
 	</SmartResourceInjector>
@@ -83,7 +85,7 @@
 		<ResourceProxy property="cmbCountry.prompt" 							key="register.prompt.country" />
 		
 		<!-- 
-			Sample of E=elegant support for view state changes to fire localized resource injections: see "state" attribute
+			Sample of elegant support for view state changes to fire localized resource injections: see "state" attribute
 			When state is != "", then the injection only occurs for state == <ui instance>.currentState.
 			We could specify the announcer/trigger for the state changes, but if not specified we use 
 			the cached instance of the UI [RegistrationForm] class. 
@@ -106,6 +108,5 @@
 		<ResourceProxy target="{SignInButton}"		targetID="btnSignIn" 	property="source" 		key="button.skin.signin" 	type="class" />
 		<PropertyProxy 								targetID="btnFlagUSA" 	property="toolTip" 		source="{account}" 			sourceKey="email" />
 	</SmartResourceInjector>
-
 
 </LocaleMap>

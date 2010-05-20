@@ -23,7 +23,7 @@ states with flex 4 new syntax. You have known it, right?
 			<fx:Object id="rules" label="Rules" />
 		</s:ArrayList>
 		
-		<locale:MyLocaleMap ui="{this}" xmlns:locale="*"/>
+		<locale:MyLocaleMap xmlns:locale="*"/>
 	</fx:Declarations>
 	
 	<fx:Script>

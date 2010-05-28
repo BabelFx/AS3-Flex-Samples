@@ -1,0 +1,1 @@
+Please download the latest build of the l10nInjection engine from GitHub at http://github.com/ThomasBurleson/l10n_Injection/archives/master

@@ -18,6 +18,7 @@ states with flex 4 new syntax. You have known it, right?
 	
 	
 	<fx:Declarations>
+		
 		<s:ArrayList id="introList">
 			<fx:Object id="basic" label="Basic" />
 			<fx:Object id="rules" label="Rules" />
@@ -62,7 +63,7 @@ states with flex 4 new syntax. You have known it, right?
 	</mx:Accordion>
 	
 	
-	<mx:TabNavigator creationPolicy="{ContainerCreationPolicy.AUTO}" left="200" right="100" bottom="100" top="163">
+	<mx:TabNavigator creationPolicy="{ContainerCreationPolicy.AUTO}" x="200" width="300" bottom="100" top="163" width.normal="352" top.normal="163" bottom.normal="100">
 		<mx:Canvas label="UserAccounts" width="100%" height="100%">
 			<mx:DataGrid x="0" y="0" width="100%" height="100%" id="grdAccounts" creationComplete="onGridReady(event);">
 				<mx:columns>
@@ -86,14 +87,15 @@ states with flex 4 new syntax. You have known it, right?
 	<!--
 	If you comment NavigatorContent tag, there is no error when starting.
 	-->
-	<!--<mx:Accordion x="250" y="0" width="200" height="100%">
-		<s:NavigatorContent id="introSparkView" label="Introduction"
-							width="100%" height="100%">
-			<s:List x="0" y="0" width="100%" height="100%" dataProvider="{introList}" />
-		</s:NavigatorContent>
+	<mx:TabNavigator creationPolicy="{ContainerCreationPolicy.AUTO}" x="600" width="300" bottom="100" top="163">
 		<s:NavigatorContent id="instSparkView" label="Instruments"
 							width="100%" height="100%">
 		</s:NavigatorContent>
-	</mx:Accordion>-->
+		<s:NavigatorContent id="introSparkView" label="Introduction"
+							width="100%" height="100%">
+			<s:Label id="txtNCLabel" text="Testing Injection" includeIn="small" fontSize.small="12" color.small="#F40D0D" />
+			<s:List x="0" width="100%" dataProvider="{introList}"  height="404" y="68" />
+		</s:NavigatorContent>
+	</mx:TabNavigator>
 	
 </s:Application>

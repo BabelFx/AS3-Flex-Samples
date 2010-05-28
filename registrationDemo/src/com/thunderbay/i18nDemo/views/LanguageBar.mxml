@@ -8,7 +8,7 @@
 		<![CDATA[
 			import assets.i18nDemoAssets;
 			
-			import com.asfusion.mate.l10n.events.LocaleEvent;
+			import com.mindspace.l10n.events.LocaleEvent;
 			import com.thunderbay.i18nDemo.control.utils.DelayedCall;
 			
 			private function onInitView():void {
@@ -29,7 +29,7 @@
 
 	
 	<mx:Image source="{i18nDemoAssets.FLAG_SPAIN}" 
-			  click="dispatchEvent(new LocaleEvent(LocaleEvent.LOAD_LOCALE,'es_ES'))" 
+			  click="dispatchEvent(new com.mindspace.l10n.events.LocaleEvent(LocaleEvent.LOAD_LOCALE,'es_ES'))" 
 			  buttonMode="true" useHandCursor="true" 
 			  toolTip="Use Spanish Locale"/>
 	

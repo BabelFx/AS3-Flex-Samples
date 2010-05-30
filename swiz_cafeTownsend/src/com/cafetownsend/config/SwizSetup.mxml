@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<sw:Swiz    xmlns:sw="http://swiz.swizframework.org"
+		    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		    xmlns:mx="library://ns.adobe.com/flex/mx" >
+	
+	<fx:Script>
+		<![CDATA[
+			import mx.controls.Alert;
+			import mx.rpc.events.FaultEvent;
+			
+			private function genericFault( fe : FaultEvent ) : void {
+				var message : String = fe.fault.faultDetail; 
+				var code    : String = fe.fault.faultCode;
+				
+				Alert.show(message , code);
+			}
+			
+		]]>
+	</fx:Script>
+	
+	<sw:beanProviders>
+		<config:Beans 		 xmlns:config="com.cafetownsend.config.*" />
+	</sw:beanProviders>
+	
+	<sw:config>
+		<sw:SwizConfig 		 id="appConfig"
+							 strict="true"
+							 eventPackages="com.cafetownsend.event.*" 
+							 viewPackages="com.cafetownsend.view.*"
+							 defaultFaultHandler="{genericFault}"/>
+	</sw:config>
+	
+</sw:Swiz>

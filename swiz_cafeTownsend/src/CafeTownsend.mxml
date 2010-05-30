@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application  minWidth="450" minHeight="550"  
+				xmlns:fx="http://ns.adobe.com/mxml/2009" 
+				xmlns:s="library://ns.adobe.com/flex/spark">
+
+	<fx:Style  source="/assets/css/styles.css" />
+	
+	<fx:Declarations>
+		<ioc:SwizSetup 			 xmlns:ioc="com.cafetownsend.config.*" />
+	</fx:Declarations>
+
+	<s:layout>
+		<s:VerticalLayout horizontalAlign="center" verticalAlign="middle" />
+	</s:layout>
+
+	<view:MainView width="455" height="460"  xmlns:view="com.cafetownsend.view.*"/>
+
+</s:Application>

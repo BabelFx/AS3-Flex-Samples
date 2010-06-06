@@ -1,0 +1,32 @@
+*/bin-debug/*
+*/bin-release/*
+*/html-template/*
+oToucho/*
+viewStates/for_sdk3/MyLocaleMap.mxml
+viewStates/for_sdk3/l18nTest_SDK3.mxml
+viewStates/for_sdk4/I18nTest.mxml
+viewStates/for_sdk4/MyLocaleMap.mxml
+TestCalendar v2.0.zip
+TestCalendar/.settings/org.eclipse.core.resources.prefs
+TestCalendar/libs/ReadMe.txt
+TestCalendar/src/Issues (original)
+docs/20010021.pdf
+docs/Flash-Flex Localization
+docs/Introduction to Localization.pdf
+docs/Softwarelocalization_with_VisualLocalize.pdf
+docs/flash Localization.pdf
+docs/l10nScript.oo3/contents.xml
+registrationDemo/.sourceMate
+registrationDemo/.sourceMateMetadataSettings
+swiz_cafeTownsend/docs/CrossDomain_actionscriptProperties
+swiz_cafeTownsend/docs/build/cross-domain.xml
+swiz_cafeTownsend/docs/build/index.template.html
+swiz_cafeTownsend/docs/cafeTownsend.png
+swiz_cafeTownsend/docs/cafeTownsend_thumnail.png
+swiz_cafeTownsend/docs/header.png
+swiz_cafeTownsend/docs/rsls/Framework_Swiz.swc
+swiz_cafeTownsend/docs/rsls/Framework_l10nInjection.swc
+swiz_cafeTownsend/docs/rsls/cross-domain.xml
+swiz_cafeTownsend/docs/snapshot_en_US.png
+swiz_cafeTownsend/docs/snapshot_es_ES.jpg
+swiz_cafeTownsend/docs/snapshot_es_ES.png

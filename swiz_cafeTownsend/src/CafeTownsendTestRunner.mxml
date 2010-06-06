@@ -5,7 +5,7 @@
 	xmlns:mx="library://ns.adobe.com/flex/mx" 
 	xmlns:runner="org.flexunit.runner.*"
 	xmlns:adobe="http://www.adobe.com/2009/flexUnitUIRunner"
-	creationComplete="application1_creationCompleteHandler(event)" >
+	creationComplete="application1_creationCompleteHandler(event)"  viewSourceURL="srcview/index.html">
 	
 	<fx:Script>
 		<![CDATA[

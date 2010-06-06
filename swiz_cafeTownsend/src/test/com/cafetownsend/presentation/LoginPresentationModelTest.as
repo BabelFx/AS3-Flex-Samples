@@ -84,13 +84,13 @@ package test.com.cafetownsend.presentation
 		{
 			//
 			// test invalid data
-			var valid: Boolean = pm.validLoginData('','');			
+			var valid: Boolean = pm.validateLogin('','');			
 			Assert.assertFalse('invalid login data', valid );
 			Assert.assertTrue('userNameError String', pm.usernameError.length > 0 );
 			Assert.assertTrue('passwordError String', pm.passwordError.length > 0 );
 			//
 			// test valid data
-			valid = pm.validLoginData('Luke','Skywalker');			
+			valid = pm.validateLogin('Luke','Skywalker');			
 			Assert.assertTrue('login data', valid );
 			Assert.assertFalse('userNameError String', pm.usernameError.length );
 			Assert.assertFalse('passwordError String', pm.passwordError.length );

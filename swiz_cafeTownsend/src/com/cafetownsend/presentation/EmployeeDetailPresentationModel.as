@@ -11,6 +11,7 @@ package com.cafetownsend.presentation
 	import flash.events.IEventDispatcher;
 	
 	import mx.events.ValidationResultEvent;
+	import mx.logging.ILogger;
 	import mx.validators.EmailValidator;
 	import mx.validators.StringValidator;
 	
@@ -18,11 +19,8 @@ package com.cafetownsend.presentation
 	
 	public class EmployeeDetailPresentationModel extends EventDispatcher
 	{
-		
-		
-		[Dispatcher]
-		public var dispatcher:IEventDispatcher;
-
+		[Log]			public var log  	 : ILogger 			= null;		
+		[Dispatcher]	public var dispatcher:IEventDispatcher  = null;
 		
 		//--------------------------------------------------------------------------
 		//
@@ -36,15 +34,14 @@ package com.cafetownsend.presentation
 		
 		[Bindable]
 		[Inject("employeeModel.selectedEmployee")]
-		public function get selectedEmployee( ):Employee
-		{
+		public function get selectedEmployee( ):Employee {
 			return _selectedEmployee;
 		}
 
-		public function set selectedEmployee( employee:Employee ):void
-		{
-			if( employee != null )
-			{
+		public function set selectedEmployee( employee:Employee ):void {
+			if( employee != null && (_selectedEmployee !== employee) ) {
+				if (log != null) log.debug("set selectedEmployee({0})",employee.fullName);
+				
 				_selectedEmployee = employee;
 				
 				if( employee != null )
@@ -71,14 +68,12 @@ package com.cafetownsend.presentation
 			return _tempEmployee;
 		}
 		
-		public function set tempEmployee( employee:Employee ):void
-		{
-			if( _tempEmployee !== employee )
-			{
+		public function set tempEmployee( employee:Employee ):void {
+			if( _tempEmployee !== employee ) {
+				if (log != null) log.debug("set tempEmployee({0})",employee.fullName);
+				
 				_tempEmployee = employee;
-				
 				this.dispatchEvent( new Event( TEMP_EMPLOYEE_CHANGED ) );
-				
 			}
 		}
 
@@ -98,8 +93,9 @@ package com.cafetownsend.presentation
 		//
 		//--------------------------------------------------------------------------
 		
-		public function cancelEmployeeEdits() : void 
-		{
+		public function cancelEmployeeEdits() : void  {
+			if (log != null) log.debug("cancelEmployeeEdits()");
+			
 			clearValidationMessages();
 			
 			dispatcher.dispatchEvent( new EmployeeEvent( EmployeeEvent.CANCEL ) );
@@ -111,8 +107,9 @@ package com.cafetownsend.presentation
 		//
 		//--------------------------------------------------------------------------
 		
-		public function updateEmployee( ):void
-		{
+		public function updateEmployee( ):void {
+			if (log != null) log.debug("updateEmployee()");
+			
 			if( validateEmployee( tempEmployee ) )
 			{
 				clearValidationMessages();
@@ -135,8 +132,9 @@ package com.cafetownsend.presentation
 		//--------------------------------------------------------------------------
 		
 		
-		public function deleteEmployee() : void 
-		{
+		public function deleteEmployee() : void  {
+			if (log != null) log.debug("deleteEmployee()");
+			
 			dispatcher.dispatchEvent( new EmployeeEvent( EmployeeEvent.DELETE ) );	
 		}
 		
@@ -152,8 +150,7 @@ package com.cafetownsend.presentation
 		protected var stringValidator:StringValidator;
 		
 
-		public function validateEmployee( employee:Employee ):Boolean
-		{
+		public function validateEmployee( employee:Employee ):Boolean {
 			// create stringValidator if not created yet
 			stringValidator ||= new StringValidator();
 			
@@ -171,6 +168,8 @@ package com.cafetownsend.presentation
 			var emailValidation:ValidationResultEvent = emailValidator.validate( employee.email);
 			var validEmail:Boolean = emailValidation.results == null;
 			_emailError = ( validEmail ) ? "" : emailValidation.message;
+
+			if (log != null) log.debug("validateEmployee({0}): validFirstname={1},validLastname={2},validEmail={3}", employee.fullName,validFirstname,validLastname,validEmail);
 			
 			return ( validFirstname  &&  validLastname && validEmail );
 		}
@@ -179,12 +178,13 @@ package com.cafetownsend.presentation
 		public static const VALIDATION_CHANGED:String = "validationChanged";
 		
 		
-		protected function clearValidationMessages():void 
-		{
+		protected function clearValidationMessages():void  {
 			_firstNameError
 			= _lastNameError
 			= _emailError
 			= '';
+			
+			if (log != null) log.debug("clearValidationMessages()");
 			
 			dispatchEvent( new Event( VALIDATION_CHANGED ) );
 		}

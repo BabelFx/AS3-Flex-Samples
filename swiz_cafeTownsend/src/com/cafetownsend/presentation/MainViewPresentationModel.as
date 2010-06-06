@@ -6,15 +6,16 @@ package com.cafetownsend.presentation
 	import flash.events.Event;
 	import flash.events.EventDispatcher;
 	import flash.events.IEventDispatcher;
+	
+	import mx.logging.ILogger;
 
 	public class MainViewPresentationModel extends EventDispatcher
 	{
-		[Dispatcher]
-		public var dispatcher:IEventDispatcher;
+		[Dispatcher]	public var dispatcher:IEventDispatcher  = null;
+		[Log]			public var log  	 : ILogger 			= null;	
 		
 		[Inject("appModel.user")]
-		[Bindable]
-		public var user: User;
+		[Bindable]		public var user		 : User				= null;
 		
 		//--------------------------------------------------------------------------
 		//
@@ -29,19 +30,16 @@ package com.cafetownsend.presentation
 		
 		[Inject("navModel.path")]
 		[Bindable(event="currentStateChanged")]
-		public function get currentState():String
-		{
+		public function get currentState():String {
 			return _currentState;
 		}
-		
-		public function set currentState( value: String ):void
-		{
-			//
+		public function set currentState( value: String ):void {
 			// get the second path value only
 			var newState: String = value.split("/")[0];
 			
-			if ( _currentState != newState ) 
-			{			
+			if ( _currentState != newState )  {
+				if (log != null) log.debug("currentState=={0}",newState);
+				
 				_currentState = newState;
 				this.dispatchEvent( new Event( CURRENT_STATE_CHANGED ) );
 			}
@@ -54,8 +52,9 @@ package com.cafetownsend.presentation
 		//
 		//--------------------------------------------------------------------------
 		
-		public function logout() : void 
-		{
+		public function logout() : void {
+			if (log != null) log.debug("logout()");
+			
 			dispatcher.dispatchEvent( new LoginEvent( LoginEvent.LOGOUT, null, true ) );
 		}
 		

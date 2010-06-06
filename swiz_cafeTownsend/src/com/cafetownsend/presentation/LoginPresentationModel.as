@@ -7,49 +7,36 @@ package com.cafetownsend.presentation
 	import flash.events.IEventDispatcher;
 	
 	import mx.events.ValidationResultEvent;
+	import mx.logging.ILogger;
 	import mx.rpc.Fault;
 	import mx.validators.StringValidator;
 	
 	public class LoginPresentationModel
 	{
-		[Dispatcher]
-		public var dispatcher:IEventDispatcher;
+		public static const STATE_DEFAULT	 :String 			= "default";
+		public static const STATE_ERROR	 	 :String 			= "error";
 		
-		public static const STATE_DEFAULT:String = "default";
-		public static const STATE_ERROR:String = "error";
+		[Bindable]	public var currentState	:String  			= STATE_DEFAULT;
 		
-		[Bindable]
-		public var currentState:String = STATE_DEFAULT;
+		[Log]			public var log  	 : ILogger 			= null;		
+		[Dispatcher]	public var dispatcher:IEventDispatcher  = null;
 		
-		
-		[Bindable]
-		public var loginPending:Boolean = false;
-		
-		[Bindable]
 		[Inject("appModel.lastUsername")]
-		public var lastUsername:String;
+		[Bindable]	public var lastUsername	:String 			= "";
 		
-		[Bindable]
-		public var password:String;
+		[Bindable]	public var password		:String 			= "";
+		[Bindable]	public var usernameError:String 			= "";
+		[Bindable]	public var passwordError:String 			= "";
+		[Bindable]	public var loginError	:String 			= "";
 		
-		[Bindable]
-		public var usernameError:String;
+		[Bindable]	public var loginPending	:Boolean 			= false;
 		
-		[Bindable]
-		public var passwordError:String;
-		
-		[Bindable]
-		public var loginError:String;
-		
-		public function LoginPresentationModel()
-		{
-		}
-		
-		public function login(username:String, password:String):void
-		{
+		public function login(username:String, password:String):void {
+			if (log != null) log.debug("login(username:{0}, password:{1})",username,password);
+			
 			currentState = STATE_DEFAULT;		
 			
-			if( validLoginData(username, password) )
+			if( validateLogin(username, password) )
 			{
 				var user:User = new User(NaN, username, password);
 				dispatcher.dispatchEvent(new LoginEvent(LoginEvent.LOGIN, user));
@@ -60,7 +47,7 @@ package com.cafetownsend.presentation
 		
 		protected var stringValidator:StringValidator;
 		
-		public function validLoginData(username: String, password: String):Boolean 
+		public function validateLogin(username: String, password: String):Boolean 
 		{
 			var valid: Boolean = false;
 			
@@ -75,23 +62,26 @@ package com.cafetownsend.presentation
 			var validPassword:Boolean = stringValidation.results == null;
 			passwordError = ( validPassword ) ? "" : Constants.LOGIN_INVALID_PASSWORD;
 			
+			if (log != null) log.debug("validateLogin(): validUserName:{0}, validPassword:{1}",validUserName,validPassword);
+			
 			return validUserName && validPassword;
 		}
 
 		[Mediate(event="LoginErrorEvent.LOGIN_ERROR", properties="fault")]
-		public function handleLoginError(fault:Fault):void
-		{
+		public function handleLoginError(fault:Fault):void {
+			loginError = fault.faultString + ": " + fault.faultDetail;
 			currentState = STATE_ERROR;
 			
-			loginError = fault.faultString + ": " + fault.faultDetail;
-			
 			loginPending = false;
+			
+			if (log != null) log.debug("handleLoginError(fault:{0})",loginError);
 		}
 
 		[Mediate(event="LoginEvent.COMPLETE")]
-		public function handleLoginComplete( event: LoginEvent ):void
-		{
-			loginPending = false;			
+		public function handleLoginComplete( event: LoginEvent ):void {
+			loginPending = false;
+			
+			if (log != null) log.debug("handleLoginComplete(user:{0})",event.user.username);
 		}
 	
 	}

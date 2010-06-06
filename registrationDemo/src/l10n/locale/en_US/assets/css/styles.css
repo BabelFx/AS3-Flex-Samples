@@ -100,12 +100,12 @@ TextInput
 
 .siRegisterBtn
 {
-	skin: Embed('/locale/en_US/assets/images/btn_register.png')
+	skin: Embed('l10n/locale/en_US/assets/images/btn_register.png')
 }
 
 .siSigninBtn
 {
-	skin: Embed('/locale/en_US/assets/images/btn_signin.png')
+	skin: Embed('l10n/locale/en_US/assets/images/btn_signin.png')
 }
 
 .siInputError {

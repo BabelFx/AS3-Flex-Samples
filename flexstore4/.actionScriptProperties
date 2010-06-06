@@ -42,7 +42,7 @@
         </excludedEntries>
       </libraryPathEntry>
       <libraryPathEntry kind="1" linkType="1" path="libs"/>
-      <libraryPathEntry kind="3" linkType="1" path="/l10nIOC_Library/bin/l10nIOC_Library.swc" useDefaultLinkType="false"/>
+      <libraryPathEntry kind="3" linkType="1" path="/Framework_l10nInjection/bin/Framework_l10nInjection.swc" useDefaultLinkType="false"/>
     </libraryPath>
     <sourceAttachmentPath/>
   </compiler>
@@ -59,8 +59,6 @@
       <exclude path="src/assets/data/catalog.xml"/>
       <exclude path="src/assets/fonts"/>
       <exclude path="src/assets/images"/>
-      <exclude path="src/l10n/locale/bundles"/>
-      <exclude path="src/l10n/locale/framework"/>
     </sourceExcludes>
   </publishSource>
 </actionScriptProperties>

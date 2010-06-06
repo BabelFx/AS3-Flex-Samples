@@ -30,4 +30,10 @@
 							 defaultFaultHandler="{genericFault}"/>
 	</sw:config>
 	
+	<sw:customProcessors>
+	
+		<sw:LogProcessor />
+
+	</sw:customProcessors>
+	
 </sw:Swiz>

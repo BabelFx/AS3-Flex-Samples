@@ -17,6 +17,7 @@
 			import com.cafetownsend.domain.Employee;
 			import com.cafetownsend.model.AppModel;
 			import com.cafetownsend.model.Constants;
+			import com.cafetownsend.presentation.LoginPresentationModel;
 			import com.cafetownsend.view.EmployeeDetail;
 			import com.cafetownsend.view.EmployeeDetailNavigation;
 			import com.cafetownsend.view.EmployeeListNavigation;
@@ -51,8 +52,11 @@
 			}
 
 			[Bindable]
+			[Inject]    
+			public var authenticated : AppModel = null;
+			
 			[Inject]
-			public var loginUser : AppModel = null;
+			public var model         : LoginPresentationModel = null;
 			
 			
 			// ********************************************************************************
@@ -87,6 +91,11 @@
 					cntr.loginErrorTxt.text = "";				// Manually clear the error text...
 					cntr.loginBtn.skin.invalidateProperties();	// Force refresh on custom skin part
 					
+					if (model != null) {
+						model.usernameError 					= "";	// Clear all validation errors... 
+						model.passwordError						= "";
+					}
+					
 				} else {
 					
 					var main : MainView 			= sri.targetInstances[0] as MainView;
@@ -115,7 +124,7 @@
 	
 	<l10n:SmartResourceInjector bundleName="login" target="{MainView}" localeChange="onLocaleChanged(event);" >
 		<l10n:ResourceProxy 		property="btnLogout.label" 		key="login.signOut" />
-		<l10n:ResourceProxy 		property="txtWelcomeUser.text" 	key="login.welcome" parameters="{[loginUser.user.username]}" />
+		<l10n:ResourceProxy 		property="txtWelcomeUser.text" 	key="login.welcome" parameters="{[authenticated.user.username]}" />
 		<l10n:ResourceProxy 		property="imgHeader.source" 	key="login.header" type="class" />
 		<!-- 
 		      Would be better to inject a new styleName or a new styleSheet 

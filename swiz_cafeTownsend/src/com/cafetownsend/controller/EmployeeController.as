@@ -11,6 +11,8 @@ package com.cafetownsend.controller
 	import com.cafetownsend.util.EmployeeUtil;
 	import com.cafetownsend.util.ErrorUtil;
 	
+	import ext.swizframework.utils.AsyncInterceptor;
+	
 	import flash.display.Sprite;
 	import flash.events.IEventDispatcher;
 	
@@ -19,6 +21,7 @@ package com.cafetownsend.controller
 	import mx.controls.Alert;
 	import mx.core.FlexGlobals;
 	import mx.events.CloseEvent;
+	import mx.logging.ILogger;
 	import mx.rpc.AsyncToken;
 	import mx.rpc.events.FaultEvent;
 	import mx.rpc.events.ResultEvent;
@@ -26,25 +29,15 @@ package com.cafetownsend.controller
 	
 	import org.swizframework.utils.services.ServiceHelper;
 	
-	public class EmployeeController
-	{
+	public class EmployeeController {
 
-		[Dispatcher]
-		public var dispatcher:IEventDispatcher;
-
+		[Log]			public var log  	 : ILogger 			= null;		
+		[Dispatcher]	public var dispatcher: IEventDispatcher = null;
 		
-		[Inject]
-		public var model:EmployeeModel;
+		[Inject]		public var model	 : EmployeeModel	= null;
+		[Inject]		public var delegate	 : IEmployeeDelegate= null;
 		
-		[Inject]
-		public var delegate:IEmployeeDelegate;
-		
-		[Inject]
-		public var serviceRequestUtil:ServiceHelper;
-		
-		public function EmployeeController()
-		{
-		}
+		[Inject]		public var serviceRequestUtil:ServiceHelper = null;
 		
 		//--------------------------------------------------------------------------
 		//
@@ -53,38 +46,29 @@ package com.cafetownsend.controller
 		//--------------------------------------------------------------------------
 		
 		[Mediate(event="LoginEvent.COMPLETE")]
-		public function loadEmployees():void
-		{
-			var call:AsyncToken = delegate.loadEmployees();
-			serviceRequestUtil.executeServiceCall(call, loadEmployeeHandler);
+		public function loadEmployees():void {
+			if (log != null) log.debug("loadEmployees()");
+			
+			var agent : AsyncInterceptor = new AsyncInterceptor(parseEmployeesData);
+			serviceRequestUtil.executeServiceCall(agent.intercept(delegate.loadEmployees()), onResults_loadEmployees);
 		}
 		
-		protected function loadEmployeeHandler(event:ResultEvent):void
-		{
-			var call:AsyncToken = delegate.loadEmployees();
-			return serviceRequestUtil.executeServiceCall( call, loadEmployeesResultHandler );
-			
-		}
-		
-		
-		protected function loadEmployeesResultHandler(event: ResultEvent ):void 
-		{
-			var xml: XML;
-			
+		private function parseEmployeesData(data:XML):XML {
 			try {
-				xml = event.result as XML;
-			}
-			catch( error: Error )
-			{
+				if (log != null) log.debug("parseEmployeesData()");
+			} catch( error: Error ) {
 				ErrorUtil.showError( StringUtil.substitute(Constants.EMPLOYEE_LOAD_ERROR,[error.message]) );
-				return;
 			}
-
 			
-			var employees: Array = EmployeeUtil.getEmployeesFromXML( xml );
+			return data;
+		}
+		
+		protected function onResults_loadEmployees(data:XML ):void  {
+			if (log != null) log.debug("EmployeeUtil.getEmployeesFromXML()");
+			var employees: Array = EmployeeUtil.getEmployeesFromXML( data );
 			
+			if (log != null) log.debug("onResults_loadEmployees(): employees={0}",employees.length);
 			model.employees = new ArrayCollection( employees );
-			
 		}
 
 		//--------------------------------------------------------------------------
@@ -95,14 +79,11 @@ package com.cafetownsend.controller
 		
 		
 		[Mediate(event="EmployeeEvent.CREATE")]
-		public function createEmployee():void
-		{
-			var employee: Employee = new Employee();
-			
-			model.selectedEmployee = employee;
-			
+		public function createEmployee():void {
+			if (log != null) log.debug("createEmployee()");
+
+			model.selectedEmployee = new Employee();
 			dispatcher.dispatchEvent( new NavigationEvent( NavigationEvent.UPDATE_PATH, NavigationModel.PATH_EMPLOYEE_DETAIL ) );
-			
 		}
 
 		//--------------------------------------------------------------------------
@@ -113,52 +94,30 @@ package com.cafetownsend.controller
 		
 
 		[Mediate(event="EmployeeEvent.UPDATE",properties="employee")]
-		public function updateEmployee( employee: Employee ):void
-		{
-			var call:AsyncToken = delegate.updateEmployee( employee );
-			serviceRequestUtil.executeServiceCall(call, updateEmployeeResultHandler);
+		public function updateEmployee( employee: Employee ):void {
+			if (log != null) log.debug("updateEmployee({0})", employee.fullName);
+			
+			var agent : AsyncInterceptor = new AsyncInterceptor(parseEmployeeData);
+			serviceRequestUtil.executeServiceCall(agent.intercept(delegate.updateEmployee(employee)), onResult_updateEmployee);
 		}
 		
-		protected function updateEmployeeResultHandler( event: ResultEvent ):void
-		{
-			var updatedEmployee: Employee;			
-			
+		private function parseEmployeeData(event:*):Employee {
 			try {
-				updatedEmployee = event.result as Employee;
+				if (log != null) log.debug("parseEmployeeData()");
+				var emp : Employee = (event is ResultEvent) ? event.result as Employee : event as Employee;
 			}
 			catch( error: Error )
 			{
 				ErrorUtil.showError( error.message );
-				return;
 			}
 			
-			var employee: Employee;	
-			var employees: IList = model.employees;
-			var employeesIndex: int = -1;
+			return emp;
+		}
+		
+		protected function onResult_updateEmployee( person:Employee ):void {
+			if (log != null) log.debug("updateEmployee({0})", person.fullName);
 			
-			var i:int = 0;
-			var max: int = employees.length;
-			
-			for (i; i < max; i++) 
-			{
-				employee = employees.getItemAt( i ) as Employee;
-				
-				if( employee.id == updatedEmployee.id )
-				{
-					employeesIndex = i;
-					break;
-				}
-			}
-
-			if ( employeesIndex > -1 ) 
-			{
-				model.selectedEmployee = model.employees.getItemAt( employeesIndex ).copyFrom( updatedEmployee ) as Employee; 
-			}
-			else 
-			{
-				model.selectedEmployee = model.employees.addItem( updatedEmployee ) as Employee;
-			}						
-			
+			model.addEmployee(person);
 			dispatcher.dispatchEvent( new NavigationEvent( NavigationEvent.UPDATE_PATH, NavigationModel.PATH_EMPLOYEE_LIST ) );
 		}
 		
@@ -169,72 +128,52 @@ package com.cafetownsend.controller
 		//--------------------------------------------------------------------------
 		
 		[Mediate(event="EmployeeEvent.DELETE")]
-		public function deleteEmployee( ) : void 
-		{
+		public function confirmDeleteEmployee( ) : void  {			
 			var employee: Employee = model.selectedEmployee;
+			
+			if (log != null) log.debug("confirmDeleteEmployee({0})", employee.fullName);
 			
 			Alert.show(	StringUtil.substitute(Constants.EMPLOYEE_CONFIRM_DELETE,[employee.firstName,employee.lastName]),
 				null,
 				Alert.OK | Alert.CANCEL,
 				FlexGlobals.topLevelApplication as Sprite,
-				checkForDeletingEmployee,
+				deleteEmployee,
 				null,
 				Alert.OK );
 		}
 		
 		
-		protected function checkForDeletingEmployee ( event: CloseEvent ):void 
-		{
+		protected function deleteEmployee ( event: CloseEvent ):void  {
 			// was the Alert event an OK
-			if ( event.detail == Alert.OK ) 
-				deleteEmployeeHandler();
-		}
-		
-		
-		public function deleteEmployeeHandler():void
-		{
-			var call:AsyncToken = delegate.deleteEmployee( model.selectedEmployee );
-			serviceRequestUtil.executeServiceCall( call, deleteEmployeeResultHandler );
-
-		}
-		
-
-		
-		protected function deleteEmployeeResultHandler(event:ResultEvent):void
-		{
-			var deletedEmployee: Employee;			
-			
-			try {
-				deletedEmployee = event.result as Employee;
-			}
-			catch( error: Error )
-			{
-				ErrorUtil.showError( error.message );
-				return;
-			}
-			
-			var employee: Employee;
-			
-			var employees: IList = model.employees;
-			
-			var i:int = 0;
-			var max: int = employees.length;
-			
-			for (i; i < max; i++) 
-			{
-				employee = employees.getItemAt( i ) as Employee;
+			if ( event.detail == Alert.OK ) {
+				var who   : Employee         = model.selectedEmployee;
+				var agent : AsyncInterceptor = new AsyncInterceptor(parseEmployeeData);
 				
-				if( employee.id == deletedEmployee.id )
-				{
-					employees.removeItemAt( i );	
-					break;
-				}
+				if (log != null) log.debug("deleteEmployee({0})", who);
+				
+				serviceRequestUtil.executeServiceCall( agent.intercept(delegate.deleteEmployee(who)), onResult_deleteEmployee );
 			}
+		}
+		
+			private function parseDeleteEmployeeResult(data:*):Employee {
+				try {
+					var deleted : Employee = (data is ResultEvent) ? data.result as Employee : data as Employee;
+					if (log != null) log.debug("parseDeleteEmployeeResult({0})", deleted ? deleted.fullName : "");
+				}
+				catch( error: Error )
+				{
+					ErrorUtil.showError( error.message );
+				}
+				
+				return deleted;
+			}
+		
+		
+		protected function onResult_deleteEmployee(who:Employee):void {
+			if (log != null) log.debug("onResult_deleteEmployee({0})", who ? who.fullName : "");
 			
-			model.selectedEmployee = null;
-			
-			//
 			// change view state back to employee list
+			model.removeEmployee(who);
 			dispatcher.dispatchEvent( new NavigationEvent( NavigationEvent.UPDATE_PATH, NavigationModel.PATH_EMPLOYEE_LIST ) );
 		}
 
@@ -247,9 +186,10 @@ package com.cafetownsend.controller
 		//--------------------------------------------------------------------------
 		
 		[Mediate(event="EmployeeEvent.SELECT", properties="employee")]
-		public function selectEmployee(employee:Employee):void
-		{
-			model.selectedEmployee = employee;
+		public function selectEmployee(who:Employee):void {
+			if (log != null) log.debug("selectEmployee({0})", who.fullName);
+			
+			model.selectedEmployee = who;
 		}
 	
 		
@@ -260,10 +200,10 @@ package com.cafetownsend.controller
 		//--------------------------------------------------------------------------
 		
 		[Mediate(event="EmployeeEvent.CANCEL")]
-		public function cancelEditingEmployee( event:EmployeeEvent ):void
-		{
-			model.selectedEmployee = null;
+		public function cancelEditingEmployee( event:EmployeeEvent ):void {
+			if (log != null) log.debug("cancelEditingEmployee()");
 			
+			model.selectedEmployee = null;
 			dispatcher.dispatchEvent( new NavigationEvent( NavigationEvent.UPDATE_PATH, NavigationModel.PATH_EMPLOYEE_LIST ) );
 		}
 	

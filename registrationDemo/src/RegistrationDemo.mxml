@@ -8,7 +8,7 @@
 				xmlns:views="com.thunderbay.i18nDemo.views.*"
 				xmlns:mx="http://www.adobe.com/2006/mxml">
 	
-	<mx:Style source="locale/en_US/assets/css/styles.css" />
+	<mx:Style source="l10n/locale/en_US/assets/css/styles.css" />
 	
 	<!-- Classic Cairngorm MVC structures -->
 	

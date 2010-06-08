@@ -212,9 +212,26 @@ package com.cafetownsend.presentation
 		private var _emailError:String = "";
 		
 		[Bindable(Event="validationChanged")]
-		public function get emailError():String
-		{
+		public function get emailError():String {
 			return _emailError;
 		}
+		
+		//--------------------------------------------------------------------------
+		//
+		// init / tear down
+		//
+		//--------------------------------------------------------------------------
+		
+		
+		
+		[PreDestroy]
+		public function tearDown():void {
+			log.info("tearDown()" );
+		}
+		
+		[PostConstruct]
+		public function init():void {
+			log.info("init() " );
+		}		
 	}
 }

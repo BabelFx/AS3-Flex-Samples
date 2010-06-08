@@ -41,9 +41,9 @@
 	<!-- Presentation models are generally injected into views and should be declared as Prototype
 		to be instantiated lazy when the corresponding view is added to the display chain -->	
 	
-	<swiz:Prototype type="{ EmployeesPresentationModel }" 		/>
-	<swiz:Prototype type="{ EmployeeListPresentationModel }"		/>
-	<swiz:Prototype	type="{ EmployeeDetailPresentationModel }"	/>	
+	<swiz:Prototype type="{ EmployeesPresentationModel }" 							/>
+	<swiz:Prototype type="{ EmployeeListPresentationModel }"	singleton="true"	/>
+	<swiz:Prototype	type="{ EmployeeDetailPresentationModel }"	singleton="true"	/>	
 
 	<!-- SharedObject Helper -->
 	<storage:SharedObjectBean name="cafeTownsend" />

@@ -1,4 +1,4 @@
-This is a full project created by FlashBuilder using flex 4 SDK beta 2.
+This is a full project created by FlashBuilder using flex 4.1 SDK.
 
 When starts, there is an error about can not convert
 spark.components::NavigatorContent to mx.core.Container.

@@ -10,7 +10,7 @@ states with flex 4 new syntax. You have known it, right?
 <s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
 			   xmlns:s="library://ns.adobe.com/flex/spark" 
 			   xmlns:mx="library://ns.adobe.com/flex/mx"
-			   minWidth="1024" minHeight="768" currentState="normal">
+			   minWidth="1024" minHeight="768" currentState="normal" xmlns:map="l10n.map.*" xmlns:views="l10n.views.*">
 	<s:states>
 		<s:State name="normal"/>
 		<s:State name="small"/>
@@ -24,35 +24,63 @@ states with flex 4 new syntax. You have known it, right?
 			<fx:Object id="rules" label="Rules" />
 		</s:ArrayList>
 		
-		<locale:MyLocaleMap xmlns:locale="*"/>
+		<map:LocalizationMap model="{introList}" xmlns:locale="*"/>
 	</fx:Declarations>
 	
 	<fx:Script>
 		<![CDATA[
 			import mx.core.ContainerCreationPolicy;
-			private function onViewSmall():void {
-				currentState= (currentState == 'normal') ? 'small' : 'normal';
+			import mx.events.CollectionEvent;
+			import mx.events.CollectionEventKind;
+			import mx.events.PropertyChangeEvent;
+			
+			/**
+			 * Toggle the view state of the application, then change a value in the ArrayList data model...
+			 * Note since we are changing a value of a non-bindable object, we must manually trigger databinding notifications 
+			 * by dispatching a CollectionChangeEvent  
+			 * 
+			 */
+			private function onToggleViewState():void {
 				
-				introList.getItemAt(0).label = "Basics";
+				// Switch/toggle view state from normal to small
+				currentState= (currentState == 'normal') ? 'small' : 'normal';
+			
+				// Update data model and  manually fire change event to trigger data binding updates.
+				
+				introList.getItemAt(0).label = "Basic " + ((currentState == 'normal') ? "" : "(small)");
+				
+				var announce :CollectionEvent = new CollectionEvent(CollectionEvent.COLLECTION_CHANGE,true,false,CollectionEventKind.RESET);
+				introList.dispatchEvent(announce);
 			}
 			
-			private function onGridReady(event:Event):void {
-				
-			}
 		]]>
 	</fx:Script>
+
+	<!-- NOTE: this view component dispatches a LocaleEvent.CHANGE_LOCALE -->
+	<views:LanguageBar y="10" x="700"  x.normal="700" y.normal="6"/>
 	
-	<!--
-	OK. In Spark label, locale map works well. So does in many other spark components.
-	-->
-	<mx:Label id="txtTitle" 
-			  fontSize="20" 		y="0"	fontWeight="bold"  
-			  fontSize.small="12" 	y.small="109"	color.small="#F40D0D" textDecoration.small="underline" y.normal="22.5" x.small="267" x.normal="50"/>
+	<s:Button id="btnChangeViewState" label="Toggle View State" x="50" y="22" click="onToggleViewState();"/>
 	
-	<!--
-	OK. In halo components, everything is OK, too.
-	-->
-	<mx:Accordion  left="50" bottom="100" top="163" click="onViewSmall();">
+	<s:TextArea id="txtDescription" x="50" y="50" width="900" borderVisible="false"  width.normal="850" height.normal="65" x.normal="50" y.normal="48">
+		<s:text>
+			This is a sample l10 application to demonstrate the use of view states and deferred creation policies in containers.
+			Both Halo and Spark containers and components are used. All elements responds properly to both view state changes and l10nInjection 
+			changes. Notice that botht the "Toggle View state" button and the Localization map update a non-UI data model; a data model that
+			is used within the components and containers.
+		</s:text>
+	</s:TextArea> 
+				
+	
+	<mx:Label id="txtTitle"	fontSize="20"  fontWeight="bold" 		 
+			  x.normal="50"			x.small="267" 
+			  y.normal="109" 		y.small="109"	
+			  fontSize.small="12" 	color.small="#F40D0D" textDecoration.small="underline"   />
+	
+	
+	<!-- ************************************************
+		OK. In halo components, everything is OK, too.
+	************************************************  -->
+	<mx:Accordion  left="50" bottom="100" top="163" >
 		<mx:Canvas id="introView" label="Introduction"
 				   width="100%" height="100%">
 			<s:List x="0" y="0" width="100%" height="100%" dataProvider="{introList}" />
@@ -63,9 +91,11 @@ states with flex 4 new syntax. You have known it, right?
 	</mx:Accordion>
 	
 	
+	<s:Label text="TabNavigator (containerCreatonPolicy.AUTO) w/ Canvas children" x="200" y="140" fontSize="9"/>
+	
 	<mx:TabNavigator creationPolicy="{ContainerCreationPolicy.AUTO}" x="200" width="300" bottom="100" top="163" width.normal="352" top.normal="163" bottom.normal="100">
 		<mx:Canvas label="UserAccounts" width="100%" height="100%">
-			<mx:DataGrid x="0" y="0" width="100%" height="100%" id="grdAccounts" creationComplete="onGridReady(event);">
+			<mx:DataGrid x="0" y="0" width="100%" height="100%" id="grdAccounts" >
 				<mx:columns>
 					<mx:DataGridColumn headerText="Column 1" dataField="col1"/>
 					<mx:DataGridColumn headerText="Column 2" dataField="col2"/>
@@ -84,9 +114,11 @@ states with flex 4 new syntax. You have known it, right?
 		</mx:Canvas>
 	</mx:TabNavigator>
 	
-	<!--
-	If you comment NavigatorContent tag, there is no error when starting.
-	-->
+	<!-- ************************************************
+		Use of ViewStack with NavigatorContent
+	************************************************ -->
+	<s:Label text="TabNavigator (containerCreatonPolicy.AUTO) w/ NavigatorContent" x="600" y="140" fontSize="9"/>
+	
 	<mx:TabNavigator creationPolicy="{ContainerCreationPolicy.AUTO}" x="600" width="300" bottom="100" top="163">
 		<s:NavigatorContent id="instSparkView" label="Instruments"
 							width="100%" height="100%">

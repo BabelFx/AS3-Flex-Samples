@@ -24,7 +24,12 @@
 		<link>
 			<name>bin-debug</name>
 			<type>2</type>
-			<location>/Developer/Applications/railo/webroot/l10n_Flex4Test</location>
+			<location>/Developer/Applications/railo/webroot/l10n_ViewStates</location>
+		</link>
+		<link>
+			<name>bin-release</name>
+			<type>2</type>
+			<location>/Developer/Applications/railo/webroot/l10n_ViewStates</location>
 		</link>
 	</linkedResources>
 </projectDescription>

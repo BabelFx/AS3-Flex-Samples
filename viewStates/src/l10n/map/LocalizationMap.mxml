@@ -55,7 +55,7 @@
 	<fx:Declarations>
 		
 		
-		<SmartResourceInjector target="{I18nTest}" bundleName="commons" localeChange="onLocaleChange(event);" >			
+		<SmartResourceInjector target="{ViewStates}" bundleName="commons" localeChange="onLocaleChange(event);" >			
 			<ResourceProxy property="txtTitle.text"  	key="title.normal" state="normal" />
 			<ResourceProxy property="txtTitle.text"  	key="title.small"  state="small"  />
 

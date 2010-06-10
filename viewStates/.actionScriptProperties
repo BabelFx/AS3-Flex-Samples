@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<actionScriptProperties mainApplicationPath="I18nTest.mxml" projectUUID="f89281fb-adf7-4ac2-acbf-75c27f938331" version="6">
-  <compiler additionalCompilerArguments="-locale=en_US,zh_CN  -allow-source-path-overlap=true  -source-path+=l10n/locale/{locale}" autoRSLOrdering="false" copyDependentFiles="true" flex3CompatMode="false" flexSDK="Flex 4.1" fteInMXComponents="false" generateAccessible="false" htmlExpressInstall="false" htmlGenerate="true" htmlHistoryManagement="false" htmlPlayerVersionCheck="false" includeNetmonSwc="false" outputFolderLocation="/Developer/Applications/railo/webroot/l10n_Flex4Test" outputFolderPath="bin-debug" rootURL="http://localhost:8888/l10n_Flex4Test/" sourceFolderPath="src" strict="true" targetPlayerVersion="0.0.0" useApolloConfig="false" useDebugRSLSwfs="true" verifyDigests="true" warn="true">
+<actionScriptProperties mainApplicationPath="ViewStates.mxml" projectUUID="f89281fb-adf7-4ac2-acbf-75c27f938331" version="6">
+  <compiler additionalCompilerArguments="-locale=en_US,zh_CN  -allow-source-path-overlap=true  -source-path+=l10n/locale/{locale}" autoRSLOrdering="false" copyDependentFiles="false" flex3CompatMode="false" flexSDK="Flex 4.1" fteInMXComponents="false" generateAccessible="false" htmlExpressInstall="false" htmlGenerate="true" htmlHistoryManagement="false" htmlPlayerVersionCheck="false" includeNetmonSwc="false" outputFolderLocation="/Developer/Applications/railo/webroot/l10n_ViewStates" outputFolderPath="bin-debug" rootURL="http://localhost:8888/l10n_Flex4Test/" sourceFolderPath="src" strict="true" targetPlayerVersion="0.0.0" useApolloConfig="false" useDebugRSLSwfs="true" verifyDigests="true" warn="true">
     <compilerSourcePath/>
     <libraryPath defaultLinkType="0">
       <libraryPathEntry kind="4" path="">
@@ -14,8 +14,18 @@
     <sourceAttachmentPath/>
   </compiler>
   <applications>
-    <application path="I18nTest.mxml"/>
+    <application path="ViewStates.mxml"/>
   </applications>
   <modules/>
   <buildCSSFiles/>
+  <publishSource>
+    <sourcePathIncludes/>
+    <sourceExcludes>
+      <exclude path="for_sdk3"/>
+      <exclude path="for_sdk4"/>
+      <exclude path="html-template"/>
+      <exclude path="libs"/>
+      <exclude path="Mate_full"/>
+    </sourceExcludes>
+  </publishSource>
 </actionScriptProperties>

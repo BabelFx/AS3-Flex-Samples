@@ -91,10 +91,10 @@ states with flex 4 new syntax. You have known it, right?
 	</mx:Accordion>
 	
 	
-	<s:Label text="TabNavigator (containerCreatonPolicy.AUTO) w/ Canvas children" x="200" y="140" fontSize="9"/>
+	<s:Label text="TabNavigator (container CreatonPolicy.AUTO) w/ Canvas children" x="200" y="140" fontSize="9"/>
 	
 	<mx:TabNavigator creationPolicy="{ContainerCreationPolicy.AUTO}" x="200" width="300" bottom="100" top="163" width.normal="352" top.normal="163" bottom.normal="100">
-		<mx:Canvas label="UserAccounts" width="100%" height="100%">
+		<mx:Canvas id="areaAccounts" label="UserAccounts" width="100%" height="100%">
 			<mx:DataGrid x="0" y="0" width="100%" height="100%" id="grdAccounts" >
 				<mx:columns>
 					<mx:DataGridColumn headerText="Column 1" dataField="col1"/>
@@ -103,7 +103,7 @@ states with flex 4 new syntax. You have known it, right?
 				</mx:columns>
 			</mx:DataGrid>
 		</mx:Canvas>
-		<mx:Canvas label="Departments" width="100%" height="100%">
+		<mx:Canvas id="areaDepartments" label="Departments" width="100%" height="100%">
 			<mx:DataGrid x="0" y="0" width="100%" height="100%" id="grdDepartments">
 				<mx:columns>
 					<mx:DataGridColumn headerText="Column 1" dataField="col1"/>
@@ -117,7 +117,7 @@ states with flex 4 new syntax. You have known it, right?
 	<!-- ************************************************
 		Use of ViewStack with NavigatorContent
 	************************************************ -->
-	<s:Label text="TabNavigator (containerCreatonPolicy.AUTO) w/ NavigatorContent" x="600" y="140" fontSize="9"/>
+	<s:Label text="TabNavigator (container CreatonPolicy.AUTO) w/ NavigatorContent" x="600" y="140" fontSize="9"/>
 	
 	<mx:TabNavigator creationPolicy="{ContainerCreationPolicy.AUTO}" x="600" width="300" bottom="100" top="163">
 		<s:NavigatorContent id="instSparkView" label="Instruments"

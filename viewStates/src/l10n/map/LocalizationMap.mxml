@@ -8,7 +8,12 @@
 			</fx:Metadata>
 			<fx:Script>
 				<![CDATA[
+					import l10n.views.LanguageBar;
+					
+					import mx.containers.Canvas;
+					
 					import spark.components.Button;
+					import spark.components.NavigatorContent;
 					import spark.components.TextArea;
 				]]>
 			</fx:Script>
@@ -51,22 +56,37 @@
 		
 		
 		<SmartResourceInjector target="{I18nTest}" bundleName="commons" localeChange="onLocaleChange(event);" >			
-			<ResourceProxy property="txtTitle.text"  					key="title.normal" state="normal" />
-			<ResourceProxy property="txtTitle.text"  					key="title.small"  state="small"  />
+			<ResourceProxy property="txtTitle.text"  	key="title.normal" state="normal" />
+			<ResourceProxy property="txtTitle.text"  	key="title.small"  state="small"  />
 
-			<ResourceProxy property="introView.label" 					key="introView.title" />
-			<ResourceProxy property="instView.label" 					key="instView.title" />
+			<ResourceProxy property="introView.label" 	key="introView.title" />
+			<ResourceProxy property="instView.label" 	key="instView.title" />
 			
 		</SmartResourceInjector>
 		
 		<SmartResourceInjector target="{DataGrid}" bundleName="commons">
-			<ResourceProxy targetID="grdAccounts" 	 property="columns[0].headerText" key="title.normal" />
-			<ResourceProxy targetID="grdDepartments" property="columns[1].headerText" key="introView.title" />
+			<ResourceProxy targetID="grdAccounts" 	 	property="columns[0].headerText" key="title.normal" />
+			<ResourceProxy targetID="grdAccounts" 	 	property="columns[1].headerText" key="grid.column2.title" />
+			<ResourceProxy targetID="grdAccounts" 	 	property="columns[2].headerText" key="grid.column3.title" />
+			
+			<ResourceProxy targetID="grdDepartments" 	property="columns[0].headerText" key="grid.column1.title" />
+			<ResourceProxy targetID="grdDepartments" 	property="columns[1].headerText" key="introView.title" />
+			<ResourceProxy targetID="grdDepartments" 	property="columns[2].headerText" key="grid.column3.title" />
 		</SmartResourceInjector>
 		
+		<SmartResourceInjector target="{Canvas}" bundleName="commons">
+			<ResourceProxy targetID="areaAccounts" 	  	property="label" key="accounts.title" />
+			<ResourceProxy targetID="areaDepartments" 	property="label" key="department.title" />
+		</SmartResourceInjector>
+		
+		<SmartResourceInjector target="{NavigatorContent}" bundleName="commons">
+			<ResourceProxy targetID="instSparkView"  	property="label" key="instView.title" />
+			<ResourceProxy targetID="introSparkView" 	property="label" key="introView.title" />
+		</SmartResourceInjector>
+
 		<SmartResourceInjector target="{Label}" bundleName="commons">
-			<ResourceProxy targetID="txtNCLabel" 	 property="text" key="title.normal" state="normal" trigger="{this.owner}"/>
-			<ResourceProxy targetID="txtNCLabel" 	 property="text" key="title.small"  state="small"  trigger="{this.owner}"/>
+			<ResourceProxy targetID="txtNCLabel" 	 	property="text" key="title.normal" state="normal" trigger="{this.owner}"/>
+			<ResourceProxy targetID="txtNCLabel" 	 	property="text" key="title.small"  state="small"  trigger="{this.owner}"/>
 		</SmartResourceInjector>
 		
 		<SmartResourceInjector target="{Button}" bundleName="commons">
@@ -77,6 +97,9 @@
 			<ResourceProxy targetID="txtDescription" 	 property="text" key="intro.description" />
 		</SmartResourceInjector>
 		
+		<SmartResourceInjector target="{LanguageBar}" bundleName="commons">
+			<ResourceProxy property="lblBarHelp.text" key="languageBar.title" />
+		</SmartResourceInjector>
 		
 
 	</fx:Declarations>

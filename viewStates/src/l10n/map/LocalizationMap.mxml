@@ -35,6 +35,12 @@
 					
 					public var model : ArrayList = null;
 					
+					/**
+					 * Since we are using an ArrayList [and must use getItemAt(j) accessors],
+					 * we must manually update each element with calls the to resource Manager.
+					 * Notice that we must also manually announce collectionChange events when we 
+					 * change the child "label" properties.
+					 */
 					private function onLocaleChange(event:Event):void {
 						_logger.debug("onLocaleChange('{0}')",_rMngr.localeChain[0] as String);
 						
@@ -54,6 +60,17 @@
 	
 	<fx:Declarations>
 		
+		<!--
+			If the model was NOT an ArrayList but was instead a simple Array, we could use the following tags;
+			which we can see is much easier (below). Unfortunately that would NOT solve the issue of announcing databinding updates
+		    to observers; since databinding triggers will not work on generic objects nor on Array contents
+		
+		<ResourceInjector bundleName="commons">
+			<ResourceProxy target="{this}" property="model[0].label" key="introList.basic" />
+			<ResourceProxy target="{this}" property="model[1].label" key="introList.rules" />
+		</ResourceInjector>
+		
+		-->
 		
 		<SmartResourceInjector target="{ViewStates}" bundleName="commons" localeChange="onLocaleChange(event);" >			
 			<ResourceProxy property="txtTitle.text"  	key="title.normal" state="normal" />

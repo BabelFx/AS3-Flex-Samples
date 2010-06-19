@@ -68,33 +68,34 @@
 			 * 
 			 */
 			private function onLocaleChanged(event:Event):void {
+				/**
+				 * l10nInjection supports injection into both GUI and non-GUI instances (data models, 
+				 * controllers, etc). But static variables cannot be directly modifed with injection.
+				 * We must hook into the localeChanged event and then manually update the static globals 
+				 * with current locale value [shown below]:
+				 */
+				Constants.LOGIN_FAILED_MESSAGE   		= _rMngr.getString("login","login.error.noMatch");
+				Constants.LOGIN_FAILED_TITLE     		= _rMngr.getString("login","login.error.title");
+				Constants.LOGIN_INVALID_USERNAME 		= _rMngr.getString("login","login.error.usernameRequired");
+				Constants.LOGIN_INVALID_PASSWORD 		= _rMngr.getString("login","login.error.passwordRequired");
+				
+				Constants.EMPLOYEE_LOAD_ERROR 		 	= _rMngr.getString("employees","users.unableToLoad");
+				Constants.EMPLOYEE_INVALID_FIRSTNAME 	= _rMngr.getString("employees","editor.invalid.firstName");
+				Constants.EMPLOYEE_INVALID_LASTNAME  	= _rMngr.getString("employees","editor.invalid.lastName") ;
+				Constants.EMPLOYEE_CONFIRM_DELETE 	 	= buildConfirmMessage();
+				
+				if (model != null) {
+					model.usernameError 					= "";	// Clear all validation errors... 
+					model.passwordError						= "";
+				}
+				
 				var sri     : SmartResourceInjector = event.target as SmartResourceInjector;
 				var cntr	: LoginView 			= sri.targetInstances[0] as LoginView;
 				
 				if(cntr != null) {
 					
-					/**
-					 * l10nInjection supports injection into both GUI and non-GUI instances (data models, 
-					 * controllers, etc). But static variables cannot be directly modifed with injection.
-					 * This is manual process; shown below.
-					 */
-					Constants.LOGIN_FAILED_MESSAGE   		= _rMngr.getString("login","login.error.noMatch");
-					Constants.LOGIN_FAILED_TITLE     		= _rMngr.getString("login","login.error.title");
-					Constants.LOGIN_INVALID_USERNAME 		= _rMngr.getString("login","login.error.usernameRequired");
-					Constants.LOGIN_INVALID_PASSWORD 		= _rMngr.getString("login","login.error.passwordRequired");
-					
-					Constants.EMPLOYEE_LOAD_ERROR 		 	= _rMngr.getString("employees","users.unableToLoad");
-					Constants.EMPLOYEE_INVALID_FIRSTNAME 	= _rMngr.getString("employees","editor.invalid.firstName");
-					Constants.EMPLOYEE_INVALID_LASTNAME  	= _rMngr.getString("employees","editor.invalid.lastName") ;
-					Constants.EMPLOYEE_CONFIRM_DELETE 	 	= buildConfirmMessage();
-					
 					cntr.loginErrorTxt.text = "";				// Manually clear the error text...
 					cntr.loginBtn.skin.invalidateProperties();	// Force refresh on custom skin part
-					
-					if (model != null) {
-						model.usernameError 					= "";	// Clear all validation errors... 
-						model.passwordError						= "";
-					}
 					
 				} else {
 					

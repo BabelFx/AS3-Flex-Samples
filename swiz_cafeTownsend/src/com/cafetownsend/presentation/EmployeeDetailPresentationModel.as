@@ -231,7 +231,7 @@ package com.cafetownsend.presentation
 		
 		[PostConstruct]
 		public function init():void {
-			log.info("init() " );
+			if (log != null) log.info("init() " );
 		}		
 	}
 }

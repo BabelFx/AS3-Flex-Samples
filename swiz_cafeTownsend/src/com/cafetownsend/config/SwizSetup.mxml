@@ -6,6 +6,7 @@
 	<fx:Script>
 		<![CDATA[
 			import mx.controls.Alert;
+			import mx.logging.LogEventLevel;
 			import mx.rpc.events.FaultEvent;
 			
 			private function genericFault( fe : FaultEvent ) : void {
@@ -31,9 +32,20 @@
 	</sw:config>
 	
 	<sw:customProcessors>
-	
-		<sw:LogProcessor />
-
+<!--	
+		Enable this to see log output for the CafeTownsend application code
+		
+		<sw:LogProcessor>
+			<sw:loggingTarget>
+				<mx:TraceTarget fieldSeparator=" "
+								filters="{['com.cafetownsend.*']}"
+								includeCategory="true"
+								includeTime="true"
+								includeLevel="true"
+								level="{LogEventLevel.DEBUG }" />				
+			</sw:loggingTarget>
+		</sw:LogProcessor>
+-->	
 	</sw:customProcessors>
 	
 </sw:Swiz>

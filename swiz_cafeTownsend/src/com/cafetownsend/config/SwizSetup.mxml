@@ -32,24 +32,28 @@
 	</sw:config>
 	
 	<sw:customProcessors>
-<!--	
-		Disable this to hide log output for the CafeTownsend application code
--->			
+		<!--	
+			Disable the entire LogProcessor tag to hide log output for the CafeTownsend application code
+		-->			
 		<sw:LogProcessor>
 			<sw:loggingTarget>
-				<sw:ThunderBoltTarget filters="{['com.cafetownsend.*']}"
+				<!-- Use this instance to log to Firebug Console -->
+				<bolt:ThunderBoltTarget filters="{['com.cafetownsend.*']}"
 										includeCategory="true"
 										includeTime="true"
 										includeLevel="true"
 										level="{LogEventLevel.DEBUG }" 
 										xmlns:bolt="org.osflash.thunderbolt.*"/>
 				
-				<!--<mx:TraceTarget fieldSeparator=" "
+				<!-- Use this instance to log to Eclipse Debug console -->
+				<!--
+				<mx:TraceTarget fieldSeparator=" "
 								filters="{['com.cafetownsend.*']}"
 								includeCategory="true"
 								includeTime="true"
 								includeLevel="true"
-								level="{LogEventLevel.DEBUG }" />-->
+								level="{LogEventLevel.DEBUG }" />
+				-->
 				
 			</sw:loggingTarget>
 		</sw:LogProcessor>

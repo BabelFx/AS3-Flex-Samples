@@ -14,6 +14,8 @@
 			import com.cafetownsend.presentation.EmployeeDetailPresentationModel;
 			import com.cafetownsend.presentation.EmployeeListPresentationModel;
 			import com.cafetownsend.presentation.EmployeesPresentationModel;
+			
+			import org.osflash.thunderbolt.ThunderBoltTarget;
 		]]>
 	</fx:Script>
 	
@@ -55,6 +57,6 @@
 	<service:UserDelegate />
 	<service:EmployeeDelegate />
 	
-	<map:LocalizationMap   xmlns:map="l10n.map.*" /> 
+	<map:LocalizationMap   logTarget="org.osflash.thunderbolt.ThunderBoltTarget" xmlns:map="l10n.map.*" /> 
 	
 </swiz:BeanProvider>

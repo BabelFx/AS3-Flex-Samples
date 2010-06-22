@@ -33,19 +33,26 @@
 	
 	<sw:customProcessors>
 <!--	
-		Enable this to see log output for the CafeTownsend application code
-		
+		Disable this to hide log output for the CafeTownsend application code
+-->			
 		<sw:LogProcessor>
 			<sw:loggingTarget>
-				<mx:TraceTarget fieldSeparator=" "
+				<sw:ThunderBoltTarget filters="{['com.cafetownsend.*']}"
+										includeCategory="true"
+										includeTime="true"
+										includeLevel="true"
+										level="{LogEventLevel.DEBUG }" 
+										xmlns:bolt="org.osflash.thunderbolt.*"/>
+				
+				<!--<mx:TraceTarget fieldSeparator=" "
 								filters="{['com.cafetownsend.*']}"
 								includeCategory="true"
 								includeTime="true"
 								includeLevel="true"
-								level="{LogEventLevel.DEBUG }" />				
+								level="{LogEventLevel.DEBUG }" />-->
+				
 			</sw:loggingTarget>
 		</sw:LogProcessor>
--->	
 	</sw:customProcessors>
 	
 </sw:Swiz>

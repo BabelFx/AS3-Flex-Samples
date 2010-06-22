@@ -53,7 +53,7 @@
 						_logger.debug("updated 'model'=[{0}]",ObjectUtil.toString(model));
 					}
 					
-					private var _logger: ILogger          = LocaleLogger.getLogger(this, false);
+					private var _logger: ILogger          = LocaleLogger.getLogger(this);
 					private var _rMngr : IResourceManager = ResourceManager.getInstance();
 				]]>
 			</fx:Script>

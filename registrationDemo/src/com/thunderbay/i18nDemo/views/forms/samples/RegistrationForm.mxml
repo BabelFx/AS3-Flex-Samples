@@ -5,6 +5,10 @@
 			  xmlns:comp="com.thunderbay.i18nDemo.control.*"
 			  xmlns:mx="http://www.adobe.com/2006/mxml" >
 	
+	<mx:Metadata>
+		[ResourceBundle("")]
+	</mx:Metadata>
+	
 	<mx:Script>
 		<![CDATA[
 			import mx.collections.ArrayCollection;

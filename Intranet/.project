@@ -3,6 +3,7 @@
 	<name>l10n_Demo_Intranet</name>
 	<comment></comment>
 	<projects>
+		<project>Framework_BabelFx</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>
@@ -19,7 +20,7 @@
 		<link>
 			<name>bin-debug</name>
 			<type>2</type>
-			<location>/Developer/Applications/railo/webroot/l10n_Intranet</location>
+			<location>/Developer/servers/railo-jetty/webroot/babelfx/l10n_Intranet</location>
 		</link>
 	</linkedResources>
 </projectDescription>

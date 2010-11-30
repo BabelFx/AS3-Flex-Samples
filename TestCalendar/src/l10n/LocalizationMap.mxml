@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LocaleMap  enableLog="true" 
 				localeChanging="onUpdateAlert();"
-				xmlns="library://ns.mindspace.com/l10n/flex/"  
+				xmlns="library://ns.babelfx.org/l10n/flex/"  
 				xmlns:mx="http://www.adobe.com/2006/mxml" >
 	
 	<mx:Metadata>

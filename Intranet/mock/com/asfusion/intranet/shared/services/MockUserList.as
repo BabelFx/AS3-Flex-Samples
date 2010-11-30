@@ -18,8 +18,8 @@ package com.asfusion.intranet.shared.services
 			user.userName = "admin";
 			user.permissions = UserPermissions.ADMIN;
 			user.password = "mate";
-			user.firstName = "Eric";
-			user.lastName = "Brown";
+			user.firstName = "Nahuel";
+			user.lastName = "Foronda";
 			user.id = count.toString();
 			count++;
 			users.push( user );
@@ -28,8 +28,8 @@ package com.asfusion.intranet.shared.services
 			regularUser.userName = "guest";
 			regularUser.permissions = UserPermissions.READ_ONLY;
 			regularUser.password = "mate";
-			regularUser.firstName = "Mark";
-			regularUser.lastName = "Brown";
+			regularUser.firstName = "Thomas";
+			regularUser.lastName = "Burleson";
 			user.id = count.toString();
 			count++;
 			users.push( regularUser );

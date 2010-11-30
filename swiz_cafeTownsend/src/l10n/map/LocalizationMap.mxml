@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <l10n:LocaleMap 	enableLog="true"
 					xmlns:mx="http://www.adobe.com/2006/mxml" 
-					xmlns:l10n="library://ns.mindspace.com/l10n/flex/" >
+					xmlns:l10n="library://ns.babelfx.org/l10n/flex/" >
 	
 	<mx:Metadata>
 		<!-- References to bundles so embedding process works; 

@@ -24,7 +24,8 @@ states with flex 4 new syntax. You have known it, right?
 			<fx:Object id="rules" label="Rules" />
 		</s:ArrayList>
 		
-		<map:LocalizationMap id="l10nMap" model="{introList}" xmlns:locale="*"/>
+		<map:LocalizationMap id="l10nMap"  model="{introList}" 	xmlns:locale="*"/>
+		
 	</fx:Declarations>
 	
 	<fx:Script>

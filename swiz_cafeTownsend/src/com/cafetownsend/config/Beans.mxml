@@ -8,7 +8,7 @@
 	xmlns:service="com.cafetownsend.service.*" 
 	xmlns:storage="org.swizframework.storage.*" 
 	xmlns:presentation="com.cafetownsend.presentation.*" 
-	xmlns:l10n="l10n.map.*" >
+	xmlns:l10n="l10n.map.*" xmlns:ext="http://ext.swizframework.org" >
 	
 	<fx:Script>
 		<![CDATA[
@@ -63,7 +63,7 @@
 	<!-- l10nInjection configuration for Spanish & English support -->
 	<l10n:LocalizationMap>
 		<l10n:loggingTarget>
-			<swiz:ThunderBoltTarget includeCategory="true"
+			<ext:ThunderBoltTarget includeCategory="true"
 								  includeTime="true"
 								  includeLevel="true"
 								  level="{LogEventLevel.DEBUG }" />

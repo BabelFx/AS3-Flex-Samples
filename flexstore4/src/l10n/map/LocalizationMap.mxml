@@ -3,7 +3,7 @@
 					enableLog="true"
 					xmlns:factory="mx.core.*" 
 					xmlns:mx="http://www.adobe.com/2006/mxml" 
-					xmlns:l10n="library://ns.mindspace.com/l10n/flex/" >
+					xmlns:l10n="library://ns.babelfx.org/l10n/flex/" >
 	
 	<mx:Metadata>
 		[ResourceBundle("store")]
@@ -12,6 +12,7 @@
 	
 	<mx:Script>
 		<![CDATA[
+			import com.mindspace.l10n.commands.ExternalLocaleCommand;
 			import com.mindspace.l10n.events.LocaleMapEvent;
 			import com.store.Catalog;
 			import com.store.details.PhoneDetails;
@@ -70,15 +71,15 @@
 		The command factory instance below allows the l10nInjection engine to load external resource bundles from
 	     a custom deploy directory 'assets/locales/' name encoded by locale code
 	     e.g.  en_US.swf, zh_CN.swf, etc.
-	
-	<commandFactory>
+	-->
+	<l10n:commandFactory>
 		 <factory:ClassFactory generator="{ExternalLocaleCommand}">
 			 <factory:properties>
 				 <mx:Object externalPath="assets/locales/\{0\}.swf"/>
 			 </factory:properties>
 		 </factory:ClassFactory>
-	</commandFactory>
-	-->
+	</l10n:commandFactory>
+	
 	
 	<l10n:SmartResourceInjector bundleName="store" target="{Catalog}" localeChange="onLocaleChanged(event);">
 		<l10n:ResourceProxy 		property="catalogLoader.url" 			key="data.url" />

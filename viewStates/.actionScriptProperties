@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<actionScriptProperties mainApplicationPath="ViewStates.mxml" projectUUID="f89281fb-adf7-4ac2-acbf-75c27f938331" version="6">
-  <compiler additionalCompilerArguments="-locale=en_US,zh_CN  -allow-source-path-overlap=true  -source-path+=l10n/locale/{locale}" autoRSLOrdering="false" copyDependentFiles="false" flex3CompatMode="false" flexSDK="Flex 4.1" fteInMXComponents="false" generateAccessible="false" htmlExpressInstall="false" htmlGenerate="true" htmlHistoryManagement="false" htmlPlayerVersionCheck="false" includeNetmonSwc="false" outputFolderLocation="/Developer/Applications/railo/webroot/l10n_ViewStates" outputFolderPath="bin-debug" rootURL="http://localhost:8888/l10n_ViewStates/" sourceFolderPath="src" strict="true" targetPlayerVersion="0.0.0" useApolloConfig="false" useDebugRSLSwfs="true" verifyDigests="true" warn="true">
+<actionScriptProperties analytics="false" mainApplicationPath="ViewStates.mxml" projectUUID="f89281fb-adf7-4ac2-acbf-75c27f938331" version="6">
+  <compiler additionalCompilerArguments="-locale=en_US,zh_CN  -allow-source-path-overlap=true  -source-path+=l10n/locale/{locale}" autoRSLOrdering="false" copyDependentFiles="false" flex3CompatMode="false" flexSDK="Flex 4.1" fteInMXComponents="false" generateAccessible="false" htmlExpressInstall="false" htmlGenerate="true" htmlHistoryManagement="false" htmlPlayerVersionCheck="false" includeNetmonSwc="false" outputFolderLocation="/Developer/servers/railo-jetty/webroot/babelfx/l10n_ViewStates" outputFolderPath="bin-debug" rootURL="http://localhost:8888/babelfx/l10n_ViewStates/" sourceFolderPath="src" strict="true" targetPlayerVersion="0.0.0" useApolloConfig="false" useDebugRSLSwfs="true" verifyDigests="true" warn="true">
     <compilerSourcePath/>
     <libraryPath defaultLinkType="0">
       <libraryPathEntry kind="4" path="">
@@ -8,8 +8,8 @@
           <libraryPathEntry kind="3" linkType="1" path="${PROJECT_FRAMEWORKS}/libs/flex.swc" useDefaultLinkType="false"/>
         </excludedEntries>
       </libraryPathEntry>
-      <libraryPathEntry kind="3" linkType="1" path="/Framework_l10nInjection/bin/Framework_l10nInjection.swc" useDefaultLinkType="false"/>
       <libraryPathEntry kind="1" linkType="1" path="libs"/>
+      <libraryPathEntry kind="3" linkType="1" path="/Framework_BabelFx/bin/Framework_BabelFx.swc" useDefaultLinkType="false"/>
     </libraryPath>
     <sourceAttachmentPath/>
   </compiler>

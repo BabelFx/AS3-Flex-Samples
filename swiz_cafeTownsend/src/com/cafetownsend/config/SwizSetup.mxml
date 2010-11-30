@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <sw:Swiz    xmlns:sw="http://swiz.swizframework.org"
 		    xmlns:fx="http://ns.adobe.com/mxml/2009" 
-		    xmlns:mx="library://ns.adobe.com/flex/mx" >
+		    xmlns:mx="library://ns.adobe.com/flex/mx" xmlns:ext="http://ext.swizframework.org" >
 	
 	<fx:Script>
 		<![CDATA[
@@ -35,8 +35,8 @@
 		<!--	
 			Disable the entire LogProcessor tag to hide log output for the CafeTownsend application code
 		-->			
-		<sw:LogProcessor>
-			<sw:loggingTarget>
+		<ext:LogProcessor>
+			<ext:loggingTarget>
 				<!-- Use this instance to log to Firebug Console -->
 				<bolt:ThunderBoltTarget filters="{['com.cafetownsend.*']}"
 										includeCategory="true"
@@ -55,8 +55,8 @@
 								level="{LogEventLevel.DEBUG }" />
 				-->
 				
-			</sw:loggingTarget>
-		</sw:LogProcessor>
+			</ext:loggingTarget>
+		</ext:LogProcessor>
 	</sw:customProcessors>
 	
 </sw:Swiz>

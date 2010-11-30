@@ -1,4 +1,4 @@
-Sample Applications and Usages for l10n Injection Flex library
+Sample Applications and Usages with BabelFx (formerly known as the l10nInjection framework) 
 
 Using the l10nInjection.swc, these samples demonstrate real-world usages and the resulting power of IoC and runtime localization injections.
 

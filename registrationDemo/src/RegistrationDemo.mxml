@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <mx:Application creationComplete="signIn.visible = true;"
 				pageTitle="Registration Demo (no l10n)"
-				preloader="com.thunderbay.i18nDemo.views.preloader.Preloader"
 				width="100%" height="100%"
 				backgroundColor="#777777"  backgroundGradientColors="[#777777,#BABABA]"
 				layout="absolute" horizontalScrollPolicy="off" verticalScrollPolicy="off"

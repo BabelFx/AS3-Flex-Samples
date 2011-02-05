@@ -5,10 +5,23 @@
 					xmlns:mx="http://www.adobe.com/2006/mxml" 
 					xmlns:l10n="library://ns.babelfx.org/l10n/flex/" >
 	
+	<!--
+	   The meta data tags below reference bundles so embedding process works; 
+	   if ExternalLocaleCommand is used for runtime loaded, then disable this section 
+
+		Compiler args 
+			
+			-locale=en_US -allow-source-path-overlap=true -source-path+=l10n/locale/{locale}
+	
+		With the above compiler args, we insure that the en_US bundle (property file) is embedded;
+	    and available by default. 
+	
 	<mx:Metadata>
 		[ResourceBundle("store")]
 		[ResourceBundle("language")]
 	</mx:Metadata>
+	-->
+	
 	
 	<mx:Script>
 		<![CDATA[
@@ -23,7 +36,7 @@
 			 * Using compiler arguments -locale=en_US,es_ES,fr_FR,zh_CN -allow-source-path-overlap=true -source-path+=l10n/locale/{locale}
 		     * with the metaTag above forces the compiler to EMBED all locales as compiled resource bundles
 			 * Or use -locale="en_US" without [ResourceBundles] to force runtime loading of external bundles for es_ES, zh_CN, fr_FR
-			 * Note: you must should ANT build scripts to build and deploy the external bundles; see /build/buildResourceBundles.xml
+			 * Note: you should ANT build scripts to build and deploy the external bundles; see /build/buildResourceBundles.xml
 			 */
 			
 			[Bindable] 

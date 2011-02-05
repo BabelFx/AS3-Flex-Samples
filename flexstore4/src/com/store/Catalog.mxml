@@ -20,12 +20,17 @@
 			
 			public function loadCatalog(url:String=""):void {
 				currentState = "loading";
-				if (url != "") catalogLoader.url = url;
+				if (url == "") url = catalogLoader.url; 
 				
-				// Slow down the load to show the loading indicator...
-				DelayedCall.schedule( function(loader:HTTPService):void {
-												loader.send();
-											  }, [catalogLoader],1000);
+				if (url != null) {
+					// Slow down the load to show the loading indicator...
+					DelayedCall.schedule( function(loader:HTTPService, url:String):void {
+													loader.url      = url;
+													loader.useProxy = false;
+													loader.send();
+													
+												  }, [catalogLoader,url],1000);
+				}
 			}
 			
 			private function onCatalogLoaded(event:ResultEvent):void	{
@@ -86,7 +91,10 @@
 	</mx:states>
 	
 	<fx:Declarations>
-		<s:HTTPService 	id="catalogLoader" url="/assets/data/catalog_en_US.xml" result="onCatalogLoaded(event)"/>
+		<s:HTTPService 	id="catalogLoader"
+						useProxy="false"
+						url="/assets/data/catalog_en_US.xml" 
+						result="onCatalogLoaded(event)"/>
 	</fx:Declarations>
 	
 		<!-- Catalog Filter Options -->

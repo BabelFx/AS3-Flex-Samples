@@ -18,13 +18,13 @@ package com.cafetownsend.controller
 		//--------------------------------------------------------------------------
 		
 		
-		[Mediate(event="NavigationEvent.UPDATE_PATH",properties="path")]
+		[EventHandler(event="NavigationEvent.UPDATE_PATH",properties="path")]
 		public function changeStateHandler( path: String ):void {
 			if (log != null) log.debug("changeStateHandler({0})",path);
 			model.path = path;
 		}
 
-		[Mediate(event="LoginEvent.COMPLETE")]
+		[EventHandler(event="LoginEvent.COMPLETE")]
 		public function logInCompleteHandler():void {
 			if (log != null) log.debug("logInCompleteHandler()");
 			

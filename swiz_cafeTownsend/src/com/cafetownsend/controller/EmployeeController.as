@@ -45,7 +45,7 @@ package com.cafetownsend.controller
 		//
 		//--------------------------------------------------------------------------
 		
-		[Mediate(event="LoginEvent.COMPLETE")]
+		[EventHandler(event="LoginEvent.COMPLETE")]
 		public function loadEmployees():void {
 			if (log != null) log.debug("loadEmployees()");
 			
@@ -78,7 +78,7 @@ package com.cafetownsend.controller
 		//--------------------------------------------------------------------------
 		
 		
-		[Mediate(event="EmployeeEvent.CREATE")]
+		[EventHandler(event="EmployeeEvent.CREATE")]
 		public function createEmployee():void {
 			if (log != null) log.debug("createEmployee()");
 
@@ -93,7 +93,7 @@ package com.cafetownsend.controller
 		//--------------------------------------------------------------------------
 		
 
-		[Mediate(event="EmployeeEvent.UPDATE",properties="employee")]
+		[EventHandler(event="EmployeeEvent.UPDATE",properties="employee")]
 		public function updateEmployee( employee: Employee ):void {
 			if (log != null) log.debug("updateEmployee({0})", employee.fullName);
 			
@@ -127,7 +127,7 @@ package com.cafetownsend.controller
 		//
 		//--------------------------------------------------------------------------
 		
-		[Mediate(event="EmployeeEvent.DELETE")]
+		[EventHandler(event="EmployeeEvent.DELETE")]
 		public function confirmDeleteEmployee( ) : void  {			
 			var employee: Employee = model.selectedEmployee;
 			
@@ -185,7 +185,7 @@ package com.cafetownsend.controller
 		//
 		//--------------------------------------------------------------------------
 		
-		[Mediate(event="EmployeeEvent.SELECT", properties="employee")]
+		[EventHandler(event="EmployeeEvent.SELECT", properties="employee")]
 		public function selectEmployee(who:Employee):void {
 			if (log != null) log.debug("selectEmployee({0})", who.fullName);
 			
@@ -199,7 +199,7 @@ package com.cafetownsend.controller
 		//
 		//--------------------------------------------------------------------------
 		
-		[Mediate(event="EmployeeEvent.CANCEL")]
+		[EventHandler(event="EmployeeEvent.CANCEL")]
 		public function cancelEditingEmployee( event:EmployeeEvent ):void {
 			if (log != null) log.debug("cancelEditingEmployee()");
 			

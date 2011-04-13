@@ -45,7 +45,7 @@ package com.cafetownsend.controller
 		//--------------------------------------------------------------------------
 		
 		
-		[Mediate(event="LoginEvent.LOGOUT")]
+		[EventHandler(event="LoginEvent.LOGOUT")]
 		public function logout():void {
 			if (log != null) log.debug("logout()");
 			
@@ -53,7 +53,7 @@ package com.cafetownsend.controller
 			dispatcher.dispatchEvent( new NavigationEvent( NavigationEvent.UPDATE_PATH, NavigationModel.PATH_LOGGED_OUT ) );
 		}
 		
-		[Mediate(event="LoginEvent.LOGIN", properties="user")]
+		[EventHandler(event="LoginEvent.LOGIN", properties="user")]
 		public function login(user:User):void {
 			if (log != null) log.debug("login({0})",user.username);
 			

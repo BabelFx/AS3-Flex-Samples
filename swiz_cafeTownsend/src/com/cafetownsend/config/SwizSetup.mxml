@@ -32,6 +32,11 @@
 	</sw:config>
 	
 	<sw:customProcessors>
+		<ext:DeepLinkProcessor>
+			<ext:browserManager>
+				<ext:SWFAddressManager baseTitle="My page" />
+			</ext:browserManager>
+		</ext:DeepLinkProcessor>
 		<!--	
 			Disable the entire LogProcessor tag to hide log output for the CafeTownsend application code
 		-->			

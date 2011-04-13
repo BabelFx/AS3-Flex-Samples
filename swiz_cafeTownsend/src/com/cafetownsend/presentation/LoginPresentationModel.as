@@ -67,7 +67,7 @@ package com.cafetownsend.presentation
 			return validUserName && validPassword;
 		}
 
-		[Mediate(event="LoginErrorEvent.LOGIN_ERROR", properties="fault")]
+		[EventHandler(event="LoginErrorEvent.LOGIN_ERROR", properties="fault")]
 		public function handleLoginError(fault:Fault):void {
 			loginError = fault.faultString + ": " + fault.faultDetail;
 			currentState = STATE_ERROR;
@@ -77,7 +77,7 @@ package com.cafetownsend.presentation
 			if (log != null) log.debug("handleLoginError(fault:{0})",loginError);
 		}
 
-		[Mediate(event="LoginEvent.COMPLETE")]
+		[EventHandler(event="LoginEvent.COMPLETE")]
 		public function handleLoginComplete( event: LoginEvent ):void {
 			loginPending = false;
 			

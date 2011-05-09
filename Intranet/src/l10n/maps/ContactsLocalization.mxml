@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LocaleMap 	enableLog="true"
-			xmlns="library://ns.babelfx.org/l10n/flex/" 
+			xmlns="http://l10n.babelfx.org/" 
 			xmlns:mx="http://www.adobe.com/2006/mxml" 
 			xmlns:factory="mx.core.*" >
 	
@@ -18,21 +18,21 @@
 		]]>
 	</mx:Script>
 
-	<SmartResourceInjector bundleName="contacts" target="{ContactUI}">
-		<ResourceProxy 	property="title" 				key="contact.title" />
-		<ResourceProxy 	property="btnAddContact.label" 	key="contacts.btnAddContact"  state="editEnabled"/>
-	</SmartResourceInjector>
+	<ResourceInjector bundleName="contacts" target="{ContactUI}">
+		<ResourceSetter 	property="title" 				key="contact.title" />
+		<ResourceSetter 	property="btnAddContact.label" 	key="contacts.btnAddContact"  state="editEnabled"/>
+	</ResourceInjector>
 	
-	<SmartResourceInjector bundleName="contacts" target="{ContactView}">
-		<ResourceProxy 	property="lgPhones.title" 			key="contactView.lgPhones" />
-		<ResourceProxy 	property="lgEmail.title" 			key="contactView.lgEmail" />
-		<ResourceProxy 	property="lgIM.title" 				key="contactView.lgIM" />
-		<ResourceProxy 	property="lblAddress.text" 			key="contactView.title.address" />
-	</SmartResourceInjector>
+	<ResourceInjector bundleName="contacts" target="{ContactView}">
+		<ResourceSetter 	property="lgPhones.title" 			key="contactView.lgPhones" />
+		<ResourceSetter 	property="lgEmail.title" 			key="contactView.lgEmail" />
+		<ResourceSetter 	property="lgIM.title" 				key="contactView.lgIM" />
+		<ResourceSetter 	property="lblAddress.text" 			key="contactView.title.address" />
+	</ResourceInjector>
 						   
 	
-	<SmartResourceInjector bundleName="contacts" target="{ContactEdit}">
-		<ResourceProxy 		property="lblComingSoon.text" 	key="settings.message" />
-	</SmartResourceInjector>
+	<ResourceInjector bundleName="contacts" target="{ContactEdit}">
+		<ResourceSetter 		property="lblComingSoon.text" 	key="settings.message" />
+	</ResourceInjector>
 	
 </LocaleMap>

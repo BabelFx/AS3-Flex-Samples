@@ -13,6 +13,9 @@
 	<mvc:i18nController									xmlns:mvc="com.thunderbay.i18nDemo.control.*"/>
 	<model:Model id="_model" 							xmlns:model="com.thunderbay.i18nDemo.model.*"/>
 	
+	<!-- Single tag used to provide l10n features for the entire application and all sub views -->
+	<map:LocalizationMap  	account="{_model.account}" xmlns:map="l10n.map.*" />
+	
 	<!-- Login/Registration Form -->
 	<views:SignInPage  id="signIn"		visitor="{_model.account}"
 					   visible="false" 	width="854" height="526" 
@@ -20,8 +23,5 @@
 	
 	<!-- Give users some UI to dynamically change the current Locale -->
 	<views:LanguageBar width="386" horizontalCenter="0" y="{signIn.y-20}" />
-	
-	<!-- Single tag used to provide l10n features for the entire application and all sub views -->
-	<map:LocalizationMap  	account="{_model.account}" xmlns:map="l10n.map.*" />
 	
 </mx:Application>

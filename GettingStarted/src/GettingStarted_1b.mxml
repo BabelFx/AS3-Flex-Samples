@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application layout="absolute"  
+				xmlns:mx="http://www.adobe.com/2006/mxml">
+		
+	<!--  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  -->
+	<!--  BabelFx LocalizationMap 																	 -->
+	<!--  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  -->
+	
+	<!-- 
+	Since we are not using an MVC or IoC framework [like Swiz, Parsley, or RobotLegs]
+	we instantiate the LocalizationMap here at the application level.
+	-->
+	<l10n:LocalizationMap_1b   id="myMap" 	xmlns:l10n="l10n.*"/>
+	
+	
+	<!--  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  -->
+	<!--  Normal UI and custom UI components														 -->
+	<!--  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  -->
+	
+	
+	<mx:Label 		id="lblTest" 	x="37" y="79" text="Getting Started BabelFx Application" 						/>
+	
+	<mx:Button 		id="btnAction" 	x="37" y="23" label="Go to Next Locale"  		click="myMap.goToNextLocale();"	/>
+	
+	<mx:DateField  	id="picker" 	x="38" y="107" formatString="DD/MM/YYYY" monthSymbol="" yearSymbol=""			/>
+	
+</mx:Application>

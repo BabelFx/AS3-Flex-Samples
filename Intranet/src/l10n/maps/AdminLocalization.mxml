@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LocaleMap 	enableLog="true"
-			xmlns="library://ns.babelfx.org/l10n/flex/" 
+			xmlns="http://l10n.babelfx.org/" 
 			xmlns:mx="http://www.adobe.com/2006/mxml" 
 			xmlns:factory="mx.core.*" >
 	
@@ -18,26 +18,26 @@
 		]]>
 	</mx:Script>
 
-	<SmartResourceInjector bundleName="settings" target="{Settings}">
-		<ResourceProxy 		property="label" 						key="settings.label" />
-		<ResourceProxy 		property="lblComingSoon.text" 			key="settings.message" />
-	</SmartResourceInjector>
+	<ResourceInjector bundleName="settings" target="{Settings}">
+		<ResourceSetter 		property="label" 						key="settings.label" />
+		<ResourceSetter 		property="lblComingSoon.text" 			key="settings.message" />
+	</ResourceInjector>
 	
-	<SmartResourceInjector bundleName="users" target="{Users}">
-		<ResourceProxy 		property="label" 						key="users.label" />
-		<ResourceProxy 		property="lblUsers.text" 				key="users.label" />
-		<ResourceProxy 		property="fiFirstName.label" 			key="users.form.firstname" />
-		<ResourceProxy 		property="fiLastName.label" 			key="users.form.lastname" />
-		<ResourceProxy 		property="fiPassword.label" 			key="users.form.password" />
-		<ResourceProxy 		property="fiPermissions.label" 			key="users.form.permissions" />
-		<ResourceProxy 		property="rbPermissionRead.label" 		key="users.form.permissions.r" />
-		<ResourceProxy 		property="rbPermissionReadWrite.label" 	key="users.form.permissions.rw" />
-		<ResourceProxy 		property="rbPermissionAdmin.label" 		key="users.form.permissions.admin" />
-		<ResourceProxy 		property="submit.label" 				key="users.form.submit" />
+	<ResourceInjector bundleName="users" target="{Users}">
+		<ResourceSetter 		property="label" 						key="users.label" />
+		<ResourceSetter 		property="lblUsers.text" 				key="users.label" />
+		<ResourceSetter 		property="fiFirstName.label" 			key="users.form.firstname" />
+		<ResourceSetter 		property="fiLastName.label" 			key="users.form.lastname" />
+		<ResourceSetter 		property="fiPassword.label" 			key="users.form.password" />
+		<ResourceSetter 		property="fiPermissions.label" 			key="users.form.permissions" />
+		<ResourceSetter 		property="rbPermissionRead.label" 		key="users.form.permissions.r" />
+		<ResourceSetter 		property="rbPermissionReadWrite.label" 	key="users.form.permissions.rw" />
+		<ResourceSetter 		property="rbPermissionAdmin.label" 		key="users.form.permissions.admin" />
+		<ResourceSetter 		property="submit.label" 				key="users.form.submit" />
 		
-		<ResourceProxy 		property="model.codes[0].buttonTitle" 	key="users.save" />
-		<ResourceProxy 		property="model.codes[0].viewTitle" 	key="users.save.editing" />
-		<ResourceProxy 		property="model.codes[1].viewTitle" 	key="users.save.new" />
-	</SmartResourceInjector>
+		<ResourceSetter 		property="model.codes[0].buttonTitle" 	key="users.save" />
+		<ResourceSetter 		property="model.codes[0].viewTitle" 	key="users.save.editing" />
+		<ResourceSetter 		property="model.codes[1].viewTitle" 	key="users.save.new" />
+	</ResourceInjector>
 
 </LocaleMap>

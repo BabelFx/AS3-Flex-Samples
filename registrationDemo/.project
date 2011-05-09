@@ -22,11 +22,6 @@
 	</natures>
 	<linkedResources>
 		<link>
-			<name>[source path] src</name>
-			<type>2</type>
-			<location>/Users/thomasburleson/Documents/projects/ThunderBay/flex/insertables/lib_preloader/src</location>
-		</link>
-		<link>
 			<name>bin-debug</name>
 			<type>2</type>
 			<location>/Developer/servers/railo-jetty/webroot/babelfx/l10n_Registration</location>

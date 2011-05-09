@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LocaleMap 	enableLog="true"
-			xmlns="library://ns.babelfx.org/l10n/flex/"  
+			xmlns="http://l10n.babelfx.org/"  
 			xmlns:fx="http://ns.adobe.com/mxml/2009">
 	
 			<fx:Metadata>
@@ -20,7 +20,7 @@
 			
 			<fx:Script>
 				<![CDATA[
-					import com.mindspace.l10n.utils.debug.LocaleLogger;
+					import org.babelfx.utils.debug.LocaleLogger;
 					
 					import mx.collections.ArrayList;
 					import mx.controls.DataGrid;
@@ -66,57 +66,57 @@
 		    to observers; since databinding triggers will not work on generic objects nor on Array contents
 		
 		<ResourceInjector bundleName="commons">
-			<ResourceProxy target="{this}" property="model[0].label" key="introList.basic" />
-			<ResourceProxy target="{this}" property="model[1].label" key="introList.rules" />
+			<ResourceSetter target="{this}" property="model[0].label" key="introList.basic" />
+			<ResourceSetter target="{this}" property="model[1].label" key="introList.rules" />
 		</ResourceInjector>
 		
 		-->
 		
-		<SmartResourceInjector target="{ViewStates}" bundleName="commons" localeChange="onLocaleChange(event);" >			
-			<ResourceProxy property="txtTitle.text"  	key="title.normal" state="normal" />
-			<ResourceProxy property="txtTitle.text"  	key="title.small"  state="small"  />
+		<ResourceInjector target="{ViewStates}" bundleName="commons" localeChange="onLocaleChange(event);" >			
+			<ResourceSetter property="txtTitle.text"  	key="title.normal" state="normal" />
+			<ResourceSetter property="txtTitle.text"  	key="title.small"  state="small"  />
 
-			<ResourceProxy property="introView.label" 	key="introView.title" />
-			<ResourceProxy property="instView.label" 	key="instView.title" />
+			<ResourceSetter property="introView.label" 	key="introView.title" />
+			<ResourceSetter property="instView.label" 	key="instView.title" />
 			
-		</SmartResourceInjector>
+		</ResourceInjector>
 		
-		<SmartResourceInjector target="{DataGrid}" bundleName="commons">
-			<ResourceProxy targetID="grdAccounts" 	 	property="columns[0].headerText" key="title.normal" />
-			<ResourceProxy targetID="grdAccounts" 	 	property="columns[1].headerText" key="grid.column2.title" />
-			<ResourceProxy targetID="grdAccounts" 	 	property="columns[2].headerText" key="grid.column3.title" />
+		<ResourceInjector target="{DataGrid}" bundleName="commons">
+			<ResourceSetter targetID="grdAccounts" 	 	property="columns[0].headerText" key="title.normal" />
+			<ResourceSetter targetID="grdAccounts" 	 	property="columns[1].headerText" key="grid.column2.title" />
+			<ResourceSetter targetID="grdAccounts" 	 	property="columns[2].headerText" key="grid.column3.title" />
 			
-			<ResourceProxy targetID="grdDepartments" 	property="columns[0].headerText" key="grid.column1.title" />
-			<ResourceProxy targetID="grdDepartments" 	property="columns[1].headerText" key="introView.title" />
-			<ResourceProxy targetID="grdDepartments" 	property="columns[2].headerText" key="grid.column3.title" />
-		</SmartResourceInjector>
+			<ResourceSetter targetID="grdDepartments" 	property="columns[0].headerText" key="grid.column1.title" />
+			<ResourceSetter targetID="grdDepartments" 	property="columns[1].headerText" key="introView.title" />
+			<ResourceSetter targetID="grdDepartments" 	property="columns[2].headerText" key="grid.column3.title" />
+		</ResourceInjector>
 		
-		<SmartResourceInjector target="{Canvas}" bundleName="commons">
-			<ResourceProxy targetID="areaAccounts" 	  	property="label" key="accounts.title" />
-			<ResourceProxy targetID="areaDepartments" 	property="label" key="department.title" />
-		</SmartResourceInjector>
+		<ResourceInjector target="{Canvas}" bundleName="commons">
+			<ResourceSetter targetID="areaAccounts" 	  	property="label" key="accounts.title" />
+			<ResourceSetter targetID="areaDepartments" 	property="label" key="department.title" />
+		</ResourceInjector>
 		
-		<SmartResourceInjector target="{NavigatorContent}" bundleName="commons">
-			<ResourceProxy targetID="instSparkView"  	property="label" key="instView.title" />
-			<ResourceProxy targetID="introSparkView" 	property="label" key="introView.title" />
-		</SmartResourceInjector>
+		<ResourceInjector target="{NavigatorContent}" bundleName="commons">
+			<ResourceSetter targetID="instSparkView"  	property="label" key="instView.title" />
+			<ResourceSetter targetID="introSparkView" 	property="label" key="introView.title" />
+		</ResourceInjector>
 
-		<SmartResourceInjector target="{Label}" bundleName="commons">
-			<ResourceProxy targetID="txtNCLabel" 	 	property="text" key="title.normal" state="normal" trigger="{this.owner}"/>
-			<ResourceProxy targetID="txtNCLabel" 	 	property="text" key="title.small"  state="small"  trigger="{this.owner}"/>
-		</SmartResourceInjector>
+		<ResourceInjector target="{Label}" bundleName="commons">
+			<ResourceSetter targetID="txtNCLabel" 	 	property="text" key="title.normal" state="normal" trigger="{this.owner}"/>
+			<ResourceSetter targetID="txtNCLabel" 	 	property="text" key="title.small"  state="small"  trigger="{this.owner}"/>
+		</ResourceInjector>
 		
-		<SmartResourceInjector target="{Button}" bundleName="commons">
-			<ResourceProxy targetID="btnChangeViewState" 	 property="label" key="changeViewState.title" />
-		</SmartResourceInjector>
+		<ResourceInjector target="{Button}" bundleName="commons">
+			<ResourceSetter targetID="btnChangeViewState" 	 property="label" key="changeViewState.title" />
+		</ResourceInjector>
 		
-		<SmartResourceInjector target="{TextArea}" bundleName="commons">
-			<ResourceProxy targetID="txtDescription" 	 property="text" key="intro.description" />
-		</SmartResourceInjector>
+		<ResourceInjector target="{TextArea}" bundleName="commons">
+			<ResourceSetter targetID="txtDescription" 	 property="text" key="intro.description" />
+		</ResourceInjector>
 		
-		<SmartResourceInjector target="{LanguageBar}" bundleName="commons">
-			<ResourceProxy property="lblBarHelp.text" key="languageBar.title" />
-		</SmartResourceInjector>
+		<ResourceInjector target="{LanguageBar}" bundleName="commons">
+			<ResourceSetter property="lblBarHelp.text" key="languageBar.title" />
+		</ResourceInjector>
 		
 
 	</fx:Declarations>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LocaleMap 	enableLog="true"
-			xmlns="library://ns.babelfx.org/l10n/flex/" 
+			xmlns="http://l10n.babelfx.org/" 
 			xmlns:mx="http://www.adobe.com/2006/mxml" 
 			xmlns:factory="mx.core.*" >
 
@@ -25,31 +25,31 @@
 		]]>
 	</mx:Script>
 
-	<SmartResourceInjector bundleName="login" target="{Login}">
-		<ResourceProxy 	property="lblUserName.text" 			key="login.title.userName" />
-		<ResourceProxy 	property="lblPassword.text" 			key="login.title.password" />
-		<ResourceProxy 	property="loginButton.label" 			key="button.login" />
+	<ResourceInjector bundleName="login" target="{Login}">
+		<ResourceSetter 	property="lblUserName.text" 			key="login.title.userName" />
+		<ResourceSetter 	property="lblPassword.text" 			key="login.title.password" />
+		<ResourceSetter 	property="loginButton.label" 			key="button.login" />
 		
-		<ResourceProxy 	property="model.errorMessages[0].text" 				key="login.error.invalidUsername" />
-		<ResourceProxy 	property="model.errorMessages[1].text" 				key="login.error.invalidPassword" />
-		<ResourceProxy 	property="model.errorMessages[2].text" 				key="login.error.invalidBoth" />
-		<ResourceProxy 	property="model.errorMessages[3].text" 				key="login.error.authentication" />
+		<ResourceSetter 	property="model.errorMessages[0].text" 				key="login.error.invalidUsername" />
+		<ResourceSetter 	property="model.errorMessages[1].text" 				key="login.error.invalidPassword" />
+		<ResourceSetter 	property="model.errorMessages[2].text" 				key="login.error.invalidBoth" />
+		<ResourceSetter 	property="model.errorMessages[3].text" 				key="login.error.authentication" />
 		
-		<ResourceProxy 	property="imgError.source" 		key="login.error.icon" type="class" state="errorState" />
-	</SmartResourceInjector>
+		<ResourceSetter 	property="imgError.source" 		key="login.error.icon" type="class" state="errorState" />
+	</ResourceInjector>
 						   
 	
-	<SmartResourceInjector bundleName="login" target="{Content}">
-		<ResourceProxy 	property="btnLogout.label" 		key="button.logout" />
-	</SmartResourceInjector>
+	<ResourceInjector bundleName="login" target="{Content}">
+		<ResourceSetter 	property="btnLogout.label" 		key="button.logout" />
+	</ResourceInjector>
 
-	<SmartResourceInjector  bundleName="language" target="{LanguageBar}">
-		<ResourceProxy 		property="lblBarHelp.text" 				key="languagebar.title" 	parameters="{['target.selectedLocale']}" />
+	<ResourceInjector  bundleName="language" target="{LanguageBar}">
+		<ResourceSetter 		property="lblBarHelp.text" 				key="languagebar.title" 	parameters="{['target.selectedLocale']}" />
 		
 		<!-- See LocaleAssets for sort order on Flags -->
-		<ResourceProxy  	property="flags[0].toolTip" 			key="flag.toolTip.en_US" />
-		<ResourceProxy  	property="flags[1].toolTip" 			key="flag.toolTip.de_DE" />
-	</SmartResourceInjector>
+		<ResourceSetter  	property="flags[0].toolTip" 			key="flag.toolTip.en_US" />
+		<ResourceSetter  	property="flags[1].toolTip" 			key="flag.toolTip.de_DE" />
+	</ResourceInjector>
 
 	
 </LocaleMap>

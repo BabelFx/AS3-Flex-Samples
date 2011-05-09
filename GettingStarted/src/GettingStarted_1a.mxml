@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application layout="absolute"  
+				xmlns:mx="http://www.adobe.com/2006/mxml">
+		
+	
+	
+	<!--  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  -->
+	<!--  Normal UI and custom UI components														 -->
+	<!--  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  -->
+	
+	
+	<mx:Label 		id="lblTest" 	x="57" y="49" text="Getting Started with BabelFx Localization" 	/>
+	
+	<mx:Button 		id="btnAction" 	x="57" y="91" label="Go to Next Locale"  					/>
+	
+</mx:Application>

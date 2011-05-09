@@ -63,6 +63,9 @@
 			click="login();"/>
 	</mx:Canvas>
 		
+	<mx:Label fontSize="9" text="Username: admin    Password: mate"/>
+	<mx:Label fontSize="9" text="Username: guest    Password: mate"/>
+
 	<!-- States ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 	<mx:states>
 		<mx:State name="{ LoginPresentationModel.LOGIN_STATE }" enterState="reset();"/>

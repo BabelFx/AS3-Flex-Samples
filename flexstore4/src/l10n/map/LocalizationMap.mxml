@@ -3,7 +3,7 @@
 					enableLog="true"
 					xmlns:factory="mx.core.*" 
 					xmlns:mx="http://www.adobe.com/2006/mxml" 
-					xmlns:l10n="library://ns.babelfx.org/l10n/flex/" >
+					xmlns:l10n="http://l10n.babelfx.org/" >
 	
 	<!--
 	   The meta data tags below reference bundles so embedding process works; 
@@ -25,8 +25,8 @@
 	
 	<mx:Script>
 		<![CDATA[
-			import com.mindspace.l10n.commands.ExternalLocaleCommand;
-			import com.mindspace.l10n.events.LocaleMapEvent;
+			import org.babelfx.commands.ExternalLocaleCommand;
+			import org.babelfx.events.LocaleMapEvent;
 			import com.store.Catalog;
 			import com.store.details.PhoneDetails;
 			
@@ -48,7 +48,7 @@
 			 *  This xml data has localized versions of the catalog.
 			 */
 			private function onLocaleChanged(event:Event):void {
-				var sri 	: SmartResourceInjector  = (event.target as SmartResourceInjector);
+				var sri 	: ResourceInjector  = (event.target as ResourceInjector);
 				var details : PhoneDetails           = sri.targetInstances[0] as PhoneDetails; 
 				var catalog : Catalog				 = sri.targetInstances[0] as Catalog;
 				
@@ -94,30 +94,30 @@
 	</l10n:commandFactory>
 	
 	
-	<l10n:SmartResourceInjector bundleName="store" target="{Catalog}" localeChange="onLocaleChanged(event);">
-		<l10n:ResourceProxy 		property="catalogLoader.url" 			key="data.url" />
+	<l10n:ResourceInjector bundleName="store" target="{Catalog}" localeChange="onLocaleChanged(event);">
+		<l10n:ResourceSetter 		property="catalogLoader.url" 			key="data.url" />
 		
-		<l10n:ResourceProxy 		property="lblCatalog.text" 				key="catalog.title" />
+		<l10n:ResourceSetter 		property="lblCatalog.text" 				key="catalog.title" />
 		
-		<l10n:ResourceProxy 		property="lblFilters.text" 				key="filters.title" />
-		<l10n:ResourceProxy 		property="lblMaxPrice.text" 			key="filters.maxPrice" />
-		<l10n:ResourceProxy 		property="chbxCamera.label" 			key="filters.option.camera" />
-		<l10n:ResourceProxy 		property="chbxVideo.label" 				key="filters.option.video" />
-		<l10n:ResourceProxy 		property="chbxTriband.label" 			key="filters.option.triband" />
-	</l10n:SmartResourceInjector>
+		<l10n:ResourceSetter 		property="lblFilters.text" 				key="filters.title" />
+		<l10n:ResourceSetter 		property="lblMaxPrice.text" 			key="filters.maxPrice" />
+		<l10n:ResourceSetter 		property="chbxCamera.label" 			key="filters.option.camera" />
+		<l10n:ResourceSetter 		property="chbxVideo.label" 				key="filters.option.video" />
+		<l10n:ResourceSetter 		property="chbxTriband.label" 			key="filters.option.triband" />
+	</l10n:ResourceInjector>
 	
-	<l10n:SmartResourceInjector  bundleName="store" target="{PhoneDetails}" localeChange="onLocaleChanged(event);">
-			<l10n:ResourceProxy 		property="lblDescription.text" 			key="details.title" 		parameters="{[phone.name]}"/>
-	</l10n:SmartResourceInjector>
+	<l10n:ResourceInjector  bundleName="store" target="{PhoneDetails}" localeChange="onLocaleChanged(event);">
+			<l10n:ResourceSetter 		property="lblDescription.text" 			key="details.title" 		parameters="{[phone.name]}"/>
+	</l10n:ResourceInjector>
 
-	<l10n:SmartResourceInjector  bundleName="language" target="{LanguageBar}">
-		<l10n:ResourceProxy 		property="lblBarHelp.text" 				key="languagebar.title" 	parameters="{['target.selectedLocale']}" />
+	<l10n:ResourceInjector  bundleName="language" target="{LanguageBar}">
+		<l10n:ResourceSetter 		property="lblBarHelp.text" 				key="languagebar.title" 	parameters="{['target.selectedLocale']}" />
 		
 		<!-- See LocaleAssets for sort order on Flags -->
-		<l10n:ResourceProxy  	property="flags[0].toolTip" 			key="flag.toolTip.en_US" />
-		<l10n:ResourceProxy  	property="flags[1].toolTip" 			key="flag.toolTip.fr_FR" />
-		<l10n:ResourceProxy  	property="flags[2].toolTip" 			key="flag.toolTip.es_ES" />
-		<l10n:ResourceProxy  	property="flags[3].toolTip" 			key="flag.toolTip.zh_CN" />
-	</l10n:SmartResourceInjector>
+		<l10n:ResourceSetter  	property="flags[0].toolTip" 			key="flag.toolTip.en_US" />
+		<l10n:ResourceSetter  	property="flags[1].toolTip" 			key="flag.toolTip.fr_FR" />
+		<l10n:ResourceSetter  	property="flags[2].toolTip" 			key="flag.toolTip.es_ES" />
+		<l10n:ResourceSetter  	property="flags[3].toolTip" 			key="flag.toolTip.zh_CN" />
+	</l10n:ResourceInjector>
 
 </l10n:LocaleMap>

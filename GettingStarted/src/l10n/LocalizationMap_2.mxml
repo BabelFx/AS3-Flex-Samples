@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LocaleMap  enableLog="true"
+			localeChanging="onUpdateAlert();"
+			xmlns="http://l10n.babelfx.org/"  
+			xmlns:mx="http://www.adobe.com/2006/mxml" >
+	
+	<!--
+		Description:
+	
+		This BabelFx localizationMap still supports the custom method to cycle
+		between locales as shown in GettingStarted #1 
+	
+		Now, in GettingStarted #2, it also shows how the Alert custom labels can be localized.
+		The challenge here is that the Alert uses 'static' labels; which cannot be directly
+		injected. 
+	
+		So we use a custom method 'onUpdateAlert' that trigger AFTER the locale changes
+		and after the LocalizationMap finishes the injections.
+		
+		ALSO notice that the manual code to switch locales is GONE.
+		We are now using a LanguageBar control in the UI.
+	-->
+	
+	
+	<mx:Metadata>
+		[ResourceBundle("main")]
+	</mx:Metadata>
+	
+	<mx:Script>
+		<![CDATA[
+			import l10n.views.LanguageBar;
+			
+			import mx.controls.Alert;
+			import mx.controls.DateField;
+			import mx.resources.ResourceManager;
+			
+			/**
+			 * Special method needed because injection does not work on static functions or 
+			 * static variables. Normally the localized MX resources would automatically be used
+			 * for alerts. 
+			 * 
+			 * But here we want CUSTOM content injected instead...
+			 * 
+			 * e.g. 
+			 * 
+			 * class Alert { 
+			 * 	static public function set yesLabel(val:String):void { ... }
+			 * } 
+			 * 
+			 * We must manually inject to such targets. Listening for localeChanged allows
+			 * use to do this easily.
+			 */
+			private function onUpdateAlert():void {
+				Alert.yesLabel = ResourceManager.getInstance().getString("test","Alert.Yes");
+				Alert.noLabel  = ResourceManager.getInstance().getString("test","Alert.No");
+				Alert.okLabel  = ResourceManager.getInstance().getString("test","Alert.OK");
+			} 
+
+		]]>
+	</mx:Script>
+	
+	<ResourceInjector target="{GettingStarted_2}" bundleName="main">
+		<ResourceSetter property="btnShowAlert.label" 	key="main.button" />
+		<ResourceSetter property="lblTest.text" 		key="main.label" />
+	</ResourceInjector>
+	
+	<ResourceInjector target="{DateField}" bundleName="main">
+		<ResourceSetter property="dayNames" 		 key="dates.days" 	type="array" />
+		<ResourceSetter property="monthNames" 	 key="dates.months" type="array" />
+		<ResourceSetter property="formatString"	 key="dates.format" type="string"/>
+	</ResourceInjector>
+	
+	<ResourceInjector target="{LanguageBar}" bundleName="main">
+		<ResourceSetter property="lblBarHelp.text"  key="LanguageBar.lblBarHelp" 	/>
+	</ResourceInjector>
+	
+</LocaleMap>

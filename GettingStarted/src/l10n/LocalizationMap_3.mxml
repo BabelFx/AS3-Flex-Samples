@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LocaleMap  
+	enableLog="true" 
+	xmlns="http://l10n.babelfx.org/"  
+	xmlns:mx="http://www.adobe.com/2006/mxml" 
+	xmlns:fe="http://fe.codecatalyst.com/2011/flex-extensions" >
+
+	
+	<mx:Script>
+		<![CDATA[
+			import l10n.views.LanguageBar;
+			
+			import mx.controls.DateField;
+			
+			import org.babelfx.commands.ExternalLocaleCommand;
+		]]>
+	</mx:Script>
+	
+	<!--
+		Description:
+		
+		This BabelFx localizationMap still supports the custom method to cycle
+		between locales as shown in GettingStarted #2
+		
+		Just like GettingStarted #2, we are now using a LanguageBar control in the UI to switch the locales.
+
+		Now, in GettingStarted #3, it also shows how the ResourceBundles are not embedded
+		and are loaded at runtime from external, compiled resource bundles  (swfs). 
+		
+		To load external bundles we can use the ExternalLocaleCommand. See the CommandFactory below.
+		The command factory instance below allows the l10nInjection engine to load external resource bundles from
+		a custom deploy directory 'assets/locales/' name encoded by locale code
+		e.g.  en_US.swf, zh_CN.swf, etc.
+		
+		IMPORTANT:  Developers MUST manually (using ANT) build and deploy such resourceBundles (swfs).
+	
+			Notice the [ResourceBundle tags are gone.
+			Notice the compiler arguments MUST now be:
+					
+					-locale=
+	
+		If you DEBUG this application, you will notice the FlashBuilder console displaying error messages like:
+	
+			12:56:15.423 [DEBUG] org.babelfx.commands.ExternalLocaleCommand loadLocale(en_US) - external
+			12:56:18.257 [DEBUG] org.babelfx.commands.ExternalLocaleCommand onError_localeLoaded(url=en_US.swf) - load failed
+
+	
+		This is happens because the resourceBundles were not embedded AND have not be loaded. You must ANT build the resourcebundles and deploy
+	    them to the same dir as the GettingStarted_3.swf application (becuase the externalPath below stated that...).
+		
+	-->
+	
+	
+	<!-- (1) Needed to load external resource bundles -->
+	
+	<commandFactory>
+		<fe:ClassFactory generator="{ExternalLocaleCommand}"  >
+			<fe:properties>
+				<mx:Object externalPath="\{0\}.swf"/>
+			</fe:properties>
+		</fe:ClassFactory>
+	</commandFactory>
+	
+	
+	<!-- (2) Needed to inject localized content -->
+	
+	<ResourceInjector target="{GettingStarted_3}" bundleName="main">
+		<ResourceSetter property="btnShowAlert.label" 	key="main.button" />
+		<ResourceSetter property="lblTest.text" 		key="main.label" />
+	</ResourceInjector>
+	
+	<ResourceInjector target="{DateField}" bundleName="main">
+		<ResourceSetter property="dayNames" 		 key="dates.days" 	type="array" />
+		<ResourceSetter property="monthNames" 	 key="dates.months" type="array" />
+		<ResourceSetter property="formatString"	 key="dates.format" type="string"/>
+	</ResourceInjector>
+	
+	<ResourceInjector target="{LanguageBar}" bundleName="main">
+		<ResourceSetter property="lblBarHelp.text"  key="LanguageBar.lblBarHelp" 	/>
+	</ResourceInjector>
+	
+	
+</LocaleMap>

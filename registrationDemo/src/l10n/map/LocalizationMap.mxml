@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LocaleMap 	enableLog="true"
 			xmlns:mx="http://www.adobe.com/2006/mxml" 
-			xmlns="library://ns.babelfx.org/l10n/flex/" >
+			xmlns="http://l10n.babelfx.org/" >
 	
 	<!-- Support for Locale ResourceBundle changes -->
 	<mx:Script>
@@ -24,7 +24,7 @@
 			 *  validation errors. 
 			 */
 			private function onClearValidationErrors(event:Event):void {
-				var source     : SmartResourceInjector = (event.target as SmartResourceInjector); 
+				var source     : ResourceInjector = (event.target as ResourceInjector); 
 				var signInPage : SignInPage 		   = source.targetInstances[0] as SignInPage;
 				
 				if (signInPage != null) {
@@ -41,48 +41,48 @@
 			 class instance of SignInPage. After locale changes, we clear any validation errors. 
 		-->
 	
-	<SmartResourceInjector bundleName="registration" target="{SignInPage}" localeChange="onClearValidationErrors(event);" />
+	<ResourceInjector bundleName="registration" target="{SignInPage}" localeChange="onClearValidationErrors(event);" />
 		
 		<!--
-			 SmartResourceInjectors for targeted class instantiations. Instead of dependency injection of UI instances,       
+			 ResourceInjectors for targeted class instantiations. Instead of dependency injection of UI instances,       
 			 we use SRI(s) here to remove any need to know view hierarchy relationships... we simply want a reference
 			 to the UI instance when ready. 																	              
 		-->
 
-	<SmartResourceInjector bundleName="registration" target="{AlreadyRegisteredForm}">
-		<ResourceProxy property="alertTitle" 					key="signing.invalid" />
-		<ResourceProxy property="eMailValidator.requiredFieldError" key="signin.validationError.email" />
-		<ResourceProxy property="lblTitle.text" 				key="signin.title" />
-		<ResourceProxy property="lblEmail.text" 				key="signin.email" />
-	</SmartResourceInjector>
+	<ResourceInjector bundleName="registration" target="{AlreadyRegisteredForm}">
+		<ResourceSetter property="alertTitle" 					key="signing.invalid" />
+		<ResourceSetter property="eMailValidator.requiredFieldError" key="signin.validationError.email" />
+		<ResourceSetter property="lblTitle.text" 				key="signin.title" />
+		<ResourceSetter property="lblEmail.text" 				key="signin.email" />
+	</ResourceInjector>
 		
-	<SmartResourceInjector bundleName="registration" target="{RegistrationForm}">
-		<ResourceProxy property="registrationValidators[0].requiredFieldError" 	key="register.validationError.firstName" />
-		<ResourceProxy property="registrationValidators[1].requiredFieldError" 	key="register.validationError.lastName" />
-		<ResourceProxy property="registrationValidators[2].requiredFieldError" 	key="register.validationError.email" />
-		<ResourceProxy property="registrationValidators[3].requiredFieldError" 	key="register.validationError.company" />
-		<ResourceProxy property="registrationValidators[4].requiredFieldError" 	key="register.validationError.postal" />
-		<ResourceProxy property="registrationValidators[5].requiredFieldError" 	key="register.validationError.phone" />
-		<ResourceProxy property="registrationValidators[6].lowerThanMinError" 	key="register.validationError.country" />
-		<ResourceProxy property="registrationValidators[7].lowerThanMinError" 	key="register.validationError.state" />
+	<ResourceInjector bundleName="registration" target="{RegistrationForm}">
+		<ResourceSetter property="registrationValidators[0].requiredFieldError" 	key="register.validationError.firstName" />
+		<ResourceSetter property="registrationValidators[1].requiredFieldError" 	key="register.validationError.lastName" />
+		<ResourceSetter property="registrationValidators[2].requiredFieldError" 	key="register.validationError.email" />
+		<ResourceSetter property="registrationValidators[3].requiredFieldError" 	key="register.validationError.company" />
+		<ResourceSetter property="registrationValidators[4].requiredFieldError" 	key="register.validationError.postal" />
+		<ResourceSetter property="registrationValidators[5].requiredFieldError" 	key="register.validationError.phone" />
+		<ResourceSetter property="registrationValidators[6].lowerThanMinError" 	key="register.validationError.country" />
+		<ResourceSetter property="registrationValidators[7].lowerThanMinError" 	key="register.validationError.state" />
 		
-		<ResourceProxy property="alertTitle" 									key="register.invalidProfile" />
+		<ResourceSetter property="alertTitle" 									key="register.invalidProfile" />
 		
-		<ResourceProxy property="lblTitle.text" 								key="register.title" />
-		<ResourceProxy property="lblSubTitle.text" 								key="register.subtitle" />
-		<ResourceProxy property="lblMsg.text" 									key="register.allRequired" />
+		<ResourceSetter property="lblTitle.text" 								key="register.title" />
+		<ResourceSetter property="lblSubTitle.text" 								key="register.subtitle" />
+		<ResourceSetter property="lblMsg.text" 									key="register.allRequired" />
 		
-		<ResourceProxy property="lblFirstName.text" 							key="register.firstName" />
+		<ResourceSetter property="lblFirstName.text" 							key="register.firstName" />
 		
-		<ResourceProxy property="lblLastName.text" 								key="register.lastName" />
-		<ResourceProxy property="lblEmail.text" 								key="register.email" />
-		<ResourceProxy property="lblPhone.text" 								key="register.phone" />
-		<ResourceProxy property="lblCompany.text" 								key="register.company" />
-		<ResourceProxy property="lblZip.text" 									key="register.postal" />
-		<ResourceProxy property="lblState.text" 								key="register.state" />
-		<ResourceProxy property="cmbState.prompt" 								key="register.prompt.state" />
-		<ResourceProxy property="lblCountry.text" 								key="register.country" />
-		<ResourceProxy property="cmbCountry.prompt" 							key="register.prompt.country" />
+		<ResourceSetter property="lblLastName.text" 								key="register.lastName" />
+		<ResourceSetter property="lblEmail.text" 								key="register.email" />
+		<ResourceSetter property="lblPhone.text" 								key="register.phone" />
+		<ResourceSetter property="lblCompany.text" 								key="register.company" />
+		<ResourceSetter property="lblZip.text" 									key="register.postal" />
+		<ResourceSetter property="lblState.text" 								key="register.state" />
+		<ResourceSetter property="cmbState.prompt" 								key="register.prompt.state" />
+		<ResourceSetter property="lblCountry.text" 								key="register.country" />
+		<ResourceSetter property="cmbCountry.prompt" 							key="register.prompt.country" />
 		
 		<!-- 
 			Sample of elegant support for view state changes to fire localized resource injections: see "state" attribute
@@ -91,22 +91,22 @@
 			the cached instance of the UI [RegistrationForm] class. 
 		-->
 
-		<ResourceProxy property="lblThanks.htmlText" 		state="showConfirmEmail" 	key="request.thanks.title" 		parameters="{[account.fullName]}"  />
-		<ResourceProxy property="lblThanksMessage.htmlText"	state="showConfirmEmail"	key="request.thanks.message" 	parameters="{[account.email]}"	/>
+		<ResourceSetter property="lblThanks.htmlText" 		state="showConfirmEmail" 	key="request.thanks.title" 		parameters="{[account.fullName]}"  />
+		<ResourceSetter property="lblThanksMessage.htmlText"	state="showConfirmEmail"	key="request.thanks.message" 	parameters="{[account.email]}"	/>
 		
-	</SmartResourceInjector>
+	</ResourceInjector>
 	
 	
 		<!-- 
 			 SRIs used here when we expect multiple instances of class. We can inject specifically based on instance ID or
-		     we can also override the target Class desired on a ResourceProxy basis. 
+		     we can also override the target Class desired on a ResourceSetter basis. 
 		     Here we are injecting localized PNGs into the <Image instance>.source properties
 		-->
 	
-	<SmartResourceInjector bundleName="registration" target="{Image}"	>
-		<ResourceProxy 								targetID="btnRegister"  property="source" 		key="button.skin.register" 	type="class" />
-		<ResourceProxy target="{SignInButton}"		targetID="btnSignIn" 	property="source" 		key="button.skin.signin" 	type="class" />
-		<PropertyProxy 								targetID="btnFlagUSA" 	property="toolTip" 		source="{account}" 			sourceKey="email" />
-	</SmartResourceInjector>
+	<ResourceInjector bundleName="registration" target="{Image}"	>
+		<ResourceSetter 								targetID="btnRegister"  property="source" 		key="button.skin.register" 	type="class" />
+		<ResourceSetter target="{SignInButton}"			targetID="btnSignIn" 	property="source" 		key="button.skin.signin" 	type="class" />
+		<PropertySetter 								targetID="btnFlagUSA" 	property="toolTip" 		source="{account}" 			sourceKey="email" />
+	</ResourceInjector>
 
 </LocaleMap>

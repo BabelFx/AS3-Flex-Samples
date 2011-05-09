@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LocaleMap  
+	enableLog="true" 
+	xmlns="http://l10n.babelfx.org/"  
+	xmlns:mx="http://www.adobe.com/2006/mxml" >
+	
+	<!--
+		Description:
+		
+		This BabelFx localizationMap will perform content injections to ResourceInjector targets.
+		But some custom code must trigger the localeChange within the ResourceManager before that happens.
+		
+		Here we create a custom method that will cycle through the available locales and tells
+		the LocaleMap to tell the ResourceManager to change the current locale.
+		
+		Notice tha we ALSO use a <Metadata> tag [ResourceBundle]. 
+		
+		For GettingStarted #1, the ResourceBundle is embedded in the compiled application,
+		so we must tell the linker which properties files we "need". The [ResourceBundle] does that for us.
+	
+		Notice the compiler arguments are:
+	
+				-locale=en_US,pt_BR -allow-source-path-overlap=true -source-path+=l10n/locale/{locale}
+	-->
+	
+	
+	<mx:Metadata>
+		[ResourceBundle("main")]
+	</mx:Metadata>
+				
+	<mx:Script>
+		<![CDATA[
+			import mx.controls.DateField;
+			
+			import org.babelfx.events.LocaleEvent;
+			
+			/**
+			 *  Normally this functionality is in a custom UI component like 
+			 *  a LanguageBar or LanguageSelector. 
+			 * 
+			 *  Here our custom function allows us to easily cycle through all
+			 *  available locales. We include only two (English & Portuguese) for this sample.
+			 */
+			public function goToNextLocale():void {
+				var lang : String = ((++_counter % 2) == 1) ? "pt_BR" : "en_US"
+				
+				// Tell the LocaleMap to using internal LocaleCommand [or ExternalLocaleCommand] 
+				// to switch locales to the specified locale.
+					
+				dispatchEvent(new LocaleEvent(LocaleEvent.LOAD_LOCALE,lang));
+			}
+			
+			private var _counter : int = 0;
+			
+		]]>
+	</mx:Script>
+							
+	<ResourceInjector target="{GettingStarted_1b}" bundleName="main">
+		<ResourceSetter property="btnAction.label" 	key="main.button" />
+		<ResourceSetter property="lblTest.text" 		key="main.label" />
+	</ResourceInjector>
+	
+	<ResourceInjector target="{DateField}" bundleName="main">
+   		<ResourceSetter property="dayNames" 		 key="dates.days" 	type="array" />
+   		<ResourceSetter property="monthNames" 	 key="dates.months" type="array" />
+   		<ResourceSetter property="formatString"	 key="dates.format" type="string"/>
+  	</ResourceInjector>
+  	
+</LocaleMap>

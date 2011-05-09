@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <l10n:LocaleMap 	enableLog="true"
 					xmlns:mx="http://www.adobe.com/2006/mxml" 
-					xmlns:l10n="library://ns.babelfx.org/l10n/flex/" >
+					xmlns:l10n="http://l10n.babelfx.org/" >
 	
 	<mx:Metadata>
 		<!-- References to bundles so embedding process works; 
@@ -89,7 +89,7 @@
 					model.passwordError						= "";
 				}
 				
-				var sri     : SmartResourceInjector = event.target as SmartResourceInjector;
+				var sri     : ResourceInjector = event.target as ResourceInjector;
 				var cntr	: LoginView 			= sri.targetInstances[0] as LoginView;
 				
 				if(cntr != null) {
@@ -123,60 +123,60 @@
 	</mx:Script>
 	
 	
-	<l10n:SmartResourceInjector bundleName="login" target="{MainView}" localeChange="onLocaleChanged(event);" >
-		<l10n:ResourceProxy 		property="btnLogout.label" 		key="login.signOut" />
-		<l10n:ResourceProxy 		property="txtWelcomeUser.text" 	key="login.welcome" parameters="{[authenticated.user.username]}" />
-		<l10n:ResourceProxy 		property="imgHeader.source" 	key="login.header" type="class" />
+	<l10n:ResourceInjector bundleName="login" target="{MainView}" localeChange="onLocaleChanged(event);" >
+		<l10n:ResourceSetter 		property="btnLogout.label" 		key="login.signOut" />
+		<l10n:ResourceSetter 		property="txtWelcomeUser.text" 	key="login.welcome" parameters="{[authenticated.user.username]}" />
+		<l10n:ResourceSetter 		property="imgHeader.source" 	key="login.header" type="class" />
 		<!-- 
 		      Would be better to inject a new styleName or a new styleSheet 
 			  Note: The login and logout buttons have custom skins with states.
 		            Because we are modifying the colors of skin part manually (instead of different styleName)
 		            we must manually invalidate to force immediate redraws. (see lines 83/89).
 		-->
-		<l10n:ResourceProxy 		property="contentContainer.backgroundColor" key="content.background.color" />
-		<l10n:ResourceProxy 		property="contentFrame.color" 				key="content.frame.color" />
-		<l10n:ResourceProxy 		property="btnLogout.backgroundColor" 		key="content.frame.color" />
-	</l10n:SmartResourceInjector>
+		<l10n:ResourceSetter 		property="contentContainer.backgroundColor" key="content.background.color" />
+		<l10n:ResourceSetter 		property="contentFrame.color" 				key="content.frame.color" />
+		<l10n:ResourceSetter 		property="btnLogout.backgroundColor" 		key="content.frame.color" />
+	</l10n:ResourceInjector>
 	
-	<l10n:SmartResourceInjector bundleName="login" target="{LoginView}" localeChange="onLocaleChanged(event);" >
-		<l10n:ResourceProxy 		property="fiUserName.label" 	key="login.form.fiUserName" />
-		<l10n:ResourceProxy 		property="fiPassword.label" 	key="login.form.fiPassword" />
-		<l10n:ResourceProxy 		property="loginBtn.label" 		key="login.submit" />
-		<l10n:ResourceProxy 		property="lblHint.text" 		key="login.tip" />
+	<l10n:ResourceInjector bundleName="login" target="{LoginView}" localeChange="onLocaleChanged(event);" >
+		<l10n:ResourceSetter 		property="fiUserName.label" 	key="login.form.fiUserName" />
+		<l10n:ResourceSetter 		property="fiPassword.label" 	key="login.form.fiPassword" />
+		<l10n:ResourceSetter 		property="loginBtn.label" 		key="login.submit" />
+		<l10n:ResourceSetter 		property="lblHint.text" 		key="login.tip" />
 		
-		<l10n:ResourceProxy 	property="loginBtn.backgroundColor" key="content.frame.color" />
-	</l10n:SmartResourceInjector>
+		<l10n:ResourceSetter 	property="loginBtn.backgroundColor" key="content.frame.color" />
+	</l10n:ResourceInjector>
 	
-	<l10n:SmartResourceInjector bundleName="employees" target="{EmployeeListNavigation}" >
-		<l10n:ResourceProxy 		property="btnCreate.label" 	key="users.buttons.create" />
-		<l10n:ResourceProxy 		property="btnEdit.label" 	key="users.buttons.edit" />
-		<l10n:ResourceProxy 		property="btnDelete.label" 	key="users.buttons.delete" />
-	</l10n:SmartResourceInjector>
+	<l10n:ResourceInjector bundleName="employees" target="{EmployeeListNavigation}" >
+		<l10n:ResourceSetter 		property="btnCreate.label" 	key="users.buttons.create" />
+		<l10n:ResourceSetter 		property="btnEdit.label" 	key="users.buttons.edit" />
+		<l10n:ResourceSetter 		property="btnDelete.label" 	key="users.buttons.delete" />
+	</l10n:ResourceInjector>
 	
-	<l10n:SmartResourceInjector bundleName="employees" target="{EmployeeDetailNavigation}" >
-		<l10n:ResourceProxy 		property="btnBack.label" 	key="users.buttons.back" />
-	</l10n:SmartResourceInjector>
+	<l10n:ResourceInjector bundleName="employees" target="{EmployeeDetailNavigation}" >
+		<l10n:ResourceSetter 		property="btnBack.label" 	key="users.buttons.back" />
+	</l10n:ResourceInjector>
 	
-	<l10n:SmartResourceInjector bundleName="employees" target="{EmployeeDetail}" >
-		<l10n:ResourceProxy 		property="fiFirstName.label" 	key="form.fiFirstName" />
-		<l10n:ResourceProxy 		property="fiLastName.label" 	key="form.fiLastName" />
-		<l10n:ResourceProxy 		property="fiStartDate.label" 	key="form.fiStartDate" />
-		<l10n:ResourceProxy 		property="fiEmail.label" 		key="form.fiEmail" />
-		<l10n:ResourceProxy 		property="btnSubmit.label" 		key="form.buttons.submit" />
-		<l10n:ResourceProxy 		property="btnDelete.label" 		key="form.buttons.delete" />
+	<l10n:ResourceInjector bundleName="employees" target="{EmployeeDetail}" >
+		<l10n:ResourceSetter 		property="fiFirstName.label" 	key="form.fiFirstName" />
+		<l10n:ResourceSetter 		property="fiLastName.label" 	key="form.fiLastName" />
+		<l10n:ResourceSetter 		property="fiStartDate.label" 	key="form.fiStartDate" />
+		<l10n:ResourceSetter 		property="fiEmail.label" 		key="form.fiEmail" />
+		<l10n:ResourceSetter 		property="btnSubmit.label" 		key="form.buttons.submit" />
+		<l10n:ResourceSetter 		property="btnDelete.label" 		key="form.buttons.delete" />
 		
-		<l10n:ResourceProxy 		property="scaleX" 				key="form.scaling" />
-		<l10n:ResourceProxy 		property="scaleY" 				key="form.scaling" />
-	</l10n:SmartResourceInjector>
+		<l10n:ResourceSetter 		property="scaleX" 				key="form.scaling" />
+		<l10n:ResourceSetter 		property="scaleY" 				key="form.scaling" />
+	</l10n:ResourceInjector>
 	
-	<l10n:SmartResourceInjector  bundleName="language" target="{LanguageBar}">
-		<l10n:ResourceProxy 		property="lblBarHelp.text" 		key="languagebar.title" 	parameters="{['target.selectedLocale']}" />
+	<l10n:ResourceInjector  bundleName="language" target="{LanguageBar}">
+		<l10n:ResourceSetter 		property="lblBarHelp.text" 		key="languagebar.title" 	parameters="{['target.selectedLocale']}" />
 		<!--
 			See LocaleAssets for sort order on Flags 
 		-->
-		<l10n:ResourceProxy  		property="flags[0].toolTip" 	key="flag.toolTip.en_US" />
-		<l10n:ResourceProxy  		property="flags[1].toolTip" 	key="flag.toolTip.es_ES" />
-	</l10n:SmartResourceInjector>
+		<l10n:ResourceSetter  		property="flags[0].toolTip" 	key="flag.toolTip.en_US" />
+		<l10n:ResourceSetter  		property="flags[1].toolTip" 	key="flag.toolTip.es_ES" />
+	</l10n:ResourceInjector>
 	
 	
 	

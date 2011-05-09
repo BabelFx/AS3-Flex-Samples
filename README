@@ -4,10 +4,10 @@ Using the l10nInjection.swc, these samples demonstrate real-world usages and the
 
 This GIT repository contains the following samples
 
-* GettingStarted - Application that demonstrates how easy it is to add BabelFx localization.
-* Intranet - Localization with Modules and Mate IoC framework
-* FlexStore4 - Localization with external, dynamcially loaded resource bundles
-* Registration - Localization with Cairgorm and Forms. Localization of PNGs, skins, and text.
-* CafeTownser - Localization with Swiz
-* ViewStates - Localization with Flex 4 and runtime view states.
+* GettingStarted - Beginner project with steps that demonstrates how easy it is to add BabelFx localization.
+* Intranet       - Localization with Modules and Mate IoC framework
+* FlexStore4     - Localization with external, dynamcially loaded resource bundles
+* Registration   - Localization with Cairgorm and Forms. Localization of PNGs, skins, and text.
+* CafeTownsend   - Localization with Swiz
+* ViewStates     - Localization with Flex 4 and runtime view states.
  

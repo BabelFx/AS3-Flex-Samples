@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LocaleMap  
+	enableLog="true" 
+	xmlns="http://l10n.babelfx.org/"  
+	xmlns:mx="http://www.adobe.com/2006/mxml" >
+	
+	<mx:Metadata>
+		[ResourceBundle("start")]
+	</mx:Metadata>
+	
+	<ResourceInjector target="{Main}" bundleName="start">
+		<ResourceSetter property="testLabel.text" key="test" />
+	</ResourceInjector>
+	
+</LocaleMap>

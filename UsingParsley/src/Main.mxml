@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application  minWidth="200" minHeight="150"
+				preinitialize="FlexContextBuilder.build(ApplicationContext)"
+				xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   	xmlns:s="library://ns.adobe.com/flex/spark" 
+			   	xmlns:mx="library://ns.adobe.com/flex/mx"
+			   	xmlns:spicefactory="http://www.spicefactory.org/parsley" xmlns:flex="org.spicefactory.parsley.flex.*">
+	
+	<fx:Script>
+		<![CDATA[						
+			import mx.logging.LogEventLevel;
+			import org.spicefactory.parsley.flex.FlexContextBuilder;
+			
+			private function onChangeLocale():void {
+				switch ( String(resourceManager.localeChain[0]) ) {
+					case 'en_US'	:   resourceManager.localeChain = ['fr_FR','en_US'];	break;
+					case 'fr_FR'	:   resourceManager.localeChain = ['en_US','fr_FR'];	break;
+				}
+			}
+		]]>
+	</fx:Script>
+	
+	<s:VGroup x="100" y="25" gap="50">
+		
+		<s:Label id="testLabel" text="---------"/>
+					  
+		<s:Button label="Change Locale"	click="{onChangeLocale()}"/>
+		
+	</s:VGroup>
+	
+</s:Application>

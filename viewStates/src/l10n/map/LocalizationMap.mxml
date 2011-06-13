@@ -72,7 +72,11 @@
 		
 		-->
 		
-		<ResourceInjector target="{ViewStates}" bundleName="commons" localeChange="onLocaleChange(event);" >			
+		<ResourceInjector target="{ViewStates}" bundleName="commons" localeChange="onLocaleChange(event);" >
+			
+			<ResourceSetter property="logTitles"  					key="btnEnableLog.title" 	type="array"/>
+			<ResourceSetter property="btnEnableLogging.toolTip"  	key="btnEnableLog.toolTip" 				/>
+			
 			<ResourceSetter property="txtTitle.text"  	key="title.normal" state="normal" />
 			<ResourceSetter property="txtTitle.text"  	key="title.small"  state="small"  />
 

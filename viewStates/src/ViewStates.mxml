@@ -30,6 +30,7 @@ states with flex 4 new syntax. You have known it, right?
 	
 	<fx:Script>
 		<![CDATA[
+			import mx.collections.ArrayCollection;
 			import mx.core.ContainerCreationPolicy;
 			import mx.events.CollectionEvent;
 			import mx.events.CollectionEventKind;
@@ -54,20 +55,40 @@ states with flex 4 new syntax. You have known it, right?
 				introList.dispatchEvent(announce);
 			}
 			
+			public function set logTitles(datasource:Array):void {
+				_logTitles = datasource
+				btnEnableLogging.label = _logTitles[l10nMap.enableLog ? 1 : 0]; 
+			}
+			[Bindable]
+			private var _logTitles : Array = new Array(['Enable Logging', 'Disable Logging']);
+			
 		]]>
 	</fx:Script>
 
 	<!-- NOTE: this view component dispatches a LocaleEvent.CHANGE_LOCALE -->
 	<views:LanguageBar y="10" x="700"  x.normal="700" y.normal="6"/>
 	
-	<s:Button label="{l10nMap.enableLog ? 'Disable Logging' : 'Enable Logging'}" x="300" y="22" click="l10nMap.enableLog = !l10nMap.enableLog" toolTip="Enable l10nInjection activity logging in trace console."/>
-	<s:Button id="btnChangeViewState" label="Toggle View State" x="50" y="22" click="onToggleViewState();" toolTip="Change view states to see how 1l0 injection works with states and deferred creations."/>
+	<s:Button id="btnEnableLogging"
+			  label="{ _logTitles[l10nMap.enableLog ? 1 : 0] as String }" 
+			  x="300" y="22" 
+			  
+			  click="l10nMap.enableLog = !l10nMap.enableLog" 
+			  toolTip="Enable BabelFx activity logging in trace console."/>
+	
+	<s:Button id="btnChangeViewState" 
+			  label="Toggle View State" 
+			  x="50" y="22" 
+			  click="onToggleViewState();" 
+			  toolTip="Change view states to see how 1l0 injection works with states and deferred creations."/>
 	
 	
-	<s:TextArea id="txtDescription" x="50" y="50" width="900" borderVisible="false"  width.normal="850" height.normal="65" x.normal="50" y.normal="48">
+	<s:TextArea id="txtDescription" 
+				x="50" y="50" width="900" 
+				width.normal="850" height.normal="65" x.normal="50" y.normal="48"
+				borderVisible="false">
 		<s:text>
 			This is a sample l10n application to demonstrate the use of view states and deferred creation policies in containers.
-			Both Halo and Spark containers and components are used. All elements responds properly to both view state changes and l10nInjection 
+			Both Halo and Spark containers and components are used. All elements responds properly to both view state changes and BabelFx 
 			changes. Notice that both the "Toggle View state" button and the Localization map update a non-UI data model; a data model that
 			is used within the components and containers.
 		</s:text>

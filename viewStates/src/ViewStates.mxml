@@ -30,11 +30,9 @@ states with flex 4 new syntax. You have known it, right?
 	
 	<fx:Script>
 		<![CDATA[
-			import mx.collections.ArrayCollection;
 			import mx.core.ContainerCreationPolicy;
 			import mx.events.CollectionEvent;
 			import mx.events.CollectionEventKind;
-			import mx.events.PropertyChangeEvent;
 			
 			/**
 			 * Toggle the view state of the application, then change a value in the ArrayList data model...
@@ -59,8 +57,9 @@ states with flex 4 new syntax. You have known it, right?
 				_logTitles = datasource
 				btnEnableLogging.label = _logTitles[l10nMap.enableLog ? 1 : 0]; 
 			}
+			
 			[Bindable]
-			private var _logTitles : Array = new Array(['Enable Logging', 'Disable Logging']);
+			private var _logTitles : Array = ['Enable Logging', 'Disable Logging'];
 			
 		]]>
 	</fx:Script>
@@ -69,9 +68,8 @@ states with flex 4 new syntax. You have known it, right?
 	<views:LanguageBar y="10" x="700"  x.normal="700" y.normal="6"/>
 	
 	<s:Button id="btnEnableLogging"
-			  label="{ _logTitles[l10nMap.enableLog ? 1 : 0] as String }" 
 			  x="300" y="22" 
-			  
+			  label="{ _logTitles[l10nMap.enableLog ? 1 : 0] as String }" 
 			  click="l10nMap.enableLog = !l10nMap.enableLog" 
 			  toolTip="Enable BabelFx activity logging in trace console."/>
 	
@@ -104,6 +102,7 @@ states with flex 4 new syntax. You have known it, right?
 	<!-- ************************************************
 		OK. In halo components, everything is OK, too.
 	************************************************  -->
+	
 	<mx:Accordion  left="50" bottom="100" top="163" >
 		<mx:Canvas id="introView" label="Introduction"
 				   width="100%" height="100%">
@@ -141,6 +140,7 @@ states with flex 4 new syntax. You have known it, right?
 	<!-- ************************************************
 		Use of ViewStack with NavigatorContent
 	************************************************ -->
+	
 	<s:Label text="TabNavigator (container CreatonPolicy.AUTO) w/ NavigatorContent" x="600" y="140" fontSize="9"/>
 	
 	<mx:TabNavigator creationPolicy="{ContainerCreationPolicy.AUTO}" x="600" width="300" bottom="100" top="163">

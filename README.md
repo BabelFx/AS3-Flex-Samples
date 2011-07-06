@@ -17,5 +17,5 @@ Using the [Framework_BabelFx.swc](https://github.com/BabelFx/AS3-Flex-Library/bi
 * Registration   - Localization with Cairgorm and Forms. Localization of PNGs, skins, and text.
 * CafeTownsend   - Localization with Swiz
 * ViewStates     - Localization with Flex 4 and runtime view states.
- 
-
+* Using Parsley  - Localization with Parsley Ioc Framework
+* Using ItemRenderers - Localization with ItemRenderers (Spark)

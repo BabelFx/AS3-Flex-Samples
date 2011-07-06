@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application minWidth="1024" minHeight="768" 
+			   xmlns:map="l10n.map.*" 
+			   xmlns:views="l10n.views.*" 
+			   xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" 
+			   xmlns:mx="library://ns.adobe.com/flex/mx"
+			   viewSourceURL="srcview/index.html">
+	
+	<fx:Script>
+		<![CDATA[
+			import spark.layouts.VerticalLayout;
+		
+		[Bindable]
+		public var artists : Array = [ 
+										{ artist : "Thomas Burleson", 		url : "www.gridlinkked.info" },
+										{ artist : "Christine Schneide", 	url : "www.t-online.de" }
+									 ];
+		]]>
+	</fx:Script>
+	
+	<fx:Declarations>
+		
+		<map:LocalizationMap id="l10nMap"  xmlns:locale="*"/>
+		
+	</fx:Declarations>
+	
+	<s:Group x="50" y="50" layout="{new VerticalLayout}" >
+		
+		<views:LanguageBar /> 
+		<locale:MyEditor dataProvider="{ artists }" xmlns:locale="*"/>
+		
+	</s:Group>
+	
+</s:Application>

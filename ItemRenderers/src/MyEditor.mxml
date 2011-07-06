@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		 xmlns:s="library://ns.adobe.com/flex/spark" 
+		 xmlns:mx="library://ns.adobe.com/flex/mx" width="400" height="300">
+	
+	<fx:Script>
+		<![CDATA[
+			import mx.collections.ArrayCollection;
+			
+			[Bindable]
+			public var dataProvider : Array;
+			
+			[Bindable]
+			public var link : String = "Show Artist";
+			
+			[Bindable]
+			public var linkTip : String = "Show Artist Details";
+		]]>
+	</fx:Script>
+	
+	<s:layout>
+		<s:VerticalLayout />
+	</s:layout>
+	
+	<s:Label 	id="lblTitle" 	text="Go to:"/>
+	<s:Button 	id="btnGo" 		label="Home" />
+	
+	<mx:Spacer height="10" />
+	
+	<s:List dataProvider="{ new ArrayCollection(dataProvider) }">
+		<s:itemRenderer>
+			<fx:Component>
+				<mx:HBox>
+					<s:Button id="btnLink" label="{outerDocument.link}" toolTip="{outerDocument.linkTip}"/>
+					<s:Label text="{data.artist}" />
+				</mx:HBox>
+			</fx:Component>
+		</s:itemRenderer>
+	</s:List>
+	
+	
+</s:Group>

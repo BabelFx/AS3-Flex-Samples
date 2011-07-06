@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LocaleMap 	enableLog="true"
+			xmlns="http://l10n.babelfx.org/"  
+			xmlns:fx="http://ns.adobe.com/mxml/2009">
+	
+			<fx:Metadata>
+				[ResourceBundle("commons")]
+			</fx:Metadata>
+	
+	<fx:Declarations>
+		
+		<ResourceInjector target="{MyEditor}" bundleName="commons" >
+			
+			<ResourceSetter property="lblTitle.text"  	key="editor.title" 		/>
+			<ResourceSetter property="btnGo.label"  	key="editor.btnGo" 		/>
+			
+			
+			<ResourceSetter property="link"  			key="editor.btnLink" 		/>
+			<ResourceSetter property="linkTip"  		key="editor.linkTip" 	/>
+			
+		</ResourceInjector>
+		
+		
+
+	</fx:Declarations>
+	
+</LocaleMap>

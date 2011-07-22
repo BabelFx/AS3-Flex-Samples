@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project name="Example resource bundle builder" basedir="." default="main">
+	<taskdef resource="flexTasks.tasks"
+		classpath="${basedir}/libs/flexTasks.jar"/>
+	
+	<!-- CHANGE TO YOUR FLEX DIRECTORY //-->
+	<property name="FLEX_HOME" value="C:/Program Files/Adobe/Flex Builder 3/sdks/3.0.0"/>
+	
+	<property name="APP_ROOT" value="myApp"/>
+	<target name="main">
+		<antcall target="en_US"></antcall>
+		<antcall target="de_DE"></antcall>
+	</target>
+	<target name="en_US">
+		<mxmlc>
+			<locale>en_US</locale>
+			<source-path>locale/{locale}</source-path>
+			<include-resource-bundles>mainBundle</include-resource-bundles>
+			<!--<include-resource-bundles>anotherBundle</include-resource-bundles>-->
+			<output>bin-debug/Resources_en_US.swf</output>
+		</mxmlc>
+	</target>
+	<target name="de_DE">
+		<mxmlc>
+			<locale>de_DE</locale>
+			<source-path>locale/{locale}</source-path>
+			<compiler.library-path dir="${FLEX_HOME}/frameworks" append="false">
+				<include name="libs" />
+			</compiler.library-path>
+			
+			<include-resource-bundles>mainBundle</include-resource-bundles>
+			<!--<include-resource-bundles>anotherBundle</include-resource-bundles>-->
+			<output>bin-debug/Resources_de_DE.swf</output>
+		</mxmlc>
+	</target>
+</project>

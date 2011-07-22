@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<fxpProperties abbreviated="false" authoringTool="Flex Builder" compiles="true" parentProject="304c16cf-bd7e-4b3d-8a18-310bf8b076b6" projectUUID="304c16cf-bd7e-4b3d-8a18-310bf8b076b6" pureCatalystProject="false" sdkVersion="4.5.1" uuid="5823a12e-3ba1-49d1-b6bd-ade31d4d73cf" version="15">
+  <projects/>
+  <src>
+    <linked isMain="false" location="locales/{locale}" path="locales/{locale}" position="0" uuid="5823a12e-3ba1-49d1-b6bd-ade31d4d73cf"/>
+  </src>
+  <swc>
+    <linked location="sdkPlaceHolder" path="sdkPlaceHolder" position="0" uuid="5823a12e-3ba1-49d1-b6bd-ade31d4d73cf"/>
+    <linked location="C:/Documents and Settings/blancgp.AP/Adobe Flash Builder 4.5/ParameterTest/libs" path="/libs" position="1" uuid="5823a12e-3ba1-49d1-b6bd-ade31d4d73cf"/>
+  </swc>
+  <misc/>
+  <theme/>
+  <mxmlFormattingPrefs groupAttributesByState="true" maxLineWidth="100" mxmlAlignAttributes="true" mxmlAttributeOrder="id,userLabel,includeIn,excludeFrom,visible,x,y,z,left,right,top,bottom,width,height,minWidth,minHeight,maxWidth,maxHeight,label" mxmlKeepAttributeValuesOrganized="true"/>
+</fxpProperties>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" 
+			   xmlns:mx="library://ns.adobe.com/flex/mx" minWidth="955" minHeight="600" xmlns:l10n="l10n.*" click="incrementCounter(event)">
+	
+	<fx:Script>
+		<![CDATA[
+			import mx.events.ResourceEvent;
+			
+			import org.babelfx.events.LocaleEvent;
+			protected function incrementCounter(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				map.counter ++;
+				
+				trace("Counter is now: " + map.counter);
+			}
+		]]>
+	</fx:Script>
+	
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+		<l10n:AppLocaleMap id="map"/>
+	</fx:Declarations>
+	
+	<s:Label id="clickCount" />
+</s:Application>

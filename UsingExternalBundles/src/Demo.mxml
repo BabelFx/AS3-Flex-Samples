@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" 
+			   xmlns:views="l10n.views.*"
+			   xmlns:mx="library://ns.adobe.com/flex/mx" minWidth="955" minHeight="600">
+	
+	<fx:Declarations>
+		<l10:LocalizationMap   xmlns:l10="l10n.maps.*" />
+	</fx:Declarations>
+	
+	<fx:Script>
+		<![CDATA[
+			import mx.controls.Alert;
+			
+			import org.babelfx.events.LocaleEvent;
+		]]>
+	</fx:Script>
+
+	
+	<mx:Button 	x="146" y="115" 
+				label="fr_FR" 
+				click="dispatchEvent(new LocaleEvent(LocaleEvent.LOAD_LOCALE,'fr_FR'));"  />
+	
+	<mx:Button 	x="267" y="115" 
+				label="en_US" 
+				click="dispatchEvent(new LocaleEvent(LocaleEvent.LOAD_LOCALE,'en_US'))"  />
+	
+	<s:Label id="lblTest" x="146" y="48"/>
+	
+	<s:Label x="147" y="149" width="190" text="{'Current Locale = '+resourceManager.localeChain[0]}"/>
+
+</s:Application>

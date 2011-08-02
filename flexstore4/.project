@@ -19,7 +19,7 @@
 		<link>
 			<name>bin-debug</name>
 			<type>2</type>
-			<location>/Developer/servers/railo-jetty/webroot/babelfx/l10n_FlexStore</location>
+			<location>/mnt/data/static/l10n_FlexStore</location>
 		</link>
 	</linkedResources>
 </projectDescription>

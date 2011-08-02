@@ -93,7 +93,7 @@
 	<fx:Declarations>
 		<s:HTTPService 	id="catalogLoader"
 						useProxy="false"
-						url="/assets/data/catalog_en_US.xml" 
+						url="assets/data/catalog_en_US.xml" 
 						result="onCatalogLoaded(event)"/>
 	</fx:Declarations>
 	

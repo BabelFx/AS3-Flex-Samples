@@ -6,21 +6,34 @@
 					xmlns:l10n="http://l10n.babelfx.org/" >
 	
 	<!--
-	   The meta data tags below reference bundles so embedding process works; 
-	   if ExternalLocaleCommand is used for runtime loaded, then disable this section 
-
-		Compiler args 
-			
-			-locale=en_US -allow-source-path-overlap=true -source-path+=l10n/locale/{locale}
+	   The meta data tags below reference bundles so embedding process works.
 	
-		With the above compiler args, we insure that the en_US bundle (property file) is embedded;
-	    and available by default. 
+	   If you want to use runtime, external bundles: then
+	
+		   1) Set Project Properties > Flex Compiler > Additional compiler arguments
+				-locale=en_US 
+				-allow-source-path-overlap=true 
+				-source-path+=l10n/locale/{locale}
+		   2) Enable <l10n:commandFactory> in line 94
+		   3) Use the ANT build scripts to build and deploy the en_US.swf, es_ES.swf (etc) resource bundles
+		
+		With the above compiler args, we insure that compiler/link embeds the the en_US bundle (property file);
+	    and available by default.
+	
+		NOTE: If you want to embed all the resources into the application swf
+	
+			1) Set Project Properties > Flex Compiler > Additional compiler arguments
+				-locale=en_US,es_ES,fr_FR,zh_CN 
+				-allow-source-path-overlap=true 
+				-source-path+=l10n/locale/{locale}
+			2) DISABLE <l10n:commandFactory> in line 94
+	
+	-->
 	
 	<mx:Metadata>
 		[ResourceBundle("store")]
 		[ResourceBundle("language")]
 	</mx:Metadata>
-	-->
 	
 	
 	<mx:Script>
@@ -49,11 +62,11 @@
 			 */
 			private function onLocaleChanged(event:Event):void {
 				var sri 	: ResourceInjector  = (event.target as ResourceInjector);
-				var details : PhoneDetails           = sri.targetInstances[0] as PhoneDetails; 
+				var view	: PhoneDetails           = sri.targetInstances[0] as PhoneDetails; 
 				var catalog : Catalog				 = sri.targetInstances[0] as Catalog;
 				
 				// And clear out the text description area...
-				if (details != null) 	details.phone = null;
+				if (view != null) 		view.details  = null;
 				if (catalog != null)    _catalog      = catalog;
 				
 				reloadPhones();
@@ -80,11 +93,11 @@
 		]]>
 	</mx:Script>
 	
-	<!-- 
+	<!-- (1)
 		The command factory instance below allows the l10nInjection engine to load external resource bundles from
 	     a custom deploy directory 'assets/locales/' name encoded by locale code
 	     e.g.  en_US.swf, zh_CN.swf, etc.
-	-->
+	
 	<l10n:commandFactory>
 		 <factory:ClassFactory generator="{ExternalLocaleCommand}">
 			 <factory:properties>
@@ -92,6 +105,7 @@
 			 </factory:properties>
 		 </factory:ClassFactory>
 	</l10n:commandFactory>
+	-->
 	
 	
 	<l10n:ResourceInjector bundleName="store" target="{Catalog}" localeChange="onLocaleChanged(event);">

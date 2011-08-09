@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group height="40"  
+		 alpha="0"
+		 creationComplete="onInitView();"
+		 xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		 xmlns:s="library://ns.adobe.com/flex/spark" 
+		 xmlns:mx="library://ns.adobe.com/flex/mx" >
+
+	<fx:Script>
+		<![CDATA[
+			import org.babelfx.events.LocaleEvent;
+			
+			import l10n.view.assets.LocaleAssets;
+			
+			import mx.controls.Image;
+			import mx.events.PropertyChangeEvent;
+			
+			
+			[Bindable('propertyChange')]
+			public function get selectedLocale():String   {  return _locale;	}
+
+			
+			/**
+			 * Special accessor to allow l10n injection into the tooltip text on each Flag buttons
+			 */
+			public function get flags():Array 			  { return _buttons; }
+			
+			// *********************************************************
+			// Overriden Methods 
+			// *********************************************************
+			
+			override protected function createChildren():void {
+				super.createChildren();
+				buildLocaleButtons();
+			}
+			
+			// *********************************************************
+			// EventHandlers 
+			// *********************************************************
+
+			private function onInitView():void {
+				// Fade in the entire langugage bar...
+				var effect: Fade  = this.fadeIn;
+				var timer : Timer = new Timer(750,1);
+				
+				    timer.addEventListener(	TimerEvent.TIMER,
+										  	function(event:TimerEvent):void {
+												fadeIn.play();
+											},false, 0, true);
+					timer.start();
+			}
+			
+			/**
+			 * Eventhandler triggered to switch to the specified locale; locale desired is
+			 *  based on the Flag image button selected.
+			 */
+			private function onLoadLocale(event:Event=null,src:Image=null):void {
+				var img    : Image  = event ? event.currentTarget as Image : src;
+				
+				showAsSelected(img);
+				_locale = LocaleAssets.getLocaleFor(Class(img.source));
+				
+				// Dispatch an l10nInjection event to trigger locale switching
+				// Then notify any watchers that the locale value has changed...
+				dispatchEvent(new LocaleEvent(LocaleEvent.LOAD_LOCALE,_locale));
+				dispatchEvent(PropertyChangeEvent.createUpdateEvent(this,"selectedLocale",null,_locale));
+			}
+			
+			// *********************************************************
+			// Private Methods 
+			// *********************************************************
+
+			/**
+			 * Build the locale image Flags dynamically using the LocaleAssets.
+			 * Additions/Modifications to the LocaleAssets will automatically change
+			 * the image buttons shown and work with the LocalizationMaps.
+			 * 
+			 */
+			private function buildLocaleButtons():void {
+				_buttons = new Array;
+				
+				for (var j:int=0; j<LocaleAssets.allFlags.length; j++) {
+					var flag: Class = LocaleAssets.allFlags[j] as Class;
+					var img : Image = new Image;
+					
+						img.buttonMode 	  = true;
+						img.useHandCursor = true;
+						img.filters 	  = [shadow];
+					    img.source        = flag;
+						img.toolTip 	  = LocaleAssets.getTitleFor(flag);
+						img.scaleX        = .75;
+						img.scaleY        = .75;
+						img.addEventListener(MouseEvent.CLICK, onLoadLocale);
+						
+					addElement(img);
+					_buttons.push(img);
+					
+					// Current OS matches this locale... so simulate click on button
+					var locale : String = LocaleAssets.getLocaleFor(flag);
+					if (locale.indexOf(Capabilities.language) > -1) {
+						onLoadLocale(null,img);
+					}
+				}				
+			}
+			
+			/**
+			 *  Hide the dropShadow on the Flag button for the loaded locale
+			 * 
+			 *  @param selected Image button which was just "clicked"  
+			 */
+			private function showAsSelected(selected:Image):void {
+				for (var j:int=0; j<numElements; j++) {
+					var img : Image = getElementAt(j) as Image;
+					if (img == null) continue;
+					
+					img.filters = (img == selected) ? [] : [shadow];
+					img.alpha   = (img == selected) ? .3 : 1;
+				}
+			}
+			
+			private var _buttons : Array  = [];
+			private var _locale  : String = "";
+		]]>
+	</fx:Script>
+	
+	<fx:Declarations>
+		<s:Fade 			 id="fadeIn" duration="450" alphaTo="1" target="{this}"  />
+		<mx:DropShadowFilter id="shadow" blurX="4" blurY="4" alpha=".4" angle="45" />
+	</fx:Declarations>
+	
+	<s:layout>
+		<s:HorizontalLayout horizontalAlign="right" verticalAlign="middle" />
+	</s:layout>
+	
+	<s:Label id="lblBarHelp" text="Switch to locale:" alpha=".5" fontSize="9" />
+	<mx:Spacer width="10" height="1" />
+	
+</s:Group>

@@ -1,0 +1,22 @@
+<swiz:BeanProvider
+	xmlns:fx="http://ns.adobe.com/mxml/2009"
+	xmlns:swiz="http://swiz.swizframework.org"
+	xmlns:mx="library://ns.adobe.com/flex/mx" >
+
+	<fx:Declarations>
+		
+		<!-- Remote objects -->
+        <mx:RemoteObject id="remoteObjectHt" destination="serviceHt" channelSet="{channelSetHelper}"/>
+        <mx:RemoteObject id="remoteObjectHtSecure" destination="serviceHt" channelSet="{channelSetHelperSecure}"/>
+		<mx:RemoteObject id="remoteObjectHtLogin" destination="serviceHtLogin" channelSet="{channelSetHelper}"/>
+        <mx:RemoteObject id="remoteObjectHtSecureLogin" destination="serviceHtLogin" channelSet="{channelSetHelperSecure}"/>		
+
+	    <swiz:ChannelSetHelper id="channelSetHelper" protocol="http" serverName="trackitude" serverPort="8080" contextRoot=""
+                               endPointName="messagebroker/habittracker-amf" />
+        <swiz:ChannelSetHelper id="channelSetHelperSecure" protocol="https" serverName="trackitude" serverPort="8443" contextRoot=""
+                               endPointName="messagebroker/habittracker-secure-amf" />
+        <swiz:ServiceHelper id="serviceHelper" />
+
+	</fx:Declarations>
+		
+</swiz:BeanProvider>

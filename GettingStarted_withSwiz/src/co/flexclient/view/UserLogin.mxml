@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:TitleWindow xmlns:fx="http://ns.adobe.com/mxml/2009" 
+               xmlns:s="library://ns.adobe.com/flex/spark" 
+               xmlns:mx="library://ns.adobe.com/flex/mx" 
+			   xmlns:view="l10n.view.*"
+			   xmlns:component="co.flexclient.view.component.*"
+			   title="Please Login..."
+			   width="360"	height="210"
+			   borderVisible="true"
+			   creationComplete="username.setFocus();">
+			   
+	<fx:Script>
+		<![CDATA[
+			import co.flexclient.event.LoginEvent;
+			import co.flexclient.model.domainmodel.UserVO;
+		
+			[Bindable]
+			[Inject(source="userModel.user")] 
+			public var user : UserVO;
+			
+			protected function onLogin():void 
+			{
+				dispatchEvent(new LoginEvent(LoginEvent.LOGIN,username.text,password.text) );
+			}
+			
+		]]>
+	</fx:Script>
+	
+	<s:Form id="formLogin" width="100%" height="100%" backgroundColor="0xeeeeee">
+		<s:layout>
+             <s:FormLayout gap="-10"/>
+        </s:layout> 
+		<view:LanguageBar />
+		
+		<s:Label id="labelFaultCode" color="red" fontWeight="bold" visible="false"
+				 paddingTop="10" paddingBottom="10" paddingLeft="10" />
+		<s:FormItem id="formItemUsername" sequenceLabel="1:" required="true">
+            <s:TextInput id="username" width="100%" text="{ user.username }"/>
+        </s:FormItem>
+		<s:FormItem id="formItemPassword" sequenceLabel="2:" required="true">
+            <s:TextInput id="password" width="100%" displayAsPassword="true"  text="{ user.password }"/>
+        </s:FormItem>
+		<s:FormItem>
+			<s:layout>
+                <s:HorizontalLayout horizontalAlign="right" />
+            </s:layout>
+			<s:Button label="Login" click="onLogin();" />
+		</s:FormItem>
+	</s:Form>
+	
+</s:TitleWindow>

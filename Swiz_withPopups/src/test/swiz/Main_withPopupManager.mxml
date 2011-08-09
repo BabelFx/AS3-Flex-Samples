@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark"
+			   xmlns:swiz="http://swiz.swizframework.org"
+			   minWidth="955" minHeight="600">
+
+	<fx:Declarations>
+		
+		<swiz:Swiz id="swiz">
+			<swiz:loggingTargets>
+				<swiz:SwizTraceTarget/>
+			</swiz:loggingTargets>
+
+			<swiz:config>
+				<swiz:SwizConfig eventPackages="test.swiz.events.*" 
+								 viewPackages="test.swiz.views.*"/>
+			</swiz:config>
+
+			<swiz:BeanProvider>
+				<fx:Array>
+					<swiz:Prototype type="{Foo}"/>
+					
+					<!-- BabelFx Localization Configuration -->
+					<l10n:LocalizationMap   xmlns:l10n="l10n.*"/>
+					
+				</fx:Array>
+			</swiz:BeanProvider>
+		</swiz:Swiz>
+		
+		
+	</fx:Declarations>
+
+	<fx:Script>
+		<![CDATA[
+			import mx.core.IFlexDisplayObject;
+			import mx.events.CloseEvent;
+			import mx.managers.PopUpManager;
+			
+			import org.swizframework.events.BeanEvent;
+			
+			import test.swiz.models.Foo;
+			import test.swiz.views.FooViewer;
+
+			
+			/**
+			 * Show popup content and register view bean with Swiz (so [Inject] works)
+			 * Attach listener to closure to cleanup and close popup when the "close" event is detected 
+			 */
+			protected function onShowPopup(event:MouseEvent):void
+			{
+					/**
+					 * Closure/callback use to close the popup and unregister the swiz bean
+					 */
+					function onClosePopup(e:CloseEvent):void
+					{
+						var who : IFlexDisplayObject = e.target as IFlexDisplayObject;
+							who.removeEventListener(CloseEvent.CLOSE,onClosePopup);
+						
+						PopUpManager.removePopUp(who);
+						dispatchEvent(new BeanEvent(BeanEvent.TEAR_DOWN_BEAN,who));	
+					}
+				
+				var target:IFlexDisplayObject = PopUpManager.createPopUp(this,FooViewer);
+					target.addEventListener(CloseEvent.CLOSE,onClosePopup,false,0,true);
+				
+				PopUpManager.centerPopUp(target);
+				dispatchEvent(new BeanEvent(BeanEvent.SET_UP_BEAN,target));
+			}
+			
+			
+		]]>
+	</fx:Script>
+
+	<s:layout>
+		<s:VerticalLayout horizontalAlign="center" verticalAlign="middle"/>
+	</s:layout>
+
+	<s:Button id="createPopUpButton" label="PopUp" click="onShowPopup(event)"/>
+</s:Application>

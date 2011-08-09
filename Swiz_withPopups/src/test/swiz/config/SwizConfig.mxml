@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<swiz:Swiz  xmlns:swiz="http://swiz.swizframework.org"
+			xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			xmlns:mx="library://ns.adobe.com/flex/mx" xmlns:config="co.flexclient.config.*" >
+	<fx:Script>
+		<![CDATA[
+			import test.swiz.models.Foo;
+		]]>
+	</fx:Script>
+	
+	<swiz:loggingTargets>
+		<swiz:SwizTraceTarget/>
+	</swiz:loggingTargets>
+	
+	<swiz:config>
+		<swiz:SwizConfig eventPackages="test.swiz.events.*" 
+						 viewPackages="test.swiz.views.*"/>
+	</swiz:config>
+	
+	<swiz:BeanProvider>
+		<fx:Array>
+			<swiz:Prototype type="{Foo}"/>
+			
+			<!-- BabelFx Localization Configuration -->
+			<l10n:LocalizationMap   xmlns:l10n="l10n.*"  />
+			
+		</fx:Array>
+	</swiz:BeanProvider>
+	
+</swiz:Swiz>

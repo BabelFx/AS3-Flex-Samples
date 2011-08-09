@@ -1,0 +1,40 @@
+<swiz:BeanProvider
+	xmlns:fx="http://ns.adobe.com/mxml/2009"
+	xmlns:swiz="http://swiz.swizframework.org"
+	xmlns:swizex="http://ext.swizframework.org" 
+	xmlns:map="l10n.map.*"
+	xmlns:model="co.flexclient.model.*" xmlns:controller="co.flexclient.controller.*">
+
+    <fx:Script>
+        <![CDATA[
+			import mx.logging.LogEventLevel;
+			
+			import org.osflash.thunderbolt.ThunderBoltTarget;
+        ]]>
+    </fx:Script>
+
+	<fx:Declarations>
+		
+		<!-- Beans -->
+		<model:AppModel					id="appModel" />
+		<model:UserModel 				id="userModel" />
+		
+		<controller:SessionController	xmlns:controller="co.flexclient.controller.*"  />
+		<controller:LoginController 	  />
+		
+		<!--
+				BabelFX l10nInjection configuration support:
+		-->
+		<map:LocalizationMap id="localizationMap">
+			<map:loggingTarget>
+				<swizex:ThunderBoltTarget 	id="thunderBoltTarget"
+											includeCategory="true"
+											includeTime="true"
+											includeLevel="true"
+											level="{LogEventLevel.DEBUG }" />
+			</map:loggingTarget>
+		</map:LocalizationMap>
+		
+	</fx:Declarations>
+		
+</swiz:BeanProvider>

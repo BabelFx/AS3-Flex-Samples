@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<fxpProperties abbreviated="false" authoringTool="Flex Builder" parentProject="cc3d7e65-9d0a-4a65-8687-3dc13c99e4ba" projectUUID="cc3d7e65-9d0a-4a65-8687-3dc13c99e4ba" pureCatalystProject="false" sdkVersion="4.5.1" uuid="26bcba0a-137f-4fbe-80b5-9938cd7d6582" version="15">
+  <projects/>
+  <src/>
+  <swc>
+    <linked location="sdkPlaceHolder" path="sdkPlaceHolder" position="0" uuid="26bcba0a-137f-4fbe-80b5-9938cd7d6582"/>
+    <linked location="V:/Workspaces/Flex/babelfx-bug/libs" path="/libs" position="1" uuid="3e4666d8-e2dc-417f-8677-07a77fb4a963"/>
+  </swc>
+  <misc/>
+  <theme/>
+  <mxmlFormattingPrefs groupAttributesByState="true" maxLineWidth="100" mxmlAlignAttributes="true" mxmlAttributeOrder="id,userLabel,includeIn,excludeFrom,visible,x,y,z,left,right,top,bottom,width,height,minWidth,minHeight,maxWidth,maxHeight,label" mxmlKeepAttributeValuesOrganized="true"/>
+</fxpProperties>

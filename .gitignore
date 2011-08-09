@@ -15,3 +15,9 @@
 /ItemRenderers/bin/
 /ItemRenderers/libs/
 /ItemRenderers/html-template/
+
+/Swiz_withPopups/bin-debug/
+/Swiz_withPopups/html-template/
+/ParameterTest/bin-debug/
+/GettingStarted_withSwiz/bin-debug/
+/GettingStarted_withSwiz/html-template/

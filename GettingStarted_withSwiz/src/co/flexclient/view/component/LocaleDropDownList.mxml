@@ -1,0 +1,31 @@
+<s:ComboBox xmlns:fx="http://ns.adobe.com/mxml/2009"
+			xmlns:s="library://ns.adobe.com/flex/spark"
+			labelField="@value"
+			change="onSwitchLocale();"
+			height="15">
+			
+	<fx:Script>
+		<![CDATA[
+			import org.babelfx.events.LocaleEvent;
+			
+			private function onSwitchLocale():void 
+			{
+				// This bubbles the locale change `request` up to BabelFx... and is especially important
+				// if you are loading external resource bundles via a configured BabelFx ExternalLocaleCommand.
+				
+				dispatchEvent( new LocaleEvent(LocaleEvent.LOAD_LOCALE, String(this.selectedItem.@key)) );
+				
+			}
+		]]>
+	</fx:Script>
+			
+	<s:dataProvider>
+		<s:XMLListCollection>
+			<fx:XMLList>
+				<locale key="en_US" value="English" />
+				<locale key="fr_FR" value="French" />
+			</fx:XMLList>
+		</s:XMLListCollection>
+	</s:dataProvider>
+	
+</s:ComboBox>

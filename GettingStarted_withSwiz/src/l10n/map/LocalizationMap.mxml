@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<l10n:LocaleMap 	enableLog="true"
+					xmlns:fx="http://ns.adobe.com/mxml/2009"
+					xmlns:l10n="http://l10n.babelfx.org/">
+				
+	<fx:Metadata> 
+		[ResourceBundle("login")] 
+		[ResourceBundle("main")] 
+	</fx:Metadata>
+	
+	<fx:Script>
+		<![CDATA[
+			import co.flexclient.view.UserLogin;
+			import co.flexclient.view.MainPanel;
+			
+			[Inject(source="userModel.user.username")]
+			public var userName : String;
+			
+		]]>
+	</fx:Script>
+	
+	<l10n:ResourceInjector bundleName="login" target="{UserLogin}" >
+		<l10n:ResourceSetter key="login.dialogLogin.title" 		property="title" />
+		<l10n:ResourceSetter key="login.dialogLogin.username" 	property="formItemUsername.label" />
+		<l10n:ResourceSetter key="login.dialogLogin.password" 	property="formItemPassword.label" />
+	</l10n:ResourceInjector>
+	
+	<l10n:ResourceInjector bundleName="main" target="{MainPanel}" >
+		<l10n:ResourceSetter key="main.mainPanel.title"			 property="title" 					parameters="{[userName]}"/>
+		<l10n:ResourceSetter key="main.currentLocale.title"		 property="lblCurrentLocale.text" 	/>
+		<l10n:ResourceSetter key="main.logout.title"			 property="btnLogout.label" 		/>
+	</l10n:ResourceInjector>
+					
+</l10n:LocaleMap>					

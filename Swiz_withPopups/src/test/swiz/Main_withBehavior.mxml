@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark"
+			   xmlns:swiz="http://swiz.swizframework.org"
+			   minWidth="955" minHeight="600" >
+	<fx:Script>
+		<![CDATA[
+			import com.codecatalyst.factory.ClassFactory;
+			import mx.effects.Fade;
+			import org.swizframework.events.BeanEvent;
+			import test.swiz.views.FooViewer;
+			
+		]]>
+	</fx:Script>
+
+	<fx:Declarations>
+				
+		<config:SwizConfig xmlns:config="test.swiz.config.*"   />
+		
+		<!-- Popup Behavior:
+		
+			 This apply show/hide effects to the popup, with autoclose (upon mouse down outside popup),
+		     caches, the content instance, and registers the content with Swiz so [Inject] works in the 
+		     PopupWindow
+	    -->
+		<ns:Popup id="popup"
+				  autoClose="true"
+				  parent="{ btnShowPopup }"
+				  showEffect="{ new com.codecatalyst.factory.ClassFactory(Fade,null,{duration:600, alphaFrom:0}) }"
+				  hideEffect="{ new com.codecatalyst.factory.ClassFactory(Fade,null,{duration:300, alphaTo:0}) }"
+				  contentReady="{ dispatchEvent( new BeanEvent(BeanEvent.SET_UP_BEAN,popup.content ) ) }"
+				  xmlns:ns="http://fe.codecatalyst.com/2011/flex-extensions">
+			
+			<fx:Component>
+				<!-- Note: 
+					 The popup content has constraints/anchors; which are relative to the behavior::parent 
+				     (line 51 above === btnShowPopup) 
+				-->
+				<views:FooViewer horizontalCenter="0" top="40" xmlns:views="test.swiz.views.*"  />
+			</fx:Component>
+		</ns:Popup>
+		
+	</fx:Declarations>
+
+	<s:layout>
+		<s:VerticalLayout horizontalAlign="center" verticalAlign="middle"/>
+	</s:layout>
+	
+
+	<s:Button id="btnShowPopup" label="Show PopUp" click="popup.show();"/>
+</s:Application>

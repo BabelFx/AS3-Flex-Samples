@@ -14,9 +14,8 @@
 			
 			import mx.events.FlexEvent;
 			
-			[Inject]
-			[Bindable]
-			public var model: EmployeesPresentationModel;
+			[Bindable]	[Inject]	public var model		: EmployeesPresentationModel;
+			[Bindable]	[Inject]	public var constants 	: Constants;
 			
 			public static const HEIGHT:int = 60;
 
@@ -55,8 +54,8 @@
 			>
 			<s:Move
 				targets="{ [ employeeListNav, employeeDetailNav ] }"
-				easer="{ Constants.EFFECT_EASE }"		
-				duration="{ Constants.EFFECT_DURATION }"
+				easer="{ constants.EFFECT_EASE }"		
+				duration="{ constants.EFFECT_DURATION }"
 				/>
 			
 		</s:Transition>

@@ -5,6 +5,14 @@
 	styleName="navContainer"
 	>
 	
+	
+	<fx:Metadata>
+		
+		[l10n ( "employees" )]
+		[l10n ( property="btnBack.label", 	key="users.buttons.back"			)]
+		
+	</fx:Metadata>
+	
 	<fx:Script>
 		<![CDATA[
 			import com.cafetownsend.presentation.EmployeeDetailPresentationModel;

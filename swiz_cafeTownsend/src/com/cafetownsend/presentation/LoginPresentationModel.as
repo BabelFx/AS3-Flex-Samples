@@ -20,6 +20,7 @@ package com.cafetownsend.presentation
 		
 		[Log]			public var log  	 : ILogger 			= null;		
 		[Dispatcher]	public var dispatcher:IEventDispatcher  = null;
+		[Inject]		public var constants : Constants		= null;
 		
 		[Inject("appModel.lastUsername")]
 		[Bindable]	public var lastUsername	:String 			= "";
@@ -56,11 +57,11 @@ package com.cafetownsend.presentation
 			
 			var stringValidation: ValidationResultEvent = stringValidator.validate( username );
 			var validUserName:Boolean = stringValidation.results == null;
-			usernameError = ( validUserName ) ? "" : Constants.LOGIN_INVALID_USERNAME;
+			usernameError = ( validUserName ) ? "" : constants.LOGIN_INVALID_USERNAME;
 
 			stringValidation = stringValidator.validate( password );
 			var validPassword:Boolean = stringValidation.results == null;
-			passwordError = ( validPassword ) ? "" : Constants.LOGIN_INVALID_PASSWORD;
+			passwordError = ( validPassword ) ? "" : constants.LOGIN_INVALID_PASSWORD;
 			
 			if (log != null) log.debug("validateLogin(): validUserName:{0}, validPassword:{1}",validUserName,validPassword);
 			

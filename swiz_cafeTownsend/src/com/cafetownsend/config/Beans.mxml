@@ -10,21 +10,29 @@
 	xmlns:presentation="com.cafetownsend.presentation.*" 
 	xmlns:l10n="l10n.map.*" xmlns:ext="http://ext.swizframework.org" >
 	
+	<fx:Metadata>
+		<!-- 
+			 References to bundles so embedding process works;
+			 NOTE: if runtime loaded, then disable this section
+		-->
+		[ResourceBundle("login")]
+		[ResourceBundle("employees")]
+		[ResourceBundle("language")]
+	</fx:Metadata>	
+
 	<fx:Script>
 		<![CDATA[
 			import com.cafetownsend.presentation.EmployeeDetailPresentationModel;
 			import com.cafetownsend.presentation.EmployeeListPresentationModel;
 			import com.cafetownsend.presentation.EmployeesPresentationModel;
-			
-			import mx.logging.LogEventLevel;
-			
-			import org.osflash.thunderbolt.ThunderBoltTarget;
 		]]>
 	</fx:Script>
 	
 	<fx:Declarations>
 		<mx:HTTPService	id="employeesService" 	url="assets/xml/Employees.xml" 	resultFormat="e4x" showBusyCursor="true"	/>
 	</fx:Declarations>
+	
+	<model:Constants />
 	
 	<!-- Application level model and controller.
 		Handle login, hold the state and user of the application -->
@@ -60,7 +68,7 @@
 	<service:UserDelegate />
 	<service:EmployeeDelegate />
 	
-	<!-- l10nInjection configuration for Spanish & English support -->
+	<!-- l10nInjection configuration for Spanish & English support 
 	<l10n:LocalizationMap>
 		<l10n:loggingTarget>
 			<ext:ThunderBoltTarget includeCategory="true"
@@ -69,5 +77,6 @@
 								  level="{LogEventLevel.DEBUG }" />
 		</l10n:loggingTarget>
 	</l10n:LocalizationMap> 
+	-->
 	
 </swiz:BeanProvider>

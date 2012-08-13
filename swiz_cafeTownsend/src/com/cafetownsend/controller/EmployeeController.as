@@ -33,6 +33,7 @@ package com.cafetownsend.controller
 
 		[Log]			public var log  	 : ILogger 			= null;		
 		[Dispatcher]	public var dispatcher: IEventDispatcher = null;
+		[Inject]		public var constants : Constants;
 		
 		[Inject]		public var model	 : EmployeeModel	= null;
 		[Inject]		public var delegate	 : IEmployeeDelegate= null;
@@ -57,7 +58,7 @@ package com.cafetownsend.controller
 			try {
 				if (log != null) log.debug("parseEmployeesData()");
 			} catch( error: Error ) {
-				ErrorUtil.showError( StringUtil.substitute(Constants.EMPLOYEE_LOAD_ERROR,[error.message]) );
+				ErrorUtil.showError( StringUtil.substitute(constants.EMPLOYEE_LOAD_ERROR,[error.message]) );
 			}
 			
 			return data;
@@ -133,7 +134,7 @@ package com.cafetownsend.controller
 			
 			if (log != null) log.debug("confirmDeleteEmployee({0})", employee.fullName);
 			
-			Alert.show(	StringUtil.substitute(Constants.EMPLOYEE_CONFIRM_DELETE,[employee.firstName,employee.lastName]),
+			Alert.show(	StringUtil.substitute(constants.EMPLOYEE_CONFIRM_DELETE,[employee.firstName,employee.lastName]),
 				null,
 				Alert.OK | Alert.CANCEL,
 				FlexGlobals.topLevelApplication as Sprite,

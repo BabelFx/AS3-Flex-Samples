@@ -21,7 +21,7 @@ package com.cafetownsend.presentation
 	{
 		[Log]			public var log  	 : ILogger 			= null;		
 		[Dispatcher]	public var dispatcher:IEventDispatcher  = null;
-		
+		[Inject]		public var constants : Constants;
 		//--------------------------------------------------------------------------
 		//
 		// selected employee
@@ -156,11 +156,11 @@ package com.cafetownsend.presentation
 			
 			var stringValidation: ValidationResultEvent = stringValidator.validate( employee.firstName );
 			var validFirstname:Boolean = stringValidation.results == null;
-			_firstNameError = ( validFirstname ) ? "" : Constants.EMPLOYEE_INVALID_FIRSTNAME;
+			_firstNameError = ( validFirstname ) ? "" : constants.EMPLOYEE_INVALID_FIRSTNAME;
 
 			stringValidation = stringValidator.validate( employee.lastName );
 			var validLastname:Boolean = stringValidation.results == null;
-			_lastNameError = ( validLastname ) ? "" : Constants.EMPLOYEE_INVALID_LASTNAME;
+			_lastNameError = ( validLastname ) ? "" : constants.EMPLOYEE_INVALID_LASTNAME;
 			
 			// create emailValidator if not created yet
 			emailValidator ||= new EmailValidator();

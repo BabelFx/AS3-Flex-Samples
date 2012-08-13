@@ -27,11 +27,13 @@
 		<sw:SwizConfig 		 id="appConfig"
 							 strict="true"
 							 eventPackages="com.cafetownsend.event.*" 
-							 viewPackages="com.cafetownsend.view.*"
+							 viewPackages="com.cafetownsend.view.*,l10n.views.*"
 							 defaultFaultHandler="{genericFault}"/>
 	</sw:config>
 	
 	<sw:customProcessors>
+		<bfx:BabelFxProcessor xmlns:bfx="http://swiz.babelfx.org/"/>
+		
 		<ext:DeepLinkProcessor>
 			<ext:browserManager>
 				<ext:SWFAddressManager baseTitle="My page" />

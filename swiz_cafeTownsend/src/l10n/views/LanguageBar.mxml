@@ -6,15 +6,26 @@
 		 xmlns:s="library://ns.adobe.com/flex/spark" 
 		 xmlns:mx="library://ns.adobe.com/flex/mx" >
 
+	<fx:Metadata>
+		
+		[l10n ( "language" )]
+		[l10n ( property="lblBarHelp.text", 	key="languagebar.title", 	parameters="selectedLocale" )]
+		[l10n ( property="flags[0].toolTip", 	key="flag.toolTip.en_US" 	)]
+		[l10n ( property="flags[1].toolTip", 	key="flag.toolTip.es_ES" 	)]
+		
+	</fx:Metadata>
+
 	<fx:Script>
 		<![CDATA[
-			import org.babelfx.events.LocaleEvent;
+			import ext.babelfx.events.BabelEvent;
 			
 			import l10n.views.assets.LocaleAssets;
 			
 			import mx.controls.Image;
 			import mx.events.PropertyChangeEvent;
 			
+			[Dispatcher]
+			public var dispatcher : IEventDispatcher;
 			
 			[Bindable('propertyChange')]
 			public function get selectedLocale():String   {  return _locale;	}
@@ -24,6 +35,12 @@
 			 * Special accessor to allow l10n injection into the tooltip text on each Flag buttons
 			 */
 			public function get flags():Array 			  { return _buttons; }
+			
+			[PostConstruct]
+			public function loadDefaultLocale():void 
+			{
+				//dispatcher.dispatchEvent(new LocaleEvent(LocaleEvent.LOAD_DEFAULT));
+			}
 			
 			// *********************************************************
 			// Overriden Methods 
@@ -62,7 +79,7 @@
 				
 				// Dispatch an l10nInjection event to trigger locale switching
 				// Then notify any watchers that the locale value has changed...
-				dispatchEvent(new LocaleEvent(LocaleEvent.LOAD_LOCALE,_locale));
+				dispatcher.dispatchEvent(new BabelEvent(BabelEvent.LOAD_LOCALE,_locale));
 				dispatchEvent(PropertyChangeEvent.createUpdateEvent(this,"selectedLocale",null,_locale));
 			}
 			
@@ -96,10 +113,10 @@
 					_buttons.push(img);
 					
 					// Current OS matches this locale... so simulate click on button
-					var locale : String = LocaleAssets.getLocaleFor(flag);
-					if (locale.indexOf(Capabilities.language) > -1) {
-						onLoadLocale(null,img);
-					}
+					//var locale : String = LocaleAssets.getLocaleFor(flag);
+					// (locale.indexOf(Capabilities.language) > -1) {
+					//	onLoadLocale(null,img);
+					//}
 				}				
 			}
 			

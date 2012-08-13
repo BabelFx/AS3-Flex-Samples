@@ -5,6 +5,22 @@
 	xmlns:mx="library://ns.adobe.com/flex/mx"
 	verticalGap="10" >
 	
+	<fx:Metadata>
+		
+		[l10n ( "employees" )]
+		[l10n ( property="fiFirstName.label", 	key="form.fiFirstName" 		)]
+		[l10n ( property="fiLastName.label", 	key="form.fiLastName" 		)]
+		[l10n ( property="fiStartDate.label", 	key="form.fiStartDate" 		)]
+		[l10n ( property="fiEmail.label", 		key="form.fiEmail" 			)]
+		[l10n ( property="btnSubmit.label", 		key="form.buttons.submit" 	)]
+		[l10n ( property="btnDelete.label", 		key="form.buttons.delete" 	)]
+
+		[l10n ( property="scaleX", 				key="form.scaling"			)]
+		[l10n ( property="scaleY", 				key="form.scaling" 			)]
+		
+	</fx:Metadata>
+
+	
 	<fx:Script>
 		<![CDATA[
 			import com.cafetownsend.presentation.EmployeeDetailPresentationModel;

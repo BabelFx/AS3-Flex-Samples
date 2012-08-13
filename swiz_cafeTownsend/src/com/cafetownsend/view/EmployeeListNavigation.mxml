@@ -6,6 +6,15 @@
 	styleName="navContainer"
 	>
 	
+	<fx:Metadata>
+		
+		[l10n ( "employees" )]
+		[l10n ( property="btnCreate.label", 	key="users.buttons.create"			)]
+		[l10n ( property="btnEdit.label", 		key="users.buttons.edit"  			)]
+		[l10n ( property="btnDelete.label", 	key="users.buttons.delete"			)]
+		
+	</fx:Metadata>
+
 	
 	<fx:Script> 
 		<![CDATA[

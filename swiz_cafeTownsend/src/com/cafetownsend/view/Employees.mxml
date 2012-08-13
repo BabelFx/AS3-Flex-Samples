@@ -12,9 +12,8 @@
 			import com.cafetownsend.model.Constants;
 			import com.cafetownsend.presentation.EmployeesPresentationModel;
 
-			[Inject]
-			[Bindable]
-			public var model: EmployeesPresentationModel;			
+			[Bindable]	[Inject]	public var model		: EmployeesPresentationModel;
+			[Bindable]	[Inject]	public var constants 	: Constants;
 			
 		]]>
 	</fx:Script>
@@ -33,9 +32,9 @@
 			>
 			<s:Parallel>
 				<s:Fade
-					startDelay="{ Constants.EFFECT_DURATION }"
-					duration="{ Constants.EFFECT_DURATION }"
-					easer="{ Constants.EFFECT_EASE }"
+					startDelay="{ constants.EFFECT_DURATION }"
+					duration="{ constants.EFFECT_DURATION }"
+					easer="{ constants.EFFECT_EASE }"
 					target="{ employeeDetail }"
 					/>
 			</s:Parallel>
@@ -46,9 +45,9 @@
 			>
 			<s:Parallel>
 				<s:Fade
-					startDelay="{ Constants.EFFECT_DURATION }"
-					duration="{ Constants.EFFECT_DURATION }"
-					easer="{ Constants.EFFECT_EASE }"
+					startDelay="{ constants.EFFECT_DURATION }"
+					duration="{ constants.EFFECT_DURATION }"
+					easer="{ constants.EFFECT_EASE }"
 					target="{ employeeList }"
 					/>
 			</s:Parallel>

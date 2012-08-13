@@ -5,9 +5,23 @@
 		 xmlns:mate="http://mate.asfusion.com/"
 		 currentState="{ model.currentState }">
 
+	<fx:Metadata>
+		
+		[l10n(  bundle="login", change="onLocaleChanged" )]
+		
+		[l10n(  property="fiUserName.label", 			key="login.form.fiUserName" )]
+		[l10n(  property="fiPassword.label", 			key="login.form.fiPassword" )]
+		[l10n(  property="loginBtn.label", 				key="login.submit"          )]
+		[l10n(  property="lblHint.text", 				key="login.tip"             )]
+		[l10n(  property="loginBtn.backgroundColor", 	key="content.frame.color"  	)]
+		
+	</fx:Metadata>
+	
 	<fx:Script>
 		<![CDATA[
 			import com.cafetownsend.presentation.LoginPresentationModel;
+			
+			import ext.babelfx.events.BabelEvent;
 
 			[Bindable]
 			[Inject]
@@ -18,6 +32,25 @@
 			{
 				model.login(username.text, password.text)
 			}
+
+			/**
+			 * Whenever the locale changes
+			 */
+			public function onLocaleChanged(event:BabelEvent):void
+			{
+				if ( loginBtn ) loginBtn.skin.invalidateProperties();
+				
+				if ( event.type == BabelEvent.LOCALE_CHANGED )
+				{
+					if ( loginErrorTxt ) 	loginErrorTxt.text = "";
+					
+					if (model != null) {
+						model.usernameError = "";	// Clear all validation errors... 
+						model.passwordError	= "";
+					}
+				}
+			}
+		
 		]]>
 	</fx:Script>
 

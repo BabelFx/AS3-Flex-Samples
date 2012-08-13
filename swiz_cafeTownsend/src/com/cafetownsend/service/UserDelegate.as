@@ -10,6 +10,8 @@ package com.cafetownsend.service
 	
 	public class UserDelegate implements IUserDelegate
 	{
+		[Inject]	public 	var constants 	: Constants;
+		
 		protected var util:MockDelegateHelper;
 		
 		public function UserDelegate()
@@ -25,7 +27,7 @@ package com.cafetownsend.service
 				return util.createMockResult(user, 750);
 			}
 			
-			var fault:Fault = new Fault("0", Constants.LOGIN_FAILED_TITLE, Constants.LOGIN_FAILED_MESSAGE);
+			var fault:Fault = new Fault("0", constants.LOGIN_FAILED_TITLE, constants.LOGIN_FAILED_MESSAGE);
 			return util.createMockFault(fault, 250);
 		}
 	}

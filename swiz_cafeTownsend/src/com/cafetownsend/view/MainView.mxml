@@ -6,7 +6,21 @@
 		 xmlns:mx="library://ns.adobe.com/flex/mx"
 		 xmlns:view="com.cafetownsend.view.*"
 		 xmlns:views="l10n.views.*">
+	
 
+	<fx:Metadata>
+		
+		[l10n ( bundle="login", change="onLocaleChanged")]
+		
+		[l10n ( property="btnLogout.label", 		        key="login.signOut"                          )]
+		[l10n ( property="txtWelcomeUser.text", 	        key="login.welcome",           parameters="authenticated.user.username" )]
+		[l10n ( property="imgHeader.source", 	            key="login.header",            content="class" )]
+		[l10n ( property="contentContainer.backgroundColor", key="content.background.color" 				)]
+		[l10n ( property="contentFrame.color", 				key="content.frame.color" 					)]
+		[l10n ( property="btnLogout.backgroundColor", 		key="content.frame.color"					)]
+		
+	</fx:Metadata>
+	
 	<fx:Script>
 		<![CDATA[
 			import com.cafetownsend.model.AppModel;
@@ -19,9 +33,19 @@
 			protected static const HEIGHT_MAX:int=560;
 
 
-			[Bindable]
-			[Inject]
-			public var model:MainViewPresentationModel;
+			[Bindable]	[Inject]	public var model		: MainViewPresentationModel;
+			[Bindable]	[Inject]	public var authenticated: AppModel;
+			[Bindable]	[Inject]	public var constants 	: Constants;
+			
+			/**
+			 * Whenever the locale changes
+			 */
+			public function onLocaleChanged(event:Event):void
+			{
+				btnLogout.skin.invalidateProperties();
+			}
+			
+			
 		]]>
 	</fx:Script>
 
@@ -38,8 +62,8 @@
 		<s:Transition autoReverse="true"
 					  fromState="*"
 					  toState="loggedOut">
-			<s:Fade duration="{ Constants.EFFECT_DURATION }"
-					startDelay="{ Constants.EFFECT_DURATION }"
+			<s:Fade duration="{ constants.EFFECT_DURATION }"
+					startDelay="{ constants.EFFECT_DURATION }"
 					target="{ loginView }"/>
 		</s:Transition>
 
@@ -51,18 +75,18 @@
 				<s:Resize target="{ this }"
 						  startDelay="200"
 						  heightTo="{ HEIGHT_MAX }"
-						  duration="{ Constants.EFFECT_DURATION }"
-						  easer="{ Constants.EFFECT_EASE }"/>
+						  duration="{ constants.EFFECT_DURATION }"
+						  easer="{ constants.EFFECT_EASE }"/>
 				<s:Parallel>
 					<s:AddAction target="{ employeesView }"/>
 					<s:Move target="{ btnLogout }"
-							duration="{ Constants.EFFECT_DURATION }"
-							easer="{ Constants.EFFECT_EASE }"/>
-					<s:Fade duration="{ Constants.EFFECT_DURATION }"
+							duration="{ constants.EFFECT_DURATION }"
+							easer="{ constants.EFFECT_EASE }"/>
+					<s:Fade duration="{ constants.EFFECT_DURATION }"
 							effectStart="employeesView.visible = true"
 							target="{ employeesView }"/>
 				</s:Parallel>
-				<s:Fade duration="{ Constants.EFFECT_DURATION }"
+				<s:Fade duration="{ constants.EFFECT_DURATION }"
 						target="{ txtWelcomeUser }"/>
 			</s:Sequence>
 
@@ -73,20 +97,20 @@
 					  toState="loggedOut">
 			<s:Sequence>
 				<s:Parallel>
-					<s:Fade duration="{ Constants.EFFECT_DURATION }"
+					<s:Fade duration="{ constants.EFFECT_DURATION }"
 							target="{ employeesView }"/>
 					<s:Move target="{ btnLogout }"
-							duration="{ Constants.EFFECT_DURATION }"
-							easer="{ Constants.EFFECT_EASE }"/>
-					<s:Fade duration="{ Constants.EFFECT_DURATION }"
+							duration="{ constants.EFFECT_DURATION }"
+							easer="{ constants.EFFECT_EASE }"/>
+					<s:Fade duration="{ constants.EFFECT_DURATION }"
 							target="{ txtWelcomeUser }"/>
 				</s:Parallel>
 				<s:Resize target="{ this }"
 						  heightTo="{ HEIGHT_MIN }"
-						  duration="{ Constants.EFFECT_DURATION }"
-						  easer="{ Constants.EFFECT_EASE }"/>
+						  duration="{ constants.EFFECT_DURATION }"
+						  easer="{ constants.EFFECT_EASE }"/>
 				<s:AddAction target="{ loginView }"/>
-				<s:Fade duration="{ Constants.EFFECT_DURATION }"
+				<s:Fade duration="{ constants.EFFECT_DURATION }"
 						target="{ loginView }"/>
 			</s:Sequence>
 		</s:Transition>

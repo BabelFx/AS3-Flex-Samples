@@ -19,6 +19,7 @@
 		]]>
 	</fx:Script>
 	
+	
 	<sw:beanProviders>
 		<config:Beans 		 xmlns:config="com.cafetownsend.config.*" />
 	</sw:beanProviders>
@@ -26,7 +27,7 @@
 	<sw:config>
 		<sw:SwizConfig 		 id="appConfig"
 							 strict="true"
-							 eventPackages="com.cafetownsend.event.*" 
+							 eventPackages="com.cafetownsend.event.*,ext.babelfx.events.*" 
 							 viewPackages="com.cafetownsend.view.*,l10n.views.*"
 							 defaultFaultHandler="{genericFault}"/>
 	</sw:config>

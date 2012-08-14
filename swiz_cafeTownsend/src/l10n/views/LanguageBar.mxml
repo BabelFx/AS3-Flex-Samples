@@ -17,7 +17,7 @@
 
 	<fx:Script>
 		<![CDATA[
-			import ext.babelfx.events.BabelEvent;
+			import ext.babelfx.events.BabelFxEvent;
 			
 			import l10n.views.assets.LocaleAssets;
 			
@@ -79,7 +79,7 @@
 				
 				// Dispatch an l10nInjection event to trigger locale switching
 				// Then notify any watchers that the locale value has changed...
-				dispatcher.dispatchEvent(new BabelEvent(BabelEvent.LOAD_LOCALE,_locale));
+				dispatcher.dispatchEvent(new BabelFxEvent(BabelFxEvent.LOAD_LOCALE,_locale));
 				dispatchEvent(PropertyChangeEvent.createUpdateEvent(this,"selectedLocale",null,_locale));
 			}
 			

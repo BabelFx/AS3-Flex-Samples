@@ -10,14 +10,14 @@
 
 	<fx:Metadata>
 		
-		[l10n ( bundle="login", change="onLocaleChanged")]
-		
-		[l10n ( property="btnLogout.label", 		        key="login.signOut"                          )]
-		[l10n ( property="txtWelcomeUser.text", 	        key="login.welcome",           parameters="authenticated.user.username" )]
-		[l10n ( property="imgHeader.source", 	            key="login.header",            content="class" )]
-		[l10n ( property="contentContainer.backgroundColor", key="content.background.color" 				)]
-		[l10n ( property="contentFrame.color", 				key="content.frame.color" 					)]
-		[l10n ( property="btnLogout.backgroundColor", 		key="content.frame.color"					)]
+		[ l10n ( bundle="login" ) ]
+		  
+		[ l10n ( property="btnLogout.label", 		        key="login.signOut" )]
+		[ l10n ( property="txtWelcomeUser.text", 	        key="login.welcome",           parameters="authenticated.user.username" )]
+		[ l10n ( property="imgHeader.source", 	            key="login.header",            content="class" )]
+		[ l10n ( property="contentContainer.backgroundColor", key="content.background.color" 				)]
+		[ l10n ( property="contentFrame.color", 				key="content.frame.color" 					)]
+		[ l10n ( property="btnLogout.backgroundColor", 		key="content.frame.color"					)]
 		
 	</fx:Metadata>
 	
@@ -26,6 +26,8 @@
 			import com.cafetownsend.model.AppModel;
 			import com.cafetownsend.model.Constants;
 			import com.cafetownsend.presentation.MainViewPresentationModel;
+			
+			import ext.babelfx.events.BabelFxEvent;
 
 
 			protected static const PADDING:int=15;
@@ -37,10 +39,12 @@
 			[Bindable]	[Inject]	public var authenticated: AppModel;
 			[Bindable]	[Inject]	public var constants 	: Constants;
 			
+			
+			[BabelFx(event="BabelFxEvent.LOCALE_CHANGED")]
 			/**
 			 * Whenever the locale changes
 			 */
-			public function onLocaleChanged(event:Event):void
+			public function onLocaleChanged(event:BabelFxEvent):void
 			{
 				btnLogout.skin.invalidateProperties();
 			}

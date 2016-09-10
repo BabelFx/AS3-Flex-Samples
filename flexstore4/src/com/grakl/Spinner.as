@@ -49,7 +49,7 @@ package com.grakl {
             
             addEventListener(FlexEvent.CREATION_COMPLETE, onSpinnerReady);
 			addEventListener(FlexEvent.SHOW, onShowHideSpinner);
-			addEventListener(FlexEvent.SHOW, onShowHideSpinner);
+			addEventListener(FlexEvent.HIDE, onShowHideSpinner);
         }
         
         
